@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['namespace' => 'admin'], function() {
+Route::resource('admin/contract','ContractController');
+Route::resource('admin/apartment','ApartmentController');
+Route::resource('admin/flat','FlatController');
+Route::resource('admin/location','LocationController');
+Route::resource('admin/manager','ManagerController');
+Route::resource('admin/marketting','MarkettingController');
+Route::resource('admin/project','ProjectController');
+Route::resource('admin/user','UserController');
+
+});
