@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
+use App\Models\contract;
+use App\Http\Requests;
 
 use Illuminate\Http\Request;
 
 class ContractController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
-    {
-        //
+    { 
+        $contract = contract::paginate(2);
+        return view("admin.contract.index", array('model' => $contract));
     }
 
     /**
@@ -23,7 +23,7 @@ class ContractController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.contract.create");
     }
 
     /**
@@ -54,10 +54,11 @@ class ContractController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    // public function edit($id)
+    // {
+    //     $contract = Contract::find($id);
+    //     return view("admin.contract.edit", compact('contract'));
+    // }
 
     /**
      * Update the specified resource in storage.
