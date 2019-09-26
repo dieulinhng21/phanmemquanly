@@ -3,12 +3,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Bảng hợp đồng
+        Bảng vị trí
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng hợp đồng</a></li>
+        <li><a href="#">Bảng vị trí</a></li>
         <!-- <li class="active">Bảng hợp đồng</li> -->
     </ol>
 </section>
@@ -22,7 +22,7 @@
                     <!-- <h3 class="box-title">Hover Contract Table</h3> -->
                 </div>
                 <div class="btn">
-                    <button type="button" onclick="location.href='{{ url('admin/contract/create') }}'" class="btn btn-block btn-primary">Thêm hợp đồng</button>
+                    <button type="button" onclick="location.href='{{ url('admin/location/create') }}'" class="btn btn-block btn-primary">Thêm vị trí</button>
                 </div>
 
                 <!-- /.box-header -->
@@ -31,29 +31,19 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Mã hợp đồng</th>
-                                <th>ID căn hộ</th>
-                                <th>ID tòa nhà</th>
-                                <th>ID khách hàng</th>
-                                <th>Giá trị</th>
-                                <th>Ngày ký</th>
-                                <th>Ghi chú</th>
+                                <th>Tên</th>
+                                <th>Tổng số dự án</th>
                                 <th colspan="2">Action</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($model as $item )
                             <tr>
-                                <td>{{$item->idhopdong}}</td>
-                                <td>{{$item->mahopdong}}</td>
-                                <td>{{$item->idcanho}}</td>
-                                <td>{{$item->idtoanha}}</td>
-                                <td>{{$item->idkhachhang}}</td>
-                                <td>{{$item->giatri}}</td>
-                                <td>{{$item->ngayky}}</td>
-                                <td>{{$item->ghichu}}</td>
-                                <td><a href="{{ url('/admin/contract/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
-                                <td><a href="{{ url('/admin/contract/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
+                                <td>{{$item->idvitri}}</td>
+                                <td>{{$item->ten}}</td>
+                                <td>{{$item->tongsoduan}}</td>
+                                <td><a href="{{ url('/admin/apartment/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
+                                <td><a href="{{ url('/admin/apartment/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
                             </tr>
                             @endforeach
                         </tbody>

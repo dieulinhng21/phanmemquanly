@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
+use App\Models\Flat;
+use App\Http\Requests;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +16,8 @@ class FlatController extends Controller
      */
     public function index()
     {
-        //
+        $flat = flat::paginate(2);
+        return view("admin.flat.index", array('model' => $flat));
     }
 
     /**
@@ -23,7 +27,7 @@ class FlatController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.flat.create");
     }
 
     /**
@@ -56,7 +60,8 @@ class FlatController extends Controller
      */
     public function edit($id)
     {
-        //
+        $flat = Flat::find($id);
+        return view("admin.flat.edit", compact('flat'));
     }
 
     /**
