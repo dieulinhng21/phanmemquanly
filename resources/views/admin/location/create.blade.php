@@ -1,3 +1,17 @@
+<style>
+label {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+form {
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    padding: 30px 5%;
+}
+button {
+    margin-left: 50%;
+}
+</style>
 @extends('partialView.master')
 
 @section('content')
@@ -9,79 +23,37 @@
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
         <li><a href="{{ url ('admin/location') }}">Bảng vị trí</a></li>
-        <li class="active">Thêm tòa chung cư</li>
+        <li class="active">Thêm vị trí</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-    <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-            <!-- general form elements -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <!-- <h3 class="box-title">Fill in this form</h3> -->
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" method="POST" action="{{ url('/admin/location/store') }}">
-                    {{ csrf_field() }}
-                    
-                    <div class="box-body">
-                    <div class="form-group">
-                            <label>Tên vị trí</label>
-                            
-                            @if ($errors->any())
+    <div class="container">
+        <form method="POST" action="{{ url('/admin/location/store') }}">
+        {{ csrf_field() }}
+        <label>Tên vị trí</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Tổng số dự án</label>
-                            
-                            @if ($errors->any())
+            <input type="text" name="location_name">
+
+            <label>Tổng số dự án</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="number" class="form-control">
-                        </div>
-                    <!-- /.box-body -->
-                    
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Lưu</button>
-                    </div>
-                </form>
-            </div>
-            <!-- /.box -->
-            
-            <!-- Form Element sizes -->
-            
-            <!-- /.box -->
-            
-            
-            <!-- /.box -->
-            
-            <!-- Input addon -->
-            
-            <!-- /.box -->
-            
-        </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        
-        <!--/.col (right) -->
+            <input type="number" name="project_number"><br><br><br>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
     </div>
-    <!-- /.row -->
 </section>
 <!-- /.content -->
 @endsection('content')

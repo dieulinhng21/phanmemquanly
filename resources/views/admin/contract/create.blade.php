@@ -1,3 +1,17 @@
+<style>
+label {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+form {
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    padding: 30px 5%;
+}
+button {
+    margin-left: 50%;
+}
+</style>
 @extends('partialView.master')
 
 @section('content')
@@ -15,100 +29,52 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-            <!-- general form elements -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <!-- <h3 class="box-title">Fill in this form</h3> -->
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" method="POST" action="{{ url('/admin/contract/store') }}">
-                    {{ csrf_field() }}
-                    
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label>Mã hợp đồng</label>
-                            
-                            @if ($errors->any())
+    <div class="container">
+        <form method="POST" action="{{ url('/admin/contract/store') }}">
+        {{ csrf_field() }}
+            <label>Mã hợp đồng</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Giá trị</label>
-                            
-                            @if ($errors->any())
+            <input type="text" name="contract_code">
+
+            <label>Giá trị</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Ngày ký</label>
-                            
-                            @if ($errors->any())
+            <input type="text" name="contract_worth">
+
+            <label>Ngày ký</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Ghi chú</label>
-                            
-                            <!-- @if ($errors->any())
+            <input type="text" name="contract_date"><br><br><br>
+
+            <label for="note">Ghi chú :</label><br>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
-                            @endif -->
-                            
-                            <input name="name" type="text" class="form-control">
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
-                    
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Lưu</button>
-                    </div>
-                </form>
-            </div>
-            <!-- /.box -->
-            
-            <!-- Form Element sizes -->
-            
-            <!-- /.box -->
-            
-            
-            <!-- /.box -->
-            
-            <!-- Input addon -->
-            
-            <!-- /.box -->
-            
-        </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        
-        <!--/.col (right) -->
+                            @endif
+            <textarea rows="4" cols="50" name="note" id="note"></textarea><br><br>
+
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
     </div>
-    <!-- /.row -->
 </section>
 <!-- /.content -->
 @endsection('content')

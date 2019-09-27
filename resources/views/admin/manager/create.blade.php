@@ -1,3 +1,17 @@
+<style>
+label {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+form {
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    padding: 30px 5%;
+}
+button {
+    margin-left: 50%;
+}
+</style>
 @extends('partialView.master')
 
 @section('content')
@@ -8,124 +22,68 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="{{ url ('admin/location') }}">Bảng người quản lý</a></li>
+        <li><a href="{{ url ('admin/manager') }}">Bảng người quản lý</a></li>
         <li class="active">Thêm thành viên</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-    <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-            <!-- general form elements -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <!-- <h3 class="box-title">Fill in this form</h3> -->
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" method="POST" action="{{ url('/admin/manager/store') }}">
-                    {{ csrf_field() }}
-                    
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label>Họ và tên</label>
-                            
-                            @if ($errors->any())
+    <div class="container">
+        <form method="POST" action="{{ url('/admin/location/store') }}">
+        {{ csrf_field() }}
+        <label>Họ tên</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Vai trò</label>
-                            
-                            @if ($errors->any())
+            <input type="text" name="name">
+
+            <label>Vai trò</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="text" class="form-control">
-                            
-                        </div>
-                        <div class="form-group">
-                            <label>SĐT</label>
-                            
-                            @if ($errors->any())
+            <input type="number" name="role"><br><br>
+
+            <label>SĐT</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="text" class="form-control">
-                            
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            
-                            @if ($errors->any())
+            <input type="text" name="phone_number">
+
+            <label>Email</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="text" class="form-control">
-                            
-                        </div>
-                        <div class="form-group">
-                            <label>Địa chỉ</label>
-                            
-                            @if ($errors->any())
+            <input type="email" name="email">
+
+            <label>Địa chỉ</label>
+            @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-                            
-                            <input name="name" type="text" class="form-control">
-                            
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
-                    
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Lưu</button>
-                    </div>
-                </form>
-            </div>
-            <!-- /.box -->
-            
-            <!-- Form Element sizes -->
-            
-            <!-- /.box -->
-            
-            
-            <!-- /.box -->
-            
-            <!-- Input addon -->
-            
-            <!-- /.box -->
-            
-        </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        
-        <!--/.col (right) -->
+            <input type="text" name="address"><br><br><br>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
     </div>
-    <!-- /.row -->
 </section>
 <!-- /.content -->
 @endsection('content')

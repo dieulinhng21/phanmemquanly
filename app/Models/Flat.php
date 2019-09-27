@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Description of Category
+ * Description of Flat
  *
  * @author TKINH
  */

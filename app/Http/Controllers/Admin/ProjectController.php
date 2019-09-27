@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
+use App\Models\Project;
+use App\Http\Requests;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +16,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $project = project::paginate(2);
+        return view("admin.project.index", array('model' => $project));
     }
 
     /**
@@ -23,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.project.create");
     }
 
     /**
@@ -56,7 +60,8 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = project::find($id);
+        return view("admin.project.edit", compact('project'));
     }
 
     /**
