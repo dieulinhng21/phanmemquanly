@@ -3,12 +3,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Bảng vị trí
+        Bảng địa điểm
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng vị trí</a></li>
+        <li><a href="#">Bảng địa điểm</a></li>
         <!-- <li class="active">Bảng hợp đồng</li> -->
     </ol>
 </section>
@@ -40,7 +40,7 @@
                             @foreach($model as $item )
                             <tr>
                                 <td>{{$item->idvitri}}</td>
-                                <td>{{$item->ten}}</td>
+                                <td>{{$item->tenvitri}}</td>
                                 <td>{{$item->tongsoduan}}</td>
                                 <td><a href="{{ url('/admin/apartment/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
                                 <td><a href="{{ url('/admin/apartment/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
