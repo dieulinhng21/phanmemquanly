@@ -32,28 +32,32 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Mã hợp đồng</th>
-                                <th>ID căn hộ</th>
-                                <th>ID tòa nhà</th>
-                                <th>ID khách hàng</th>
                                 <th>Giá trị</th>
+                                <th>ID căn hộ</th>
                                 <th>Ngày ký</th>
                                 <th>Ghi chú</th>
-                                <th colspan="2">Action</th> <!-- Default pagination disappear after adding colspan = 2-->
+                                <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($model as $item )
+                            @foreach ($model as $item )
                             <tr>
                                 <td>{{$item->idhopdong}}</td>
                                 <td>{{$item->mahopdong}}</td>
-                                <td>{{$item->idcanho}}</td>
-                                <td>{{$item->idtoanha}}</td>
-                                <td>{{$item->idkhachhang}}</td>
                                 <td>{{$item->giatri}}</td>
-                                <td>{{$item->ngayky}}</td>
+                                <td>{{$item->idcanho}}</td>
+                                <td>{{$item->ngayky}}</td>ff
                                 <td>{{$item->ghichu}}</td>
-                                <td><a href="{{ url('/admin/contract/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
-                                <td><a href="{{ url('/admin/contract/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
+                                <td>
+                                <a href="contract/{{$item->idhopdong}}/edit" class="btn btn-block btn-primary">Sửa</a>
+                                </td>
+                                <td>
+                                <form action="{{ route('contract.destroy', $item->idhopdong)}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                    <button class="btn btn-danger" type="submit">Xóa</button>
+                                </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

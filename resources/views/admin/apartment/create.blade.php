@@ -27,46 +27,32 @@ form {
 <!-- Main content -->
 <section class="content">
     <div class="container">
-        <form method="POST" action="{{ url('/admin/apartment/store') }}">
+        <form method="POST" action="{{ route('apartment.store') }}">
         {{ csrf_field() }}
-            <label>Tên dự án </label>
-            @if ($errors->any())
+        @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                 <p>{{ $error }}</p>
                                 @endforeach
                             </div>
                             @endif
-            <input type="number" name="project_name">
+            <label>Tên dự án</label>
+            <select name="project_name">
+                <!-- <option value="1">AZ Lâm Viên Complex</option>
+                <option value="2">AZ SKY Tower</option>
+                <option value="3">Tổ hợp BrightCity</option> -->
+                <option value="4" selected>AZ Vân Canh Tower CT1</option>
+                <option value="5" selected>AZ Kim Giang</option>
+                <option value="6" selected>AZ Vân Canh Tower CT2</option>
+            </select>
 
             <label>Tên chung cư</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
             <input type="text" name="apartment_name">
 
             <label>Tổng số phòng</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
             <input type="number" name="total_room"><br><br><br>
 
             <label for="status">Tình trạng :</label><br>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
             <textarea  rows="4" cols="50" name="status" id="status"></textarea><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>

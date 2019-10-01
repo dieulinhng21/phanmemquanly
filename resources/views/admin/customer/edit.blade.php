@@ -1,3 +1,17 @@
+<style>
+label {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+form {
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    padding: 30px 5%;
+}
+button {
+    margin-left: 50%;
+}
+</style>
 @extends('partialView.master')
 
 @section('content')
@@ -15,152 +29,45 @@
 
 <!-- Main content -->
 <section class="content">
-        <div class="row">
-            <!-- left column -->
-            <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <!-- <h3 class="box-title">Fill in this form</h3> -->
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    <form role="form" method="POST" action="{{ url('/admin/contract/update') }}">
+        <div class="container">
+                    <form role="form" method="POST" action="{{ route('customer.update', $customer->idkhachhang) }}">
                         {{ csrf_field() }}
-                        
-                        <div class="box-body">
-                        <div class="form-group">
+                        {{ method_field('PATCH') }}
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                    <p>{{ $error }}</p>
+                                    @endforeach
+                                </div>
+                            @endif
                             <label>Họ và tên</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
                             <input name="name" type="text" class="form-control" value="{{$customer->hoten}}">
-                        </div>
-                        <div class="form-group">
+                       
                             <label>Năm sinh</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="text" class="form-control" value="{{$customer->namsinh}}">
-                        </div>
-                        <div class="form-group">
-                            <label>SĐT</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="text" class="form-control" value="{{$customer->namsinh}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="text" class="form-control" value="{{$customer->sodienthoai}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Chứng minh thư</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="text" class="form-control" value="{{$customer->email}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Hộ khẩu</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="text" class="form-control" value="{{$customer->chungminhthu}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Địa chỉ</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="text" class="form-control" value="{{$customer->hokhau}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Ghi chú</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="text" class="form-control" value="{{$customer->diachi}}">
-                        </div>
-                        </div>
-                        <!-- /.box-body -->
+                            <input name="dob" type="text" class="form-control" value="{{$customer->namsinh}}">
                         
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Edit</button>
-                        </div>
+                            <label>Chứng minh thư</label>
+                            <input name="identity_card" type="text" class="form-control" value="{{$customer->chungminhthu}}">
+                        
+                            <label>Email</label>
+                            <input name="email" type="email" class="form-control" value="{{$customer->email}}">
+                     
+                            <label>SĐT</label>
+                            <input name="phone_number" type="text" class="form-control" value="{{$customer->sodienthoai}}">
+                        
+                            <label>Hộ khẩu</label>
+                            <input name="inhabitant_number" type="text" class="form-control" value="{{$customer->hokhau}}">
+                        
+                            <label>Địa chỉ</label>
+                            <input name="address" type="text" class="form-control" value="{{$customer->diachi}}">
+                        
+                            <label>Ghi chú</label>
+                            <input name="note" type="text" class="form-control" value="{{$customer->ghichu}}">
+                       
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                       
                     </form>
                 </div>
-                <!-- /.box -->
-                
-                <!-- Form Element sizes -->
-                
-                <!-- /.box -->
-                
-                
-                <!-- /.box -->
-                
-                <!-- Input addon -->
-                
-                <!-- /.box -->
-                
-            </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-            
-            <!--/.col (right) -->
-        </div>
-        <!-- /.row -->
-    </section>
+</section>
 <!-- /.content -->
 @endsection('content')

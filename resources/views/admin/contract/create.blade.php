@@ -30,46 +30,28 @@ button {
 <!-- Main content -->
 <section class="content">
     <div class="container">
-        <form method="POST" action="{{ url('/admin/contract/store') }}">
+        <form method="POST" action="{{ route('contract.store') }}">
         {{ csrf_field() }}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
             <label>Mã hợp đồng</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
             <input type="text" name="contract_code">
 
+            <label>ID căn hộ</label>
+            <input type="text" name="flat_id"><br><br>
+
             <label>Giá trị</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
             <input type="text" name="contract_worth">
 
             <label>Ngày ký</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
             <input type="text" name="contract_date"><br><br><br>
 
             <label for="note">Ghi chú :</label><br>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
             <textarea rows="4" cols="50" name="note" id="note"></textarea><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>

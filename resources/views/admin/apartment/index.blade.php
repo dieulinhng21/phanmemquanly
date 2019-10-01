@@ -46,8 +46,15 @@
                                 <td>{{$item->ten}}</td>
                                 <td>{{$item->tongsophong}}</td>
                                 <td>{{$item->tinhtrang}}</td>
-                                <td><a href="{{ url('/admin/apartment/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
-                                <td><a href="{{ url('/admin/apartment/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
+                                <td><a href="{{ url('/admin/apartment/edit'. $item->idtoachungcu) }}" class="btn btn-primary">Sửa</a></td>
+                                <td>
+                                <form action="{{ route('apartment.destroy', $item->idtoachungcu)}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button class="btn btn-danger" type="submit">Xóa</button>
+                                </form>
+                                </td>
+                                    
                             </tr>
                             @endforeach
                         </tbody>
