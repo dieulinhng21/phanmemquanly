@@ -3,12 +3,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Bảng hợp đồng
+        Bảng dự án
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng hợp đồng</a></li>
+        <li><a href="#">Bảng dự án</a></li>
         <!-- <li class="active">Bảng hợp đồng</li> -->
     </ol>
 </section>
@@ -22,7 +22,7 @@
                     <!-- <h3 class="box-title">Hover Contract Table</h3> -->
                 </div>
                 <div class="btn">
-                    <button type="button" onclick="location.href='{{ url('admin/contract/create') }}'" class="btn btn-block btn-primary">Thêm hợp đồng</button>
+                    <button type="button" onclick="location.href='{{ url('admin/project/create') }}'" class="btn btn-block btn-primary">Thêm dự án</button>
                 </div>
 
                 <!-- /.box-header -->
@@ -30,30 +30,28 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Mã hợp đồng</th>
-                                <th>ID căn hộ</th>
-                                <th>ID tòa nhà</th>
-                                <th>ID khách hàng</th>
-                                <th>Giá trị</th>
-                                <th>Ngày ký</th>
-                                <th>Ghi chú</th>
+                                <th>ID dự án</th>
+                                <th> ID Vị trí</th>
+                                <th>Tên dự án</th>
+                                <th>Trị giá</th>
+                                <th>Số tòa nhà</th>
+                                <th>Công ty trực thuộc</th>
+                                <th>Tình trạng</th>
                                 <th colspan="2">Action</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($model as $item )
                             <tr>
-                                <td>{{$item->idhopdong}}</td>
-                                <td>{{$item->mahopdong}}</td>
-                                <td>{{$item->idcanho}}</td>
-                                <td>{{$item->idtoanha}}</td>
-                                <td>{{$item->idkhachhang}}</td>
-                                <td>{{$item->giatri}}</td>
-                                <td>{{$item->ngayky}}</td>
-                                <td>{{$item->ghichu}}</td>
-                                <td><a href="{{ url('/admin/contract/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
-                                <td><a href="{{ url('/admin/contract/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
+                                <td>{{$item->idduan}}</td>
+                                <td>{{$item->idvitri}}</td>
+                                <td>{{$item->tenduan}}</td>
+                                <td>{{$item->trigia}}</td>
+                                <td>{{$item->sotoanha}}</td>
+                                <td>{{$item->congtytructhuoc}}</td>
+                                <td>{{$item->tinhtrang}}</td>
+                                <td><a href="{{ url('/admin/project/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
+                                <td><a href="{{ url('/admin/project/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
                             </tr>
                             @endforeach
                         </tbody>

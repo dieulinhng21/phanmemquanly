@@ -18,21 +18,21 @@ button {
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Thêm hợp đồng mới
+        Thêm người quản lý
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="{{ url ('admin/contract') }}">Bảng hợp đồng</a></li>
-        <li class="active">Thêm hợp đồng</li>
+        <li><a href="{{ url ('admin/manager') }}">Bảng người quản lý</a></li>
+        <li class="active">Thêm thành viên</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="container">
-        <form method="POST" action="{{ url('/admin/contract/store') }}">
+        <form method="POST" action="{{ url('/admin/location/store') }}">
         {{ csrf_field() }}
-            <label>Mã hợp đồng</label>
+        <label>Họ tên</label>
             @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
@@ -40,9 +40,9 @@ button {
                                 @endforeach
                             </div>
                             @endif
-            <input type="text" name="contract_code">
+            <input type="text" name="name">
 
-            <label>Giá trị</label>
+            <label>Vai trò</label>
             @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
@@ -50,9 +50,9 @@ button {
                                 @endforeach
                             </div>
                             @endif
-            <input type="text" name="contract_worth">
+            <input type="number" name="role"><br><br>
 
-            <label>Ngày ký</label>
+            <label>SĐT</label>
             @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
@@ -60,9 +60,9 @@ button {
                                 @endforeach
                             </div>
                             @endif
-            <input type="text" name="contract_date"><br><br><br>
+            <input type="text" name="phone_number">
 
-            <label for="note">Ghi chú :</label><br>
+            <label>Email</label>
             @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
@@ -70,8 +70,17 @@ button {
                                 @endforeach
                             </div>
                             @endif
-            <textarea rows="4" cols="50" name="note" id="note"></textarea><br><br>
+            <input type="email" name="email">
 
+            <label>Địa chỉ</label>
+            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                                @endforeach
+                            </div>
+                            @endif
+            <input type="text" name="address"><br><br><br>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>

@@ -8,7 +8,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng hợp đồng</a></li>
+        <li><a href="{{ url ('admin/contract') }}">Bảng hợp đồng</a></li>
         <li class="active">Sửa hợp đồng</li>
     </ol>
 </section>

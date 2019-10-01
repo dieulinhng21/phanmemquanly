@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Http\Requests;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $customer = customer::paginate(2);
+        return view("admin.customer.index", array('model' => $customer));
     }
 
     /**
@@ -23,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.customer.create");
     }
 
     /**
@@ -56,7 +60,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = customer::find($id);
+        return view("admin.customer.edit", compact('customer'));
     }
 
     /**

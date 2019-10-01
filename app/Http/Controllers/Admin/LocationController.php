@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
+use App\Models\Location;
+use App\Http\Requests;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +16,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        $location = location::paginate(2);
+        return view("admin.location.index", array('model' => $location));
     }
 
     /**
@@ -23,7 +27,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.location.create");
     }
 
     /**
@@ -56,7 +60,8 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $location = location::find($id);
+        return view("admin.location.edit", compact('location'));
     }
 
     /**

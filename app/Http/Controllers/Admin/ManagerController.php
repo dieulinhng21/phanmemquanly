@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
+use App\Models\manager;
+use App\Http\Requests;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +16,8 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        //
+        $manager = manager::paginate(2);
+        return view("admin.manager.index", array('model' => $manager));
     }
 
     /**
@@ -23,7 +27,7 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.manager.create");
     }
 
     /**
@@ -56,7 +60,8 @@ class ManagerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $manager = manager::find($id);
+        return view("admin.manager.edit", compact('manager'));
     }
 
     /**

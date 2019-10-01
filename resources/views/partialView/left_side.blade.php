@@ -7,8 +7,8 @@
                 <img src="{{asset('layouts/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Li Cô Lai Nhai Dép Xốp</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <p>Admin</p>
+                <!--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
             </div>
         </div>
         <!-- search form -->
@@ -34,26 +34,56 @@
                 </a>
             </li>
             <li class="">
-                <a href="{{ url('/admin/user') }}">
-                    <i class="fa fa-files-o"></i>
-                    <span>Manage Users</span>
+                <a href="{{ url('/admin/project') }}">
+<!--                    <i class="fa fa-files-o"></i>-->
+                    <span>Quản lý dự án</span>
                     <span class="pull-right-container">
                         <!--<span class="label label-primary pull-right">4</span>-->
                     </span>
                 </a>
             </li>
             <li class="">
-                <a href="{{ url('/admin/category') }}">
-                    <i class="fa fa-th"></i> <span>Manage Categories</span>
+                <a href="{{ url('/admin/apartment') }}">
+                    <!--<i class="fa fa-th"></i>--> 
+                    <span>Quản lý chung cư</span>
+                    <span class="pull-right-container">
+                        <!--<small class="label pull-right bg-green">new</small>-->
+                    </span>
+                </a>
+            </li>
+             <li class="">
+                <a href="{{ url('/admin/flat') }}">
+                    <!--<i class="fa fa-th"></i>--> 
+                    <span>Quản lý căn hộ</span>
+                    <span class="pull-right-container">
+                        <!--<small class="label pull-right bg-green">new</small>-->
+                    </span>
+                </a>
+            </li>
+            
+             <li class="">
+                <a href="{{ url('/admin/contract') }}">
+                    <!--<i class="fa fa-th"></i>--> 
+                    <span>Quản lý hợp đồng</span>
+                    <span class="pull-right-container">
+                        <!--<small class="label pull-right bg-green">new</small>-->
+                    </span>
+                </a>
+            </li>
+            
+             <li class="">
+                <a href="{{ url('/admin/customer') }}">
+                    <!--<i class="fa fa-th"></i>--> 
+                    <span>Thông tin khách hàng</span>
                     <span class="pull-right-container">
                         <!--<small class="label pull-right bg-green">new</small>-->
                     </span>
                 </a>
             </li>
             <li class="">
-                <a href="{{ url('/admin/product') }}">
-                    <i class="fa fa-pie-chart"></i>
-                    <span>Manage Products</span>
+                <a href="{{ url('/admin/location') }}">
+                    <!--<i class="fa fa-pie-chart"></i>-->
+                    <span>Địa điểm</span>
                     <span class="pull-right-container">
                         <!--<i class="fa fa-angle-left pull-right"></i>-->
                     </span>

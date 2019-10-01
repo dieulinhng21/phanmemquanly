@@ -54,11 +54,11 @@ class ContractController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
-    //     $contract = Contract::find($id);
-    //     return view("admin.contract.edit", compact('contract'));
-    // }
+    public function edit($id)
+    {
+        $contract = Contract::find($id);
+        return view("admin.contract.edit", compact('contract'));
+    }
 
     /**
      * Update the specified resource in storage.

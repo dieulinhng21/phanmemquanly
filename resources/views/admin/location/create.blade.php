@@ -18,21 +18,21 @@ button {
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Thêm hợp đồng mới
+        Thêm vị trí
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="{{ url ('admin/contract') }}">Bảng hợp đồng</a></li>
-        <li class="active">Thêm hợp đồng</li>
+        <li><a href="{{ url ('admin/location') }}">Bảng vị trí</a></li>
+        <li class="active">Thêm vị trí</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="container">
-        <form method="POST" action="{{ url('/admin/contract/store') }}">
+        <form method="POST" action="{{ url('/admin/location/store') }}">
         {{ csrf_field() }}
-            <label>Mã hợp đồng</label>
+        <label>Tên vị trí</label>
             @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
@@ -40,9 +40,9 @@ button {
                                 @endforeach
                             </div>
                             @endif
-            <input type="text" name="contract_code">
+            <input type="text" name="location_name">
 
-            <label>Giá trị</label>
+            <label>Tổng số dự án</label>
             @if ($errors->any())
                             <div class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
@@ -50,28 +50,7 @@ button {
                                 @endforeach
                             </div>
                             @endif
-            <input type="text" name="contract_worth">
-
-            <label>Ngày ký</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="contract_date"><br><br><br>
-
-            <label for="note">Ghi chú :</label><br>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <textarea rows="4" cols="50" name="note" id="note"></textarea><br><br>
-
+            <input type="number" name="project_number"><br><br><br>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>
