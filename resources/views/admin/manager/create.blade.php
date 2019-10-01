@@ -9,7 +9,7 @@ form {
     padding: 30px 5%;
 }
 button {
-    margin-left: 50%;
+    margin-left: 50%;ư
 }
 </style>
 @extends('partialView.master')
@@ -30,58 +30,35 @@ button {
 <!-- Main content -->
 <section class="content">
     <div class="container">
-        <form method="POST" action="{{ url('/admin/location/store') }}">
+        <form method="POST" action="{{ route('manager.store') }}">
         {{ csrf_field() }}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
         <label>Họ tên</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="name">
+        <input type="text" name="name">
 
-            <label>Vai trò</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="number" name="role"><br><br>
+        <label>Vai trò</label>
+        <select name="role">
+            <option value="editor">Editor</option>
+            <option value="manager">Manager</option>
+            <option value="contributor">Contributor</option>
+        </select><br><br>
 
-            <label>SĐT</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="phone_number">
+        <label>SĐT</label>
+        <input type="text" name="phone_number">
 
-            <label>Email</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="email" name="email">
+        <label>Email</label>
+        <input type="email" name="email">
 
-            <label>Địa chỉ</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="address"><br><br><br>
-            <button type="submit" class="btn btn-primary">Lưu</button>
+        <label>Địa chỉ</label>
+        <input type="text" name="address"><br><br><br>
+        
+        <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>
 </section>

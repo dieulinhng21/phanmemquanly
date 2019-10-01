@@ -48,8 +48,14 @@
                                 <td>{{$item->sodienthoai}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->diachi}}</td>
-                                <td><a href="{{ url('/admin/manager/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
-                                <td><a href="{{ url('/admin/manager/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
+                                <td><a href="manager/{{$item->idquanly}}/edit" class="btn btn-primary">Sửa</a></td>
+                                <td>
+                                <form action="{{ route('manager.destroy', $item->idquanly)}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                    <button class="btn btn-danger" type="submit">Xóa</button>
+                                </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
