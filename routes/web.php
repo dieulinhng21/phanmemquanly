@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['namespace' => 'admin'], function() {
-Route::resource('admin/contract/edit', 'ContractController');
+Route::resource('admin/contract', 'ContractController');
 Route::resource('admin/apartment','ApartmentController');
 Route::resource('admin/flat','FlatController');
 Route::resource('admin/location','LocationController');
