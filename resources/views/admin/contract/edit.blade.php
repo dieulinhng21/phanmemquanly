@@ -1,3 +1,17 @@
+<style>
+label {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+form {
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    padding: 30px 5%;
+}
+button {
+    margin-left: 50%;
+}
+</style>
 @extends('partialView.master')
 
 @section('content')
@@ -15,100 +29,33 @@
 
 <!-- Main content -->
 <section class="content">
-        <div class="row">
-            <!-- left column -->
-            <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <!-- <h3 class="box-title">Fill in this form</h3> -->
+    <div class="container">
+        <form role="form" method="POST" action="{{ route('contract.update', $contract->idhopdong) }}">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                         @endforeach
                     </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    <form role="form" method="POST" action="{{ url('/admin/contract/update') }}">
-                        {{ csrf_field() }}
-                        
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>Mã hợp đồng</label>
-                                
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                    <p>{{ $error }}</p>
-                                    @endforeach
-                                </div>
-                                @endif
-                                
-                                <input name="name" type="text" class="form-control" value="{{$contract->mahodong}}">
-                            </div>
-                            <div class="form-group">
-                                <label>Giá trị</label>
-                                
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                    <p>{{ $error }}</p>
-                                    @endforeach
-                                </div>
-                                @endif
-                                
-                                <input name="name" type="text" class="form-control" value="{{$contract->giatri}}">
-                            </div>
-                            <div class="form-group">
-                                <label>Ngày ký</label>
-                                
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                    <p>{{ $error }}</p>
-                                    @endforeach
-                                </div>
-                                @endif
-                                
-                                <input name="name" type="text" class="form-control" value="{{$contract->ngayky}}">
-                            </div>
-                            <div class="form-group">
-                                <label>Ghi chú</label>
-                                
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                    <p>{{ $error }}</p>
-                                    @endforeach
-                                </div>
-                                @endif
-                                
-                                <input name="name" type="text" class="form-control" value="{{$contract->ghichu}}">
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-                        
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Edit</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- /.box -->
-                
-                <!-- Form Element sizes -->
-                
-                <!-- /.box -->
-                
-                
-                <!-- /.box -->
-                
-                <!-- Input addon -->
-                
-                <!-- /.box -->
-                
-            </div>
-            <!--/.col (left) -->
-            <!-- right column -->
+                @endif
+                    <label>Mã hợp đồng</label>
+                    <input name="contract_code" type="text" value="{{$contract->mahopdong}}">
+                            
+                    <label>Giá trị</label>
+                    <input name="contract_worth" type="text" min="0" max="2000000000" value="{{$contract->giatri}}">
+                            
+                    <label>Ngày ký</label>
+                    <input name="contract_date" type="text" value="{{$contract->ngayky}}"><br><br>
+                            
+                    <label>Ghi chú</label>
+                    <input name="note" type="text" value="{{$contract->ghichu}}"><br><br>
+
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+    </div>
             
-            <!--/.col (right) -->
-        </div>
-        <!-- /.row -->
-    </section>
+</section>
 <!-- /.content -->
 @endsection('content')

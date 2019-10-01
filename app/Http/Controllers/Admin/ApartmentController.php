@@ -38,7 +38,27 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'project_name' => 'required|max:255',
+            'apartment_name' => 'required|max:255',
+            'total_room' => 'required|numeric',
+            'status' => 'required'
+        ],
+        [
+            'required' => 'Input cannot be empty!',
+            'numeric' => 'Input must be number',
+            'max:255' => 'Input must not be more than 255 character'
+        ]);
+            // $name = $request->get('name');
+            $apartment = Apartment::create();
+            
+            $apartment->idduan= $request->get('project_name');
+            $apartment->ten= $request->get('apartment_name');
+            $apartment->tongsophong = $request->get('total_room');
+            $apartment->tinhtrang = $request->get('status');
+
+            $apartment->save();
+            return redirect('/admin/apartment');
     }
 
     /**
@@ -49,7 +69,8 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $apartment = Apartment::find($id);
+        return view('admin.apartment.show')->with('apartment',$apartment);
     }
 
     /**
@@ -73,7 +94,25 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'project_name' => 'required|max:255',
+            'apartment_name' => 'required|max:255',
+            'total_room' => 'required|numeric',
+            'status' => 'required'
+        ],
+        [
+            'required' => 'Input cannot be empty!',
+            'numeric' => 'Input must be number',
+            'max:255' => 'Input must not be more than 255 character'
+        ]);
+            
+            $apartment->idduan= $request->get('project_name');
+            $apartment->ten= $request->get('apartment_name');
+            $apartment->tongsophong = $request->get('total_room');
+            $apartment->tinhtrang = $request->get('status');       
+
+            $apartment->save();
+            return redirect('/admin/apartment')->with('success!','Apartment updated!');
     }
 
     /**
@@ -84,6 +123,12 @@ class ApartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $apartment = Apartment::find($id);
+        $apartment->delete();
+
+        return redirect('/admin/apartment')->with([
+            'flash_message' => 'Deleted',
+            'flash_message_important' => false
+        ]);
     }
 }

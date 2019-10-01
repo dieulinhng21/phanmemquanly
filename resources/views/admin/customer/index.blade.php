@@ -54,8 +54,14 @@
                                 <td>{{$item->hokhau}}</td>
                                 <td>{{$item->diachi}}</td>
                                 <td>{{$item->ghichu}}</td>
-                                <td><a href="{{ url('/admin/customer/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
-                                <td><a href="{{ url('/admin/customer/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
+                                <td><a href="customer/{{$item->idkhachhang}}/edit" class="btn btn-primary">Sửa</a></td>
+                                <td>
+                                <form action="{{ route('customer.destroy', $item->idkhachhang)}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                    <button class="btn btn-danger" type="submit">Xóa</button>
+                                </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
