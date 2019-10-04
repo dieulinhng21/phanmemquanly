@@ -36,7 +36,7 @@
                                 <th>SĐT</th>
                                 <th>Email</th>
                                 <th>Địa chỉ</th>
-                                <th colspan="2">Action</th> <!-- Default pagination disappear after adding colspan = 2-->
+                                <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>
