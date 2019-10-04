@@ -38,9 +38,9 @@ form {
                             @endif
             <label>Tên dự án</label>
             <select name="project_name">
-                <!-- <option value="1">AZ Lâm Viên Complex</option>
-                <option value="2">AZ SKY Tower</option>
-                <option value="3">Tổ hợp BrightCity</option> -->
+                <!-- <option value="7">AZ Lâm Viên Complex</option>
+                <option value="8">AZ SKY Tower</option>
+                <option value="9">Tổ hợp BrightCity</option> -->
                 <option value="4" selected>AZ Vân Canh Tower CT1</option>
                 <option value="5" selected>AZ Kim Giang</option>
                 <option value="6" selected>AZ Vân Canh Tower CT2</option>

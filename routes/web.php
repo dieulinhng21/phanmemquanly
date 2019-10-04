@@ -23,8 +23,9 @@ Route::resource('admin/location','LocationController');
 Route::resource('admin/manager','ManagerController');
 Route::resource('admin/marketting','MarkettingController');
 Route::resource('admin/customer','CustomerController');
-});
 
+
+});
 
 
 // Sửa đường dẫn trang chủ mặc định
@@ -37,4 +38,3 @@ Route::post('login','LoginController@postLogin');
  
 // Đăng xuất
 Route::get('logout','LogoutController@getLogout');
-

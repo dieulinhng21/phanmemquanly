@@ -28,6 +28,7 @@ button {
 </section>
 
 <!-- Main content -->
+{!! Session::has('msg') ? Session::get("msg") : '' !!}
 <section class="content">
     <div class="container">
         <form method="POST" action="{{ route('contract.store') }}">
@@ -42,8 +43,18 @@ button {
             <label>Mã hợp đồng</label>
             <input type="text" name="contract_code">
 
-            <label>ID căn hộ</label>
-            <input type="text" name="flat_id"><br><br>
+            <label for="project_name">Dự án:</label>
+            <select name="project_name" id="project_name">Dự án: 
+                <option value="4">AZ Lâm Viên Complex</option>
+                <option value="5">AZ SKY Tower</option>
+                <option value="7">AZ Vân Canh Tower CT2</option>
+            </select>
+
+            <label>Căn</label>
+            <input type="text" name="flat_name"><br><br>
+
+            <label>ID khách hàng</label>
+            <input type="text" name="customer_id"><br><br>
 
             <label>Giá trị</label>
             <input type="text" name="contract_worth">
