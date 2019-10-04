@@ -33,7 +33,7 @@
                                 <th>ID</th>
                                 <th>Tên</th>
                                 <th>Tổng số dự án</th>
-                                <th colspan="2">Action</th> <!-- Default pagination disappear after adding colspan = 2-->
+                                <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>

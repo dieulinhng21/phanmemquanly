@@ -35,7 +35,7 @@
                                 <th>Tên</th>
                                 <th>Tổng số phòng</th>
                                 <th>Tình trạng</th>
-                                <th colspan="2">Action</th> <!-- Default pagination disappear after adding colspan = 2-->
+                                <th colspan="2">Thực hiện</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>

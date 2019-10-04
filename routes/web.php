@@ -27,6 +27,7 @@ Route::resource('admin/customer','CustomerController');
 
 });
 
+//login
 Route::get("login",function(){
 	if(Session::has("logined"))
 		return Redirect::to('edit-profile');
