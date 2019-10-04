@@ -86,4 +86,9 @@ class ProjectController extends Controller
     {
         //
     }
+
+//dan tu login den trang Du an
+    public function __construct() {
+        $this->middleware('auth');
+    }
 }
