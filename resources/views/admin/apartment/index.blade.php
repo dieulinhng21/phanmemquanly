@@ -46,7 +46,7 @@
                                 <td>{{$item->ten}}</td>
                                 <td>{{$item->tongsophong}}</td>
                                 <td>{{$item->tinhtrang}}</td>
-                                <td><a href="{{ url('/admin/apartment/edit'. $item->idtoachungcu) }}" class="btn btn-primary">Sửa</a></td>
+                                <td><a href="apartment/{{$item->idtoachungcu}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
                                 <form action="{{ route('apartment.destroy', $item->idtoachungcu)}}" method="post">
                                 {{ csrf_field() }}

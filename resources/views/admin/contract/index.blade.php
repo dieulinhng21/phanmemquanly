@@ -32,21 +32,25 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Mã hợp đồng</th>
+                                <th>Dự án</th>
+                                <th>Căn hộ</th>
+                                <th>Khách hàng</th>
                                 <th>Giá trị</th>
-                                <th>ID căn hộ</th>
                                 <th>Ngày ký</th>
                                 <th>Ghi chú</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($model as $item )
+                            @foreach ($contract_array as $item )
                             <tr>
                                 <td>{{$item->idhopdong}}</td>
                                 <td>{{$item->mahopdong}}</td>
+                                <td>{{$item->tenduan}}</td>
+                                <td>{{$item->can}}</td>
+                                <td>{{$item->hoten}}</td>
                                 <td>{{$item->giatri}}</td>
-                                <td>{{$item->idcanho}}</td>
-                                <td>{{$item->ngayky}}</td>ff
+                                <td>{{$item->ngayky}}</td>
                                 <td>{{$item->ghichu}}</td>
                                 <td>
                                 <a href="contract/{{$item->idhopdong}}/edit" class="btn btn-block btn-primary">Sửa</a>
@@ -62,7 +66,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $model->links() }}
+                    <!-- chèn paginate nếu cần -->
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -76,6 +80,7 @@
 @endsection('content')
 @section('page_script')
 <!-- DataTables -->
+
 <script src="{{asset('layouts/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('layouts/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- page script -->

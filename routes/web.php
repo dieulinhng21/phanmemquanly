@@ -23,7 +23,7 @@ Route::resource('admin/manager','ManagerController');
 Route::resource('admin/marketting','MarkettingController');
 Route::resource('admin/project','ProjectController');
 Route::resource('admin/customer','CustomerController');
-<<<<<<< HEAD
+
 
 });
 
@@ -48,6 +48,4 @@ Route::get("logout",function(){
 	Session::forget("logined");
 	//Xóa session đăng nhập
 	return Redirect::to("login");
-=======
->>>>>>> aa32dae65aad012456625b8cddb93b053df41aeb
 });
