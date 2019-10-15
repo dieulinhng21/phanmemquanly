@@ -44,7 +44,7 @@ button {
                             <input name="name" type="text" class="form-control" value="{{$customer->hoten}}">
                        
                             <label>Năm sinh</label>
-                            <input name="dob" type="text" class="form-control" value="{{$customer->namsinh}}">
+                            <input name="dob" type="text" class="form-control" value="{{$customer->ngaysinh}}">
                         
                             <label>Chứng minh thư</label>
                             <input name="identity_card" type="text" class="form-control" value="{{$customer->chungminhthu}}">

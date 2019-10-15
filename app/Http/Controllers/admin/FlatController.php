@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Flat;
 use App\Http\Requests;
 
@@ -16,8 +17,15 @@ class FlatController extends Controller
      */
     public function index()
     {
-        $flat = flat::paginate(2);
-        return view("admin.flat.index", array('model' => $flat));
+        // query 2 tables seperately to get distinct property
+        $flats = DB::table('canho')
+                        ->join('toachungcu','canho.idtoachungcu','=','toachungcu.idtoachungcu')
+                        ->join('duan','canho.idduan','=','duan.idduan')
+                        ->select('canho.*','toachungcu.tentoa','duan.tenduan')
+                        ->distinct()
+                        ->get();
+
+        return view('admin.flat.index',['flat_array'=>$flats]);
     }
 
     /**
@@ -27,7 +35,16 @@ class FlatController extends Controller
      */
     public function create()
     {
-        return view("admin.flat.create");
+        $available_project = DB::table('duan')
+                        ->select('duan.idduan','duan.tenduan')
+                        ->distinct()
+                        ->get();
+        $available_apartment = DB::table('toachungcu')
+                        ->select('toachungcu.idtoachungcu','toachungcu.tentoa')
+                        ->distinct()
+                        ->get();
+        
+        return view("admin.flat.create",['available_project_list'=>$available_project],['available_apartment_list'=>$available_apartment]);
     }
 
     /**
@@ -38,7 +55,49 @@ class FlatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'project'=>'required',
+            'apartment'=>'required',
+            'flat'=>'required',
+            'price'=>'required|min:0',
+            'square'=>'required|min:0',
+            'livingroom'=>'required|min:0',
+            'bedroom'=>'required|min:0',
+            'kitchen'=>'required|min:0'
+
+        ],
+        [
+            'project.required' => 'Tên dự án còn trống',
+            'apartment.required' => 'Tên tòa chung cư còn trống',
+            'flat.required' => ' Căn hộ còn trống',
+            'flat.unique' => ' Căn hộ đã tồn tại',
+            'price.required' => 'Trị giá còn trống',
+            'square.required' => 'Diện tích còn trống',
+            'livingroom.required' => 'Số phòng khách còn trống',
+            'bedroom.required' => 'Số pòng ngủ còn trống',
+            'kitchen.required' => 'Số phòng bếp còn trống',
+
+            'price.min' => 'Trị giá phải lớn hơn hoặc bằng 0',
+            'square.min' => 'DIện tích phải lớn hơn hoặc bằng 0',
+            'livingroom.min' => 'Số phòng khách phải lớn hơn hoặc bằng 0',
+            'bedroom.min' => 'Số phòng ngủ phải lớn hơn hoặc bằng 0',
+            'kitchen.min' => 'Số phòng bếp lớn hơn hoặc bằng 0'
+        ]);
+            $flat = Flat::create();
+            
+            $flat->idduan = $request->get('project');
+            $flat->idtoachungcu= $request->get('apartment');
+            $flat->tencanho= $request->get('flat');
+            $flat->giatri= $request->get('price');
+            $flat->dientich= $request->get('square');
+            $flat->sophongkhach= $request->get('livingroom');
+            $flat->sophongngu= $request->get('bedroom');
+            $flat->sophongbep= $request->get('kitchen');
+
+
+            $flat->save();
+            session()->flash('create_notif','Tạo căn hộ thành công!');
+            return redirect('/admin/flat'); 
     }
 
     /**
@@ -61,7 +120,16 @@ class FlatController extends Controller
     public function edit($id)
     {
         $flat = Flat::find($id);
-        return view("admin.flat.edit", compact('flat'));
+        // $projects = DB::table('duan')
+        //                 ->select('duan.idduan','duan.tenduan')
+        //                 ->distinct()
+        //                 ->get();
+        $apartments = DB::table('toachungcu')
+                        ->select('toachungcu.idtoachungcu','toachungcu.tentoa')
+                        ->distinct()
+                        ->get();
+
+        return view("admin.flat.edit",compact('flat'),['apartments'=>$apartments]);
     }
 
     /**
@@ -73,7 +141,47 @@ class FlatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'project'=>'required',
+            'apartment'=>'required',
+            'flat'=>'required',
+            'price'=>'required|min:0',
+            'square'=>'required|min:0',
+            'livingroom'=>'required|min:0',
+            'bedroom'=>'required|min:0',
+            'kitchen'=>'required|min:0'
+
+        ],
+        [
+            'project.required' => 'Tên dự án còn trống',
+            'apartment.required' => 'Tên tòa chung cư còn trống',
+            'flat.required' => ' Căn hộ còn trống',
+            'price.required' => 'Trị giá còn trống',
+            'square.required' => 'Diện tích còn trống',
+            'livingroom.required' => 'Số phòng khách còn trống',
+            'bedroom.required' => 'Số pòng ngủ còn trống',
+            'kitchen.required' => 'Số phòng bếp còn trống',
+
+            'price.min' => 'Trị giá phải lớn hơn hoặc bằng 0',
+            'square.min' => 'DIện tích phải lớn hơn hoặc bằng 0',
+            'livingroom.min' => 'Số phòng khách phải lớn hơn hoặc bằng 0',
+            'bedroom.min' => 'Số phòng ngủ phải lớn hơn hoặc bằng 0',
+            'kitchen.min' => 'Số phòng bếp lớn hơn hoặc bằng 0'
+        ]);
+            $flat = Flat::find($id);
+            $flat->tencanho= $request->get('flat');
+            $flat->idduan= $request->get('project');
+            $flat->idtoachungcu= $request->get('apartment');
+            $flat->dientich= $request->get('square');
+            $flat->sophongkhach= $request->get('livingroom');
+            $flat->sophongngu= $request->get('bedroom');
+            $flat->sophongbep= $request->get('kitchen');
+            $flat->tinhtrang= $request->get('status');
+
+            $flat->save();
+            session()->flash('update_notif','Cập nhật căn hộ thành công!');
+            
+            return redirect('/admin/flat');
     }
 
     /**
@@ -84,6 +192,10 @@ class FlatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $flat = Flat::find($id);
+        $flat->delete();
+
+        session()->flash('delete_notif','Đã xóa căn hộ');
+        return redirect('/admin/flat');
     }
 }

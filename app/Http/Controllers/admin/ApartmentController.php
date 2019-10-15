@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\apartment;
 use App\Http\Requests;
 
@@ -16,8 +17,13 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartment = apartment::paginate(2);
-        return view("admin.apartment.index", array('model' => $apartment));
+        // $apartment = apartment::paginate(2);
+        // return view("admin.apartment.index", array('model' => $apartment));
+        $apartments = DB::table('toachungcu')
+                        ->join('duan','toachungcu.idduan','=','duan.idduan')
+                        ->select('toachungcu.*','duan.tenduan')
+                        ->get();
+        return view('admin.apartment.index',['apartment_array'=>$apartments]);
     }
 
     /**
@@ -39,15 +45,13 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'project_name' => 'required|max:255',
             'apartment_name' => 'required|max:255',
-            'total_room' => 'required|numeric',
-            'status' => 'required'
+            'total_room' => 'required|numeric'
         ],
         [
-            'required' => 'Input cannot be empty!',
-            'numeric' => 'Input must be number',
-            'max:255' => 'Input must not be more than 255 character'
+            'apartment_name.required' => 'Tên tòa chung cư còn trống!',
+            'apartment_name.max:255' => 'Tên  vượt quá số ký tự cho phép',
+            'total_room.numeric' => 'Số phòng phải là số!',
         ]);
             // $name = $request->get('name');
             $apartment = Apartment::create();
@@ -55,9 +59,9 @@ class ApartmentController extends Controller
             $apartment->idduan= $request->get('project_name');
             $apartment->ten= $request->get('apartment_name');
             $apartment->tongsophong = $request->get('total_room');
-            $apartment->tinhtrang = $request->get('status');
 
             $apartment->save();
+            session()->flash('create_notif','Tạo tòa chung cư thành công!');
             return redirect('/admin/apartment');
     }
 
@@ -69,8 +73,7 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::find($id);
-        return view('admin.apartment.show')->with('apartment',$apartment);
+        //
     }
 
     /**
@@ -95,7 +98,6 @@ class ApartmentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'project_name' => 'required|max:255',
             'apartment_name' => 'required|max:255',
             'total_room' => 'required|numeric',
             'status' => 'required'

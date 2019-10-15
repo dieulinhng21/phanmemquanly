@@ -52,9 +52,6 @@ form {
             <label>Tổng số phòng</label>
             <input type="number" name="total_room"><br><br><br>
 
-            <label for="status">Tình trạng :</label><br>
-            <textarea  rows="4" cols="50" name="status" id="status"></textarea><br><br>
-
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>

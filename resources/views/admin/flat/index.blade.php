@@ -1,3 +1,25 @@
+<style>
+    div.notification{
+        color:#006622;
+        font-style: oblique;
+        border:1px solid #006622;
+        background-color:#99ffbb;
+        padding:15px 15px;
+        margin-bottom:20px;
+        border-radius:5px;
+        width:50%
+    }
+    div.delete_notification{
+        color:#cc0000;
+        font-style: oblique;
+        border:1px solid #cc0000;
+        background-color:#ff6666;
+        padding:15px 15px;
+        margin-bottom:20px;
+        border-radius:5px;
+        width:50%
+    }
+</style>
 @extends('partialView.master')
 @section('content')
 <!-- Content Header (Page header) -->
@@ -15,6 +37,17 @@
 
 <!-- Main content -->
 <section class="content">
+<div>
+    <!-- Alerts -->
+    @if(session()->has('create_notif'))
+        <div class="notification">{{ session()->get('create_notif') }}</div>
+    @elseif(session()->has('update_notif'))
+        <div class="notification">{{ session()->get('update_notif') }}</div>
+    @elseif(session()->has('delete_notif'))
+    <div class="delete_notification">{{ session()->get('delete_notif') }}</div>
+    @endif
+    <!-- End alerts -->
+</div>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -30,35 +63,48 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Tầng</th>
-                                <th>Tòa</th>
-                                <th>Căn</th>
-                                <th>Loại</th>
-                                <th>Trị giá</th>
-                                <th>Số phòng ngủ</th>
+                                <th>Tên căn</th>
+                                <th>Tên dự án</th>
+                                <th>Tên chung cư</th>
+                                <!-- <th>Số phòng ngủ</th> -->
+                                <th>Giá trị</th>
+                                <th>Chi tiết</th>
                                 <th>Tình trạng</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($model as $item )
+                            @foreach($flat_array as $item )
                             <tr>
-                                <td>{{$item->idcanho}}</td>
-                                <td>{{$item->tang}}</td>
-                                <td>{{$item->toa}}</td>
-                                <td>{{$item->can}}</td>
-                                <td>{{$item->loai}}</td>
+                                <td>{{$item->tencanho}}</td>
+                                <td>{{$item->tenduan}}</td>
+                                <td>{{$item->tentoa}}</td>
+                                <!-- <td>{{$item->sophongngu}}</td> -->
                                 <td>{{$item->giatri}}</td>
-                                <td>{{$item->sophongngu}}</td>
-                                <td>{{$item->tinhtrang}}</td>
-                                <td><a href="{{ url('/admin/flat/edit'. $item->id) }}" class="btn btn-primary">Sửa</a></td>
-                                <td><a href="{{ url('/admin/flat/destroy'. $item->id) }}" class="btn btn-primary">Xóa</a></td>
+                                <td>
+                                Diện tích: {{$item->dientich}} -
+                                Số phòng khách: {{$item->sophongkhach}} -
+                                Số phòng ngủ: {{$item->sophongngu}} -
+                                Số phòng bếp: {{$item->sophongbep}}
+                                </td>
+                                @if($item->tinhtrang == 1)
+                                    <td>Đã có người mua</td>
+                                @elseif($item->tinhtrang == 0)
+                                    <td>Còn trống</td>
+                                @endif
+                                <td><a href="flat/{{$item->idcanho}}/edit" class="btn btn-primary">Sửa</a></td>
+                                <td>
+                                <form action="{{ route('flat.destroy', $item->idcanho)}}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                    <button class="btn btn-danger" type="submit">Xóa</button>
+                                </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $model->links() }}
+                    <!-- link paginate -->
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -70,22 +116,4 @@
 </section>
 <!-- /.content -->
 @endsection('content')
-@section('page_script')
-<!-- DataTables -->
-<script src="{{asset('layouts/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('layouts/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<!-- page script -->
-<script>
-    $(function () {
-    $('#example1').DataTable()
-            $('#example2').DataTable({
-    'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
-    })
-    })
-</script>
-@endsection('page_script')
+

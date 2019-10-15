@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Http\Requests;
 
@@ -16,8 +17,13 @@ use Illuminate\Http\Request;
          */
         public function index()
         {
-            $customer = Customer::paginate(2);
-            return view("admin.customer.index", array('model' => $customer));
+            // $customer = Customer::paginate(2);
+            // return view("admin.customer.index", array('model' => $customer));
+            $customers = DB::table('khachhang')
+                        ->join('canho','khachhang.idcanho','=','canho.idcanho')
+                        ->select('khachhang.*','canho.tencanho')
+                        ->get();
+        return view('admin.customer.index',['customer_array'=>$customers]);
         }
 
         /**
@@ -56,7 +62,7 @@ use Illuminate\Http\Request;
                 $customer = Customer::create();
                 
                 $customer->hoten= $request->get('name');
-                $customer->namsinh= $request->get('dob');
+                $customer->ngaysinh= $request->get('dob');
                 $customer->chungminhthu = $request->get('identity_card');
                 $customer->email = $request->get('email');
                 $customer->sodienthoai = $request->get('phone_number');
@@ -121,7 +127,7 @@ use Illuminate\Http\Request;
                 $customer = Customer::find($id);
                 
                 $customer->hoten= $request->get('name');
-                $customer->namsinh= $request->get('dob');
+                $customer->ngaysinh= $request->get('dob');
                 $customer->chungminhthu = $request->get('identity_card');
                 $customer->email = $request->get('email');
                 $customer->sodienthoai = $request->get('phone_number');

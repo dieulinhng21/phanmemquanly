@@ -16,10 +16,10 @@ class ContractController extends Controller
         // $contract = Contract::paginate(2);
         // , array('model' => $contract)
         $contracts = DB::table('hopdong')
-                        ->join('duan','hopdong.ID_duan','=','duan.idduan')
-                        ->join('canho','hopdong.ID_canho','=','canho.idcanho')
-                        ->join('khachhang','hopdong.ID_khachhang','=','khachhang.idkhachhang')
-                        ->select('hopdong.*','duan.tenduan','canho.can','khachhang.hoten')
+                        ->join('duan','hopdong.idduan','=','duan.idduan')
+                        ->join('canho','hopdong.idcanho','=','canho.idcanho')
+                        ->join('khachhang','hopdong.idkhachhang','=','khachhang.idkhachhang')
+                        ->select('hopdong.*','duan.tenduan','canho.tencanho','khachhang.idkhachhang','khachhang.hoten')
                         ->get();
         return view('admin.contract.index',['contract_array'=>$contracts]);
     }
@@ -31,7 +31,13 @@ class ContractController extends Controller
      */
     public function create()
     {
-        return view("admin.contract.create");
+        $contracts = DB::table('hopdong')
+                        ->join('duan','hopdong.idduan','=','duan.idduan')
+                        ->join('canho','hopdong.idcanho','=','canho.idcanho')
+                        ->join('khachhang','hopdong.idkhachhang','=','khachhang.idkhachhang')
+                        ->select('hopdong.*','duan.tenduan','canho.tencanho','khachhang.chungminhthu','khachhang.hoten')
+                        ->get();
+        return view('admin.contract.create',['contract_array'=>$contracts]);
     }
 
     /**
@@ -43,27 +49,23 @@ class ContractController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'contract_code' => 'required|unique:hopdong,mahopdong',
             'project_name' => 'required',
-            'flat_name' => 'required',
-            'customer_id' => 'required|exists:hopdong,ID_khachhang',
-            'contract_worth' => 'required| min:0',
+            'flat_name' => 'required|unique:hopdong,ten_canho',
+            'contract_number' => 'required|exists:hopdong,sohopdong',
+            'contract_worth' => 'required|numeric',
             'contract_date' => 'required|date',
-            'note' => 'required'
         ],
         [
-            'contract_code.required' => 'Mã hợp đồng không được trống',
             'project_name.required' => 'Tên dự án không được trống',
             'flat_name.required' => 'Tên căn hộ không được trống',
-            'customer_id.required' => 'ID khách hàng không được trống',
+            'flat_name.unique' => 'Căn hộ đã có chủ',
+            'contract_number.unique' => 'Số hợp đồng này đã tồn tại',
+            'contract_number.required' => 'Số hợp đồng không được trống',
             'contract_worth.required' => 'Giá trị hợp đồng không được trống',
+            'contract_worth.numeric' => 'Giá trị hợp đồng phải là số',
             'contract_date.required' => 'Ngày ký không được trống',
-            'note.required' => 'Ghi chú không được trống',
             'exists' => 'ID khách hàng chưa tồn tại',
-            'date' => 'Ngày ký sai format',
-            // 'after:today' => 'This date can not be made',
-            // 'date_format:Y-m-d' => 'Ngày tháng theo định dạng năm-tháng-ngày',
-            'min' => ':attribute must be bigger than 0'
+            'date' => 'Ngày ký sai format'
         ]);
             //lấy tên căn hộ mà ng dùng nhập vào
             $flat_name = $request->get('flat_name');
@@ -76,7 +78,7 @@ class ContractController extends Controller
             
                     $contract->mahopdong= $request->get('contract_code');
                     $contract->ID_duan= $request->get('project_name');
-                    $contract->ID_canho= $request->get('flat_name');
+                    $contract->ten_canho= $request->get('flat_name');
                     $contract->ID_khachhang= $request->get('customer_id');
                     $contract->giatri = $request->get('contract_worth');
                     $contract->ngayky = $request->get('contract_date');
@@ -131,18 +133,28 @@ class ContractController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'contract_code' => 'required|max:255|unique:hopdong,mahopdong'.$contract->idhopdong,
-            // 'flat_id'=> 'required|numeric',
-            'contract_worth' => 'required|numeric',
-            'contract_date' => 'required',
-            'note' => 'required|max:500'
+            'contract_code' => 'required|unique:hopdong,mahopdong',
+            'project_name' => 'required',
+            'flat_name' => 'required|unique:hopdong,ten_canho',
+            'customer_id' => 'required|exists:hopdong,ID_khachhang',
+            'contract_worth' => 'required| min:0',
+            'contract_date' => 'required|date',
+            'note' => 'required'
         ],
         [
-            'required' => 'The :attribute cannot be empty!',
-            'unique' => ':attribute is already taken',
-            'numeric' => ':attribute must be a number',
-            'max:500' => ':attribute be no more than 500 characters',
-            'max:255' => ':attribute be smaller than 2 billions'
+            'contract_code.required' => 'Mã hợp đồng không được trống',
+            'project_name.required' => 'Tên dự án không được trống',
+            'flat_name.required' => 'Tên căn hộ không được trống',
+            'customer_id.required' => 'ID khách hàng không được trống',
+            'contract_worth.required' => 'Giá trị hợp đồng không được trống',
+            'contract_date.required' => 'Ngày ký không được trống',
+            'note.required' => 'Ghi chú không được trống',
+            'contract_code.unique' => 'Mã hợp đồng đã tồn tại',
+            'flat_name.unique' => 'Căn hộ không còn trống',
+            'exists' => 'ID khách hàng chưa tồn tại',
+            'date' => 'Ngày ký sai format',
+            // 'date_format:Y-m-d' => 'Ngày tháng theo định dạng năm-tháng-ngày',
+            'min' => ':attribute must be bigger than 0'
         ]);
             $contract = Contract::find($id);
             
@@ -154,7 +166,7 @@ class ContractController extends Controller
 
             $contract->save();
             
-            return redirect('/admin/contract')->with('success!','Contract updated!');
+            return redirect('/admin/contract')->with('success!','Cập nhật hợp đồng thành công!');
     }
 
     /**

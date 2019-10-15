@@ -30,12 +30,12 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Họ tên</th>
-                                <th>SĐT</th>
+                                <th>căn hộ</th>
+                                <th>CMND</th>
                                 <th>Ngày sinh</th>
                                 <th>Email</th>
-                                <th>Chứng minh thư</th>
+                                <th>SĐT</th>
                                 <th>Hộ khẩu</th>
                                 <th>Địa chỉ</th>
                                 <th>Ghi chú</th>
@@ -43,14 +43,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($model as $item )
+                            @foreach($customer_array as $item )
                             <tr>
-                                <td>{{$item->idkhachhang}}</td>
                                 <td>{{$item->hoten}}</td>
-                                <td>{{$item->namsinh}}</td>
-                                <td>{{$item->sodienthoai}}</td>
-                                <td>{{$item->email}}</td>
+                                <td>{{$item->tencanho}}</td>
                                 <td>{{$item->chungminhthu}}</td>
+                                <td>{{$item->ngaysinh}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->sodienthoai}}</td>
                                 <td>{{$item->hokhau}}</td>
                                 <td>{{$item->diachi}}</td>
                                 <td>{{$item->ghichu}}</td>
@@ -66,7 +66,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $model->links() }}
+                    <!-- link paginate -->
                 </div>
                 <!-- /.box-body -->
             </div>

@@ -42,9 +42,24 @@ button {
                 @endif
                     <label>Mã hợp đồng</label>
                     <input name="contract_code" type="text" value="{{$contract->mahopdong}}">
-                            
+
+                    <label>Khách hàng</label>
+                    <input name="customer_id" type="text" value="{{$contract->ID_khachhang}}"><br><br>
+
+                    <label for="project_name">Dự án:</label>
+                    <select name="project_name" id="project_name">
+                        <option value="1">AZ Lâm Viên</option>
+                        <option value="2">AZ Five Stars</option>
+                        <option value="3">AZ SKY Tower</option>
+                        <option value="4">AZ Vân Canh Tower</option>
+                        <option value="5">AZ Starry Night</option>
+                    </select>
+
+                    <label>Căn hộ</label>
+                    <input name="flat_name" type="text" value="{{$contract->mahopdong}}">
+
                     <label>Giá trị</label>
-                    <input name="contract_worth" type="text" min="0" max="2000000000" value="{{$contract->giatri}}">
+                    <input name="contract_worth" type="text" min="0" max="2000000000" value="{{$contract->giatri}}"><br><br>
                             
                     <label>Ngày ký</label>
                     <input name="contract_date" type="text" value="{{$contract->ngayky}}"><br><br>

@@ -1,12 +1,15 @@
 <style>
-label {
-    margin-left: 30px;
-    margin-right: 10px;
-}
 form {
     border: 1px solid #3c8dbc;
     border-radius: 5px;
     padding: 30px 5%;
+}
+label {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+input.detail{
+    width: 50px;
 }
 button {
     margin-left: 50%;
@@ -30,104 +33,45 @@ button {
 <!-- Main content -->
 <section class="content">
     <div class="container">
-        <form method="POST" action="{{ url('/admin/flat/store') }}">
+        <form method="POST" action="{{ route('flat.store') }}">
         {{ csrf_field() }}
-        <label for="project">Dự án</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <select name="project" id="project">
-                <option value="lam_vien">AZ Lâm Viên Complex</option>
-                <option value="sky_tower">AZ SKY Tower</option>
-                <option value="bright_city">Tổ hợp BrightCity</option>
-                <option value="van_canh">AZ Vân Canh Tower CT1</option>
-                <option value="kim_giang">AZ Kim Giang</option>
-                <option value="van_canh_tower">AZ Vân Canh Tower CT2</option>
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+            </div>
+        @endif
+            <label for="project">Tên dự án</label>
+            <select name="project">
+            @foreach($available_project_list as $project)
+                    <option value="{{$project->idduan}}">{{$project->tenduan}}</option>
+            @endforeach
             </select>
-            <label>Tòa chung cư</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="apartment">
+            
+            <label for="apartment">Tòa chung cư</label>
+            <!-- take array from create function in FlatController -->
+            <select name="apartment">
+                @foreach($available_apartment_list as $apartment)
+                    <option value="{{$apartment->idtoachungcu}}">{{$apartment->tentoa}}</option>
+                @endforeach
+            </select>
 
-            <label>Số phòng ngủ</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="number" name="bedroom_numer"><br><br>
-
-            <label>Tầng</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="floor">
-
-            <label>Căn</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="room">
-
-            <label>Loại</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="kind"><br><br>
+            <label>Tên căn hộ</label>
+            <input type="text" name="flat"><br><br>
 
             <label>Giá trị</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="price"><br><br>
+            <input type="number" name="price"><br><br>
 
-            <label>ID khách hàng</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="customer_id"><br><br>
-
-            <label for="status">Tình trạng :</label><br>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <textarea rows="4" cols="50" name="status" id="status"></textarea><br><br><br>
-
+            <label>Chi tiết: </label><br>
+            <div style="text-align:left; padding-left:40px;">
+                Diện tích: <input class="detail" type="number" name="square"> m vuông <br><br>
+                Phòng bao gồm:
+                <input class="detail" type="number" name="livingroom"> phòng khách - 
+                <input class="detail" type="number" name="bedroom"> phòng ngủ - 
+                <input class="detail" type="number" name="kitchen"> phòng bếp<br><br>
+            </div>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>

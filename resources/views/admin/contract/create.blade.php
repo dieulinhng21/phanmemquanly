@@ -45,25 +45,41 @@ button {
 
             <label for="project_name">Dự án:</label>
             <select name="project_name" id="project_name">Dự án: 
-                <option value="4">AZ Lâm Viên Complex</option>
-                <option value="5">AZ SKY Tower</option>
-                <option value="7">AZ Vân Canh Tower CT2</option>
+                <option value="1">AZ Lâm Viên</option>
+                <option value="2">AZ Five Stars</option>
+                <option value="3">AZ SKY Tower</option>
             </select>
 
-            <label>Căn</label>
+            <label>Căn hộ: </label>
             <input type="text" name="flat_name"><br><br>
 
-            <label>ID khách hàng</label>
-            <input type="text" name="customer_id"><br><br>
+            <label>Người mua: </label>
+            <select name="customer">
+            @foreach($contract_array as $item)
+                <option value="{{$item->idkhachhang}}">{{$item->hoten}} - {{$item->chungminhthu}}</option>
+            @endforeach
+            </select><br><br>
+
+            <label>Số hợp đồng</label>
+            <input type="text" name="contract_number">
 
             <label>Giá trị</label>
-            <input type="text" name="contract_worth">
+            <input type="number" name="contract_worth">
 
             <label>Ngày ký</label>
             <input type="text" name="contract_date"><br><br><br>
 
-            <label for="note">Ghi chú :</label><br>
-            <textarea rows="4" cols="50" name="note" id="note"></textarea><br><br>
+            <label>Tiến độ hợp đồng</label>
+            <select name="contract_kind">
+                <option value="1">1 lần nộp</option>
+                <option value="2">2 lần nộp</option>
+                <option value="3">3 lần nộp</option>
+                <option value="4">4 lần nộp</option>
+                <option value="5">5 lần nộp</option>
+                <option value="6">6 lần nộp</option>
+                <option value="7">7 lần nộp</option>
+                <option value="8">8 lần nộp</option>
+            </select><br><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>

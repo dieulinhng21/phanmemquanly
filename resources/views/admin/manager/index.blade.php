@@ -30,7 +30,6 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Họ và tên</th>
                                 <th>Vai trò</th>
                                 <th>SĐT</th>
@@ -42,7 +41,6 @@
                         <tbody>
                             @foreach($model as $item )
                             <tr>
-                                <td>{{$item->idquanly}}</td>
                                 <td>{{$item->hoten}}</td>
                                 <td>{{$item->vaitro}}</td>
                                 <td>{{$item->sodienthoai}}</td>

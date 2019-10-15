@@ -30,21 +30,21 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>ID dự án</th>
-                                <th>Tên</th>
-                                <th>Tổng số phòng</th>
+                                <th>Tên dự án</th>
+                                <th>Tên tòa chung cư</th>
+                                <th>Tầng thương mại</th>
+                                <th>Tầng dân cư</th>
                                 <th>Tình trạng</th>
-                                <th colspan="2">Thực hiện</th> <!-- Default pagination disappear after adding colspan = 2-->
+                                <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($model as $item )
+                            @foreach($apartment_array as $item )
                             <tr>
-                                <td>{{$item->idtoachungcu}}</td>
-                                <td>{{$item->idduan}}</td>
-                                <td>{{$item->ten}}</td>
-                                <td>{{$item->tongsophong}}</td>
+                                <td>{{$item->tenduan}}</td>
+                                <td>{{$item->tentoa}}</td>
+                                <td>{{$item->tangthuongmai}}</td>
+                                <td>{{$item->tangdancu}}</td>
                                 <td>{{$item->tinhtrang}}</td>
                                 <td><a href="apartment/{{$item->idtoachungcu}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
@@ -59,7 +59,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $model->links() }}
+                    <!-- link paginate -->
                 </div>
                 <!-- /.box-body -->
             </div>

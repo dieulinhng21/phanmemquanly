@@ -15,78 +15,58 @@
 
 <!-- Main content -->
 <section class="content">
-        <div class="row">
-            <!-- left column -->
-            <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <!-- <h3 class="box-title">Fill in this form</h3> -->
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    <form role="form" method="POST" action="{{ url('/admin/apartment/update') }}">
-                        {{ csrf_field() }}
-                        
-                        <div class="box-body">
-                        <div class="form-group">
-                            <label>ID dự án</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="number" class="form-control" value="{{$apartment->idduan}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Tên</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="number" class="form-control" value="{{$apartment->ten}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Tổng số phòng</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="text" class="form-control" value="{{$apartment->tongsophong}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Tình trạng</label>
-                            
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-                            
-                            <input name="name" type="text" class="form-control" value="{{$apartment->tinhtrang}}">
-                    </div>
-                        <!-- /.box-body -->
-                        
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Edit</button>
-                        </div>
-                    </form>
+    <div class="container">
+    <form role="form" method="POST" action="{{ route('apartment.update', $apartment->idtoachungcu) }}">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+                @endforeach
+            </div>
+            @endif
+        <label>Dự án</label>
+        <select name="project_name">
+            <option value="1">AZ Lâm Viên</option>
+            <option value="2">AZ Five Stars</option>
+            <option value="3">AZ SKY Tower</option>
+            <option value="4">AZ Vân Canh Tower</option>
+            <option value="5">AZ Starry Night</option>
+        </select>
+        
+        <label>Tên tòa chung cư</label>
+        <input name="name" type="number" value="{{$apartment->ten}}">
+        
+        <label for="">Tầng dân cư</label>
+        <input name="people_floor" type="text" value="{{$apartment->tangthuongmai}}">
+
+        <label for="">Tầng thương mại</label>
+        <input name="trade_floor" type="text" value="{{$apartment->tangdancu}}">
+
+        <label>Tổng số phòng</label>
+        <input name="name" type="number" value="{{$apartment->tongsophong}}">
+        
+        <label>Tình trạng</label>
+            @if($apartment->tinhtrang == 1)
+            <select name="status">
+                <option value="1" selected>Đã đầy</option>
+                <option value="0">Còn trống</option>
+            </select>
+            @elseif($apartment->tinhtrang == 0)
+                <select name="status">
+                    <option value="1">Đã đầy</option>
+                    <option value="0" selected>Còn trống</option>
+                </select>
+            @endif
+    </div>
+        <!-- /.box-body -->
+        
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+    </form>
                 </div>
                 <!-- /.box -->
                 

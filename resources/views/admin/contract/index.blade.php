@@ -30,28 +30,28 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Mã hợp đồng</th>
                                 <th>Dự án</th>
                                 <th>Căn hộ</th>
                                 <th>Khách hàng</th>
+                                <th>Số hợp đồng</th>
                                 <th>Giá trị</th>
                                 <th>Ngày ký</th>
-                                <th>Ghi chú</th>
+                                <th>Tiến độ đóng tiền</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($contract_array as $item )
                             <tr>
-                                <td>{{$item->idhopdong}}</td>
                                 <td>{{$item->mahopdong}}</td>
                                 <td>{{$item->tenduan}}</td>
-                                <td>{{$item->can}}</td>
+                                <td>{{$item->tencanho}}</td>
                                 <td>{{$item->hoten}}</td>
+                                <td>{{$item->sohopdong}}</td>
                                 <td>{{$item->giatri}}</td>
                                 <td>{{$item->ngayky}}</td>
-                                <td>{{$item->ghichu}}</td>
+                                <td>{{$item->tiendo}}</td>
                                 <td>
                                 <a href="contract/{{$item->idhopdong}}/edit" class="btn btn-block btn-primary">Sửa</a>
                                 </td>

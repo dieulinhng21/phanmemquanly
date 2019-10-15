@@ -1,4 +1,5 @@
 <style>
+
 label {
     margin-left: 30px;
     margin-right: 10px;
@@ -27,57 +28,36 @@ form {
 <!-- Main content -->
 <section class="content">
     <div class="container">
-        <form method="POST" action="{{ url('/admin/project/store') }}">
+        <form method="POST" action="{{ route('project.store') }}">
         {{ csrf_field() }}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
+
             <label>Tên dự án </label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
             <input type="text" name="project_name">
 
             <label>Công ty trực thuộc</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="commpany">
-
-            <label>Trị giá</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="text" name="price"><br><br><br>
+            <input type="text" name="company"><br><br>  
 
             <label>Số tòa nhà</label>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <input type="number" name="apartment_number"><br><br>
+            <input type="number" name="apartment_number"><br><br>       
 
-            <label for="status">Tình trạng :</label><br>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
-            <textarea  rows="4" cols="50" name="status" id="status"></textarea><br><br>
+            <label>Vị trí </label>&nbsp;&nbsp;
+            <input type="text" name="location">
+
+            <label>Trị giá</label>
+            <input type="number" name="price"><br><br><br>
+
+            <label for="status">Tình trạng</label>
+            <select name="status" id="status">
+                <option value="1">Đã hoàn thành</option>
+                <option value="0">Chưa hoàn thành</option>
+            </select><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
