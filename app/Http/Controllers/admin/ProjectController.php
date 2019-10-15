@@ -152,4 +152,9 @@ class ProjectController extends Controller
         session()->flash('delete_notif','Đã xóa căn hộ');
         return redirect('/admin/project');
     }
+
+//dan tu login den trang Du an
+    public function __construct() {
+        $this->middleware('auth');
+    }
 }

@@ -55,9 +55,17 @@ use Illuminate\Http\Request;
                 'note' => 'required|max:255'
             ],
             [
-                'required' => ':attribute cannot be empty!',
-                'numeric' => ':attribute must be number',
-                'max:255' => ':attribute must be shorter than 255 characters'
+                'name.required' => 'Tên khách hàng không được trống',
+                'dob.required' => 'Năm sinh không được trống',
+                'indentity_card.required' => 'Chứng mình thư không được trống',
+                'email.required' => 'Email khách hàng không được trống',
+                'phone_number.required' => 'Số điện thoại khách hàng không được trống',
+                'inhabitant_number.required' => 'Hộ khẩu không được trống',
+                'address.required' => 'Địa chỉ không được trống',
+                'note.required' => 'Ghi chú không được trống',
+                // 'after:today' => 'This date can not be made',
+                // 'date_format:Y-m-d' => 'Ngày tháng theo định dạng năm-tháng-ngày',
+                'min' => ':attribute must be bigger than 0'
             ]);
                 $customer = Customer::create();
                 
@@ -120,9 +128,15 @@ use Illuminate\Http\Request;
                 'note' => 'required|max:255'
             ],
             [
-                'required' => ':attribute cannot be empty!',
-                'numeric' => ':attribute must be number',
-                'max:255' => ':attribute must be shorter than 255 characters'
+                'name.required' => 'Tên khách hàng không được trống',
+                'dob.required' => 'Năm sinh không được trống',
+                'indentity_card.required' => 'Chứng mình thư không được trống',
+                'email.required' => 'Email khách hàng không được trống',
+                'phone_number.required' => 'Số điện thoại khách hàng không được trống',
+                'inhabitant_number.required' => 'Hộ khẩu không được trống',
+                'address.required' => 'Địa chỉ không được trống',
+                'note.required' => 'Ghi chú không được trống',
+                'min' => ':attribute must be bigger than 0'
             ]);
                 $customer = Customer::find($id);
                 
