@@ -1,14 +1,21 @@
 <style>
-label {
-    margin-left: 30px;
-    margin-right: 10px;
-}
 form {
     border: 1px solid #3c8dbc;
     border-radius: 5px;
     padding: 30px 5%;
 }
+label {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+input.detail{
+    width: 50px;
+}
+button {
+    margin-left: 50%;
+}
 </style>
+
 @extends('partialView.master')
 
 @section('content')
@@ -38,19 +45,21 @@ form {
                             @endif
             <label>Tên dự án</label>
             <select name="project_name">
-                <!-- <option value="7">AZ Lâm Viên Complex</option>
-                <option value="8">AZ SKY Tower</option>
-                <option value="9">Tổ hợp BrightCity</option> -->
-                <option value="4" selected>AZ Vân Canh Tower CT1</option>
-                <option value="5" selected>AZ Kim Giang</option>
-                <option value="6" selected>AZ Vân Canh Tower CT2</option>
-            </select>
+                <option value="1">AZ Lâm Viên</option>
+                <option value="2">AZ Five Stars</option>
+                <option value="3">AZ SKY Tower</option>
+                <option value="4">AZ Vân Canh Tower</option>
+                <option value="5">AZ Starry Night</option>
+            </select><br><br>
 
             <label>Tên chung cư</label>
             <input type="text" name="apartment_name">
 
-            <label>Tổng số phòng</label>
-            <input type="number" name="total_room"><br><br><br>
+            <label>Tầng thương mại</label>
+            Từ tầng <input class="detail" type="number" name="trade_begin"> đến <input class="detail" type="number" name="trade_end">
+
+            <label>Tầng dân cư</label>
+            Từ tầng <input class="detail" type="number" name="people_begin"> đến <input class="detail" type="number" name="people_end"><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>

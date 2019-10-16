@@ -1,3 +1,25 @@
+<style>
+    div.notification{
+        color:#006622;
+        font-style: oblique;
+        border:1px solid #006622;
+        background-color:#99ffbb;
+        padding:15px 15px;
+        margin-bottom:20px;
+        border-radius:5px;
+        width:50%
+    }
+    div.delete_notification{
+        color:#cc0000;
+        font-style: oblique;
+        border:1px solid #cc0000;
+        background-color:#ff6666;
+        padding:15px 15px;
+        margin-bottom:20px;
+        border-radius:5px;
+        width:50%
+    }
+</style>
 @extends('partialView.master')
 @section('content')
 <!-- Content Header (Page header) -->
@@ -15,6 +37,18 @@
 
 <!-- Main content -->
 <section class="content">
+<div>
+    <!-- Alerts -->
+    @if(session()->has('create_notif'))
+        <div class="notification">{{ session()->get('create_notif') }}</div>
+    @elseif(session()->has('update_notif'))
+        <div class="notification">{{ session()->get('update_notif') }}</div>
+    @elseif(session()->has('delete_notif'))
+    <div class="delete_notification">{{ session()->get('delete_notif') }}</div>
+    @endif
+    <!-- End alerts -->
+</div>
+
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -31,8 +65,8 @@
                         <thead>
                             <tr>
                                 <th>Họ tên</th>
-                                <th>căn hộ</th>
                                 <th>CMND</th>
+                                <th>căn hộ</th>
                                 <th>Ngày sinh</th>
                                 <th>Email</th>
                                 <th>SĐT</th>
@@ -46,8 +80,8 @@
                             @foreach($customer_array as $item )
                             <tr>
                                 <td>{{$item->hoten}}</td>
-                                <td>{{$item->tencanho}}</td>
                                 <td>{{$item->chungminhthu}}</td>
+                                <td>{{$item->tencanho}}</td>
                                 <td>{{$item->ngaysinh}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->sodienthoai}}</td>
@@ -56,11 +90,12 @@
                                 <td>{{$item->ghichu}}</td>
                                 <td><a href="customer/{{$item->idkhachhang}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
-                                <form action="{{ route('customer.destroy', $item->idkhachhang)}}" method="post">
+                                <!-- <form action="{{ route('customer.destroy', $item->idkhachhang)}}" method="post">
                                 {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                    <button class="btn btn-danger" type="submit">Xóa</button>
-                                </form>
+                                {{ method_field('DELETE') }} -->
+                                    <!-- <button class="btn btn-danger" type="submit"> Xóa </button> -->
+                                    <a href="{{ route('customer.destroy', $item->idkhachhang)}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa khách hàng?');">Delete</a>
+                                <!-- </form> -->
                                 </td>
                             </tr>
                             @endforeach

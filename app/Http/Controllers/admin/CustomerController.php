@@ -21,9 +21,10 @@ use Illuminate\Http\Request;
             // return view("admin.customer.index", array('model' => $customer));
             $customers = DB::table('khachhang')
                         ->join('canho','khachhang.idcanho','=','canho.idcanho')
-                        ->select('khachhang.*','canho.tencanho')
+                        ->select('khachhang.*','canho.tencanho','canho.idcanho')
+                        ->distinct()
                         ->get();
-        return view('admin.customer.index',['customer_array'=>$customers]);
+            return view('admin.customer.index',['customer_array'=>$customers]);
         }
 
         /**
@@ -33,7 +34,9 @@ use Illuminate\Http\Request;
          */
         public function create()
         {
-            return view("admin.customer.create");
+            //chỉ lấy các căn hộ còn trống
+            $flats = DB::table('canho')->where('tinhtrang','0')->get();
+            return view("admin.customer.create",['flats'=>$flats]);
         }
 
         /**
@@ -45,31 +48,46 @@ use Illuminate\Http\Request;
         public function store(Request $request)
         {
             $request->validate([
-                'name' => 'required|max:255',
-                'dob' => 'required|max:255',
+                'name' => 'required|max:50',
+                'flat' => 'required',
                 'identity_card' => 'required|numeric',
+                'dob' => 'required|date_format:Y-m-d',
                 'email' => 'required|email',
-                'phone_number' => 'required|max:255',
+                'phone_number' => 'required',
                 'inhabitant_number' => 'required',
-                'address' => 'required|max:255',
-                'note' => 'required|max:255'
+                'address' => 'required|max:50'
+                //ghi chú có thể để trống 
             ],
             [
-                'name.required' => 'Tên khách hàng không được trống',
-                'dob.required' => 'Năm sinh không được trống',
-                'indentity_card.required' => 'Chứng mình thư không được trống',
-                'email.required' => 'Email khách hàng không được trống',
-                'phone_number.required' => 'Số điện thoại khách hàng không được trống',
-                'inhabitant_number.required' => 'Hộ khẩu không được trống',
-                'address.required' => 'Địa chỉ không được trống',
-                'note.required' => 'Ghi chú không được trống',
+                'name.required' => 'Tên khách hàng còn trống',
+                'name.max' => 'Tên khách hàng vượt quá số ký tự cho phép',
+                //
+                'flat.required' => 'Căn hộ còn trống',
+                //
+                'indentity_card.required' => 'Chứng minh thư còn trống',
+                'indentity_card.numeric' => 'Chứng minh thư không hợp lệ',
+                //
+                'dob.required' => 'Ngày tháng năm sinh còn trống',
+                'dob.date_format' => 'Ngày tháng năm sinh không hợp lệ',
+                //
+                'email.required' => 'Email còn trống',
+                'email.email' => 'Địa chỉ email không hợp lệ',
+                //
+                'phone_number.required' => 'Số điện thoại còn trống',
+                'phone_number.numeric' => 'Số điện thoại không hợp lệ',
+                //
+                'inhabitant_number.required' => 'Hộ khẩu còn trống',
+                //
+                'address.required' => 'Địa chỉ còn trống',
+                'address.max' => 'Địa chỉ không hợp lệ',
+                //
                 // 'after:today' => 'This date can not be made',
                 // 'date_format:Y-m-d' => 'Ngày tháng theo định dạng năm-tháng-ngày',
-                'min' => ':attribute must be bigger than 0'
             ]);
                 $customer = Customer::create();
                 
                 $customer->hoten= $request->get('name');
+                $customer->idcanho= $request->get('flat');
                 $customer->ngaysinh= $request->get('dob');
                 $customer->chungminhthu = $request->get('identity_card');
                 $customer->email = $request->get('email');
@@ -80,7 +98,7 @@ use Illuminate\Http\Request;
 
                 $customer->save();
                 
-                
+                session()->flash('create_notif','Thêm khách hàng thành công!');
                 return redirect('/admin/customer');
         }
 
@@ -92,8 +110,7 @@ use Illuminate\Http\Request;
          */
         public function show($id)
         {
-            $customer = Customer::find($id);
-            return view('admin.customer.show')->with('customer',$customer);
+            //
         }
 
         /**
@@ -118,25 +135,31 @@ use Illuminate\Http\Request;
         public function update(Request $request, $id)
         {
             $request->validate([
-                'name' => 'required|max:255',
-                'dob' => 'required|max:255',
+                'name' => 'required',
+                'dob' => 'required',
                 'identity_card' => 'required|numeric',
                 'email' => 'required|email',
-                'phone_number' => 'required|max:255',
+                'phone_number' => 'required',
                 'inhabitant_number' => 'required',
-                'address' => 'required|max:255',
-                'note' => 'required|max:255'
+                'address' => 'required',
+                'note' => 'required'
             ],
             [
                 'name.required' => 'Tên khách hàng không được trống',
+                //
                 'dob.required' => 'Năm sinh không được trống',
+                //
                 'indentity_card.required' => 'Chứng mình thư không được trống',
+                //
                 'email.required' => 'Email khách hàng không được trống',
+                //
                 'phone_number.required' => 'Số điện thoại khách hàng không được trống',
+                //
                 'inhabitant_number.required' => 'Hộ khẩu không được trống',
+                //
                 'address.required' => 'Địa chỉ không được trống',
-                'note.required' => 'Ghi chú không được trống',
-                'min' => ':attribute must be bigger than 0'
+                //
+                'note.required' => 'Ghi chú không được trống'
             ]);
                 $customer = Customer::find($id);
                 
@@ -151,8 +174,8 @@ use Illuminate\Http\Request;
 
                 $customer->save();
                 
-                
-                return redirect('/admin/customer')->with('success!','Customer updated!');
+                session()->flash('update_notif','Cập nhật khách hàng thành công!');
+                return redirect('/admin/customer');
         }
 
         /**
@@ -166,9 +189,6 @@ use Illuminate\Http\Request;
             $customer = Customer::find($id);
             $customer->delete();
 
-            return redirect('/admin/customer')->with([
-                'flash_message' => 'Deleted',
-                'flash_message_important' => false
-            ]);
+            return redirect('/admin/customer');
         }
     }

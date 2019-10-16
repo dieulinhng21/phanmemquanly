@@ -42,11 +42,18 @@
                     <label>Họ tên</label>
                     <input type="text" name="name">
 
-                    <label>Ngày sinh</label>
-                    <input type="text" name="dob">
+                    <label>Căn hộ</label>
+                    <select name="flat">
+                    @foreach($flats as $flat)
+                        <option value="{{$flat->idcanho}}">{{$flat->tencanho}}</option>
+                    @endforeach
+                    </select>
 
                     <label>Chứng minh thư</label>
                     <input type="text" name="identity_card"><br><br>
+
+                    <label>Ngày sinh</label>
+                    <input type="text" name="dob"> (form:Năm-Tháng-Ngày)
 
                     <label>Email</label>
                     <input type="email" name="email">

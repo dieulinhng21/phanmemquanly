@@ -169,6 +169,7 @@ class FlatController extends Controller
             'kitchen.min' => 'Số phòng bếp lớn hơn hoặc bằng 0'
         ]);
             $flat = Flat::find($id);
+            
             $flat->tencanho= $request->get('flat');
             $flat->idduan= $request->get('project');
             $flat->idtoachungcu= $request->get('apartment');

@@ -1,14 +1,25 @@
+<style>
+label {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+form {
+    border: 1px solid #3c8dbc;
+    border-radius: 5px;
+    padding: 30px 5%;
+}
+</style>
 @extends('partialView.master')
 
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Tòa chung cư
+        Sửa tòa chung cư
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="{{ url ('admin/flat') }}">Bảng tòa chung cư</a></li>
+        <li><a href="{{ url ('admin/apartment') }}">Bảng tòa chung cư</a></li>
         <li class="active">Sửa tòa chung cư</li>
     </ol>
 </section>
@@ -29,65 +40,35 @@
             @endif
         <label>Dự án</label>
         <select name="project_name">
-            <option value="1">AZ Lâm Viên</option>
-            <option value="2">AZ Five Stars</option>
-            <option value="3">AZ SKY Tower</option>
-            <option value="4">AZ Vân Canh Tower</option>
-            <option value="5">AZ Starry Night</option>
+        @foreach($projects as $project)
+            <option value="{{$project->idduan}}">{{ $project->tenduan}}</option>
+        @endforeach
         </select>
         
         <label>Tên tòa chung cư</label>
-        <input name="name" type="number" value="{{$apartment->ten}}">
+        <input name="apartment_name" type="text" value="{{$apartment->tentoa}}"><br><br>
         
-        <label for="">Tầng dân cư</label>
+        <label>Tầng dân cư</label>
         <input name="people_floor" type="text" value="{{$apartment->tangthuongmai}}">
 
-        <label for="">Tầng thương mại</label>
+        <label>Tầng thương mại</label>
         <input name="trade_floor" type="text" value="{{$apartment->tangdancu}}">
 
-        <label>Tổng số phòng</label>
-        <input name="name" type="number" value="{{$apartment->tongsophong}}">
-        
         <label>Tình trạng</label>
             @if($apartment->tinhtrang == 1)
             <select name="status">
                 <option value="1" selected>Đã đầy</option>
                 <option value="0">Còn trống</option>
-            </select>
+            </select><br><br>
             @elseif($apartment->tinhtrang == 0)
                 <select name="status">
                     <option value="1">Đã đầy</option>
                     <option value="0" selected>Còn trống</option>
-                </select>
+                </select><br><br>
             @endif
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
     </div>
-        <!-- /.box-body -->
-        
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Edit</button>
-        </div>
-    </form>
-                </div>
-                <!-- /.box -->
-                
-                <!-- Form Element sizes -->
-                
-                <!-- /.box -->
-                
-                
-                <!-- /.box -->
-                
-                <!-- Input addon -->
-                
-                <!-- /.box -->
-                
-            </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-            
-            <!--/.col (right) -->
-        </div>
-        <!-- /.row -->
-    </section>
+</section>
 <!-- /.content -->
 @endsection('content')

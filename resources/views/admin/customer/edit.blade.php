@@ -33,6 +33,7 @@ button {
                     <form role="form" method="POST" action="{{ route('customer.update', $customer->idkhachhang) }}">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
+
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     @foreach ($errors->all() as $error)
@@ -41,28 +42,28 @@ button {
                                 </div>
                             @endif
                             <label>Họ và tên</label>
-                            <input name="name" type="text" class="form-control" value="{{$customer->hoten}}">
-                       
-                            <label>Năm sinh</label>
-                            <input name="dob" type="text" class="form-control" value="{{$customer->ngaysinh}}">
+                            <input name="name" type="text" value="{{$customer->hoten}}">
                         
                             <label>Chứng minh thư</label>
-                            <input name="identity_card" type="text" class="form-control" value="{{$customer->chungminhthu}}">
+                            <input name="identity_card" type="text" value="{{$customer->chungminhthu}}">
+                       
+                            <label>Năm sinh</label>
+                            <input name="dob" type="text" value="{{$customer->ngaysinh}}"><br><br>
                         
                             <label>Email</label>
-                            <input name="email" type="email" class="form-control" value="{{$customer->email}}">
+                            <input name="email" type="email" value="{{$customer->email}}">
                      
                             <label>SĐT</label>
-                            <input name="phone_number" type="text" class="form-control" value="{{$customer->sodienthoai}}">
+                            <input name="phone_number" type="text" value="{{$customer->sodienthoai}}"><br><br>
                         
                             <label>Hộ khẩu</label>
-                            <input name="inhabitant_number" type="text" class="form-control" value="{{$customer->hokhau}}">
+                            <input name="inhabitant_number" type="text" value="{{$customer->hokhau}}">
                         
                             <label>Địa chỉ</label>
-                            <input name="address" type="text" class="form-control" value="{{$customer->diachi}}">
+                            <input name="address" type="text" value="{{$customer->diachi}}"><br><br>
                         
                             <label>Ghi chú</label>
-                            <input name="note" type="text" class="form-control" value="{{$customer->ghichu}}">
+                            <input name="note" type="text" value="{{$customer->ghichu}}"><br><br>
                        
                             <button type="submit" class="btn btn-primary">Lưu</button>
                        
