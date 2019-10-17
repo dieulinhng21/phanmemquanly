@@ -18,7 +18,7 @@ button {
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Vị trí
+        Sửa người quản lý
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
@@ -60,7 +60,7 @@ button {
                 <label>Địa chỉ</label>
                 <input name="address" type="text" value="{{$manager->diachi}}"><br><br>
                 
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
                    
             </form>
         </div>

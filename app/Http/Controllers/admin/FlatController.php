@@ -59,11 +59,11 @@ class FlatController extends Controller
             'project'=>'required',
             'apartment'=>'required',
             'flat'=>'required',
-            'price'=>'required|min:0',
-            'square'=>'required|min:0',
-            'livingroom'=>'required|min:0',
-            'bedroom'=>'required|min:0',
-            'kitchen'=>'required|min:0'
+            'price'=>'required|gt:0',
+            'square'=>'required|gt:0',
+            'livingroom'=>'required|gt:0',
+            'bedroom'=>'required|gt:0',
+            'kitchen'=>'required|gt:0'
 
         ],
         [
@@ -74,14 +74,14 @@ class FlatController extends Controller
             'price.required' => 'Trị giá còn trống',
             'square.required' => 'Diện tích còn trống',
             'livingroom.required' => 'Số phòng khách còn trống',
-            'bedroom.required' => 'Số pòng ngủ còn trống',
+            'bedroom.required' => 'Số phòng ngủ còn trống',
             'kitchen.required' => 'Số phòng bếp còn trống',
 
-            'price.min' => 'Trị giá phải lớn hơn hoặc bằng 0',
-            'square.min' => 'DIện tích phải lớn hơn hoặc bằng 0',
-            'livingroom.min' => 'Số phòng khách phải lớn hơn hoặc bằng 0',
-            'bedroom.min' => 'Số phòng ngủ phải lớn hơn hoặc bằng 0',
-            'kitchen.min' => 'Số phòng bếp lớn hơn hoặc bằng 0'
+            'price.gt' => 'Trị giá phải lớn hơn hoặc bằng 0',
+            'square.gt' => 'DIện tích phải lớn hơn hoặc bằng 0',
+            'livingroom.gt' => 'Số phòng khách phải lớn hơn hoặc bằng 0',
+            'bedroom.gt' => 'Số phòng ngủ phải lớn hơn hoặc bằng 0',
+            'kitchen.gt' => 'Số phòng bếp lớn hơn hoặc bằng 0'
         ]);
             $flat = Flat::create();
             
@@ -145,11 +145,11 @@ class FlatController extends Controller
             'project'=>'required',
             'apartment'=>'required',
             'flat'=>'required',
-            'price'=>'required|min:0',
-            'square'=>'required|min:0',
-            'livingroom'=>'required|min:0',
-            'bedroom'=>'required|min:0',
-            'kitchen'=>'required|min:0'
+            'price'=>'required|gt:0',
+            'square'=>'required|gt:0',
+            'livingroom'=>'required|gt:0',
+            'bedroom'=>'required|gt:0',
+            'kitchen'=>'required|gt:0'
 
         ],
         [
@@ -159,14 +159,14 @@ class FlatController extends Controller
             'price.required' => 'Trị giá còn trống',
             'square.required' => 'Diện tích còn trống',
             'livingroom.required' => 'Số phòng khách còn trống',
-            'bedroom.required' => 'Số pòng ngủ còn trống',
+            'bedroom.required' => 'Số phòng ngủ còn trống',
             'kitchen.required' => 'Số phòng bếp còn trống',
 
-            'price.min' => 'Trị giá phải lớn hơn hoặc bằng 0',
-            'square.min' => 'DIện tích phải lớn hơn hoặc bằng 0',
-            'livingroom.min' => 'Số phòng khách phải lớn hơn hoặc bằng 0',
-            'bedroom.min' => 'Số phòng ngủ phải lớn hơn hoặc bằng 0',
-            'kitchen.min' => 'Số phòng bếp lớn hơn hoặc bằng 0'
+            'price.gt' => 'Trị giá phải lớn hơn hoặc bằng 0',
+            'square.gt' => 'DIện tích phải lớn hơn hoặc bằng 0',
+            'livingroom.gt' => 'Số phòng khách phải lớn hơn hoặc bằng 0',
+            'bedroom.gt' => 'Số phòng ngủ phải lớn hơn hoặc bằng 0',
+            'kitchen.gt' => 'Số phòng bếp lớn hơn hoặc bằng 0'
         ]);
             $flat = Flat::find($id);
             

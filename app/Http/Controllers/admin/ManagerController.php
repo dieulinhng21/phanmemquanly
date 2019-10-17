@@ -16,7 +16,7 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        $manager = manager::paginate(2);
+        $manager = manager::paginate(5);
         return view("admin.manager.index", array('model' => $manager));
     }
 
@@ -41,25 +41,30 @@ class ManagerController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'role' => 'required|max:255',
-            'phone_number' => 'required|max:255',
-            'email' => 'email|required',
+            'phone_number' => 'required|digits_between:9,10',
+            'email' => 'required|email|unique:nguoiquanly,email',
             'address' => 'required'
         ],
         [
-            'required' => ':attribute cannot be empty!',
-            'email' => ':attribute must be an email address',
-            'max:255' => ':attribute must be shorter than 255 character'
+            'name.required' => 'Họ tên còn trống',
+            'role.required' => 'Vai trò còn trống',
+            'phone_number.required' => 'Số điện thoại còn trống',
+            'phone_number.digits_between' => 'Số điện thoại không hợp lệ',
+            'email.required' => 'Email còn trống',
+            'email.unique' => 'Email đã tồn tại',
+            'address.required' => 'Địa chỉ còn trống',
+            'email' => 'Email không hợp lệ'
         ]);
             $manager = Manager::create();
             $manager->hoten= $request->get('name');
             $manager->vaitro= $request->get('role');
-            $manager->sodienthoai = $request->get('phone_number');
+            $manager->sodienthoai = $request->get('phone_number');//sđt dài từ 9-10 số
             $manager->email = $request->get('email');
             $manager->diachi = $request->get('address');
 
             $manager->save();
             
-            
+            session()->flash('create_notif','Thêm người quản lý thành công!');
             return redirect('/admin/manager');
     }
 
@@ -71,8 +76,7 @@ class ManagerController extends Controller
      */
     public function show($id)
     {
-        $manager = Manager::find($id);
-        return view('admin.manager.show')->with('manager',$manager);
+        //
     }
 
     /**
@@ -99,14 +103,19 @@ class ManagerController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'role' => 'required|max:255',
-            'phone_number' => 'required|max:255',
-            'email' => 'email|required',
+            'phone_number' => 'required|digits_between:9,10',//sđt dài từ 9-10 số
+            'email' => 'email|required|unique:nguoiquanly,email',
             'address' => 'required'
         ],
         [
-            'required' => ':attribute cannot be empty!',
-            'email' => ':attribute must be an email address',
-            'max:255' => ':attribute must be shorter than 255 character'
+            'name.required' => 'Họ tên còn trống',
+            'role.required' => 'Vai trò còn trống',
+            'phone_number.required' => 'Số điện thoại còn trống',
+            'phone_number.digits_between' => 'Số điện thoại không hợp lệ',
+            'email.required' => 'Email còn trống',
+            'email.unique' => 'Email đã tồn tại',
+            'address.required' => 'Địa chỉ còn trống',
+            'email' => 'Email không hợp lệ'
         ]);
             $manager = Manager::find($id);
 
@@ -118,8 +127,8 @@ class ManagerController extends Controller
 
             $manager->save();
             
-            
-            return redirect('/admin/manager')->with('success!','Contract updated!');
+            session()->flash('update_notif','Chỉnh sửa người quản lý thành công!');
+            return redirect('/admin/manager');
     }
 
     /**
@@ -133,9 +142,7 @@ class ManagerController extends Controller
         $manager = Manager::find($id);
         $manager->delete();
 
-        return redirect('/admin/manager')->with([
-            'flash_message' => 'Deleted',
-            'flash_message_important' => false
-        ]);
+        session()->flash('delete_notif','Xóa người quản lý thành công!');
+        return redirect('/admin/manager');
     }
 }

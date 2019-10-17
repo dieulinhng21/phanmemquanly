@@ -50,10 +50,10 @@ use Illuminate\Http\Request;
             $request->validate([
                 'name' => 'required|max:50',
                 'flat' => 'required',
-                'identity_card' => 'required|numeric',
+                'identity_card' => 'required|numeric|digits_between:9,10|unique:khachhang,chungminhthu',
                 'dob' => 'required|date_format:Y-m-d',
-                'email' => 'required|email',
-                'phone_number' => 'required',
+                'email' => 'required|email|unique:khachhang,email',
+                'phone_number' => 'required|numeric|digits_between:9,10|unique:khachhang,sodienthoai',
                 'inhabitant_number' => 'required',
                 'address' => 'required|max:50'
                 //ghi chú có thể để trống 
@@ -64,17 +64,21 @@ use Illuminate\Http\Request;
                 //
                 'flat.required' => 'Căn hộ còn trống',
                 //
-                'indentity_card.required' => 'Chứng minh thư còn trống',
-                'indentity_card.numeric' => 'Chứng minh thư không hợp lệ',
+                'identity_card.required' => 'Chứng minh thư còn trống',
+                'identity_card.numeric' => 'Chứng minh thư không hợp lệ',
+                'identity_card.unique' => 'Số chứng minh thư đã tồn tại',
+                'identity_card.digits_between' => 'Số chứng minh thư không hợp lệ',//số chứng minh thư p dài từ 9-10 ký tự
                 //
                 'dob.required' => 'Ngày tháng năm sinh còn trống',
                 'dob.date_format' => 'Ngày tháng năm sinh không hợp lệ',
                 //
                 'email.required' => 'Email còn trống',
                 'email.email' => 'Địa chỉ email không hợp lệ',
+                'email.unique' => 'Địa chỉ email đã tồn tại',
                 //
                 'phone_number.required' => 'Số điện thoại còn trống',
                 'phone_number.numeric' => 'Số điện thoại không hợp lệ',
+                'phone_number.digits_between' => 'Số điện thoại không hợp lệ',
                 //
                 'inhabitant_number.required' => 'Hộ khẩu còn trống',
                 //
@@ -133,27 +137,39 @@ use Illuminate\Http\Request;
          * @return \Illuminate\Http\Response
          */
         public function update(Request $request, $id)
+        // |unique:khachhang,sodienthoai
+        // |unique:khachhang,chungminhthu
+        // |unique:khachhang,email
         {
             $request->validate([
-                'name' => 'required',
-                'dob' => 'required',
-                'identity_card' => 'required|numeric',
+                'name' => 'required|max:50',
+                'dob' => 'required|date_format:Y-m-d',
+                'identity_card' => 'required|numeric|digits_between:9,10',
                 'email' => 'required|email',
-                'phone_number' => 'required',
+                'phone_number' => 'required|numeric|digits_between:9,10',
                 'inhabitant_number' => 'required',
                 'address' => 'required',
                 'note' => 'required'
             ],
             [
-                'name.required' => 'Tên khách hàng không được trống',
+                'name.required' => 'Tên khách hàng còn trống',
+                'name.max' => 'Tên khách hàng vượt quá số ký tự cho phép',
                 //
-                'dob.required' => 'Năm sinh không được trống',
+                'dob.required' => 'Năm sinh còn trống',
+                'dob.date_format' => 'Ngày tháng năm sinh không hợp lệ',
                 //
-                'indentity_card.required' => 'Chứng mình thư không được trống',
+                'identity_card.required' => 'Số chứng minh còn trống',
+                'identity_card.digits_between' => 'Độ dài số chứng minh thư không hợp lệ',// chứng minh thư p dài từ 9-10 ký tự
+                // 'identity_card.unique' => 'Số chứng minh thư đã tồn tại',
                 //
-                'email.required' => 'Email khách hàng không được trống',
+                'email.required' => 'Email còn trống',
+                'email.email' => 'Địa chỉ email không hợp lệ',
+                // 'email.unique' => 'Địa chỉ email đã tồn tại',
                 //
-                'phone_number.required' => 'Số điện thoại khách hàng không được trống',
+                'phone_number.required' => 'Số điện thoại còn trống',
+                'phone_number.numeric' => 'Số điện thoại không chứa ký tự là chữ cái',
+                'phone_number.digits_between' => 'Số điện thoại không hợp lệ',
+                // 'phone_number.unique' => 'Số điện thoại đã tồn tại',
                 //
                 'inhabitant_number.required' => 'Hộ khẩu không được trống',
                 //

@@ -16,13 +16,13 @@ class LoginController extends Controller
         // Kiểm tra dữ liệu nhập vào
         $rules = [
             'username' =>'required|username',
-            'password' => 'required|min:6'
+            'password' => 'required|digits:6'
         ];
         $messages = [
             'username.required' => 'Tên đăng nhập là trường bắt buộc',
             'username.username' => 'Tên đăng nhập không đúng định dạng',
             'password.required' => 'Mật khẩu là trường bắt buộc',
-            'password.min' => 'Mật khẩu phải chứa ít nhất 8 ký tự',
+            'password.digits' => 'Mật khẩu phải chứa ít nhất 8 ký tự',
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
         

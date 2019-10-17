@@ -78,7 +78,7 @@ class ContractController extends Controller
             
                     $contract->mahopdong= $request->get('contract_code');
                     $contract->ID_duan= $request->get('project_name');
-                    $contract->ten_canho= $request->get('flat_name');
+                    $contract->tencanho= $request->get('flat_name');
                     $contract->ID_khachhang= $request->get('customer_id');
                     $contract->giatri = $request->get('contract_worth');
                     $contract->ngayky = $request->get('contract_date');
