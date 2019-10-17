@@ -36,7 +36,8 @@
 <div class="col-sm">
 </div>
     </form>
-    <footer id="footer">
+
+  <footer id="footer">
       <div class="text-center padder">
         <p>
           <small> Phần mềm quản lý công ty bất động sản</small>
@@ -84,3 +85,4 @@
         
     
     </body>
+</html>

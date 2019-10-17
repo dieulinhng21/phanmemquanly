@@ -23,7 +23,7 @@ button {
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
         <li><a href="{{ url ('admin/contract') }}">Bảng hợp đồng</a></li>
-        <li class="active">Sửa hợp đồng</li>
+        <li class="active">Sửa thông tin khách</li>
     </ol>
 </section>
 
