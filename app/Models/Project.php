@@ -12,8 +12,4 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model {
     protected $primaryKey = "idduan";
     protected $table = "duan";
-
-    public function __construct() {
-        $this->middleware('auth');
-    }
 }
