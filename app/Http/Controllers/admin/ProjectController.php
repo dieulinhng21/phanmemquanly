@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Project;
 use App\Http\Requests;
 
-use Illuminate\Http\Request;
-
 class ProjectController extends Controller
 {
     /**
@@ -151,10 +149,5 @@ class ProjectController extends Controller
         $project->delete();
         session()->flash('delete_notif','Đã xóa căn hộ');
         return redirect('/admin/project');
-    }
-
-//dan tu login den trang Du an
-    public function __construct() {
-        $this->middleware('auth');
     }
 }

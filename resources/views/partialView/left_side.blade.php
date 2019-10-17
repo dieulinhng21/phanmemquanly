@@ -44,39 +44,31 @@
             </li>
             <li class="">
                 <a href="{{ url('/admin/apartment') }}">
-                    <!--<i class="fa fa-th"></i>--> 
                     <span>Quản lý chung cư</span>
                     <span class="pull-right-container">
-                        <!--<small class="label pull-right bg-green">new</small>-->
                     </span>
                 </a>
             </li>
              <li class="">
                 <a href="{{ url('/admin/flat') }}">
-                    <!--<i class="fa fa-th"></i>--> 
                     <span>Quản lý căn hộ</span>
                     <span class="pull-right-container">
-                        <!--<small class="label pull-right bg-green">new</small>-->
                     </span>
                 </a>
             </li>
             
              <li class="">
                 <a href="{{ url('/admin/contract') }}">
-                    <!--<i class="fa fa-th"></i>--> 
                     <span>Quản lý hợp đồng</span>
                     <span class="pull-right-container">
-                        <!--<small class="label pull-right bg-green">new</small>-->
                     </span>
                 </a>
             </li>
             
              <li class="">
                 <a href="{{ url('/admin/customer') }}">
-                    <!--<i class="fa fa-th"></i>--> 
                     <span>Quản lý khách hàng</span>
                     <span class="pull-right-container">
-                        <!--<small class="label pull-right bg-green">new</small>-->
                     </span>
                 </a>
             </li>
@@ -84,32 +76,28 @@
             <li class="">
                 <a href="{{ url('/admin/manager') }}">
                     <!--<i class="fa fa-th"></i>--> 
-                    <span>Quản lý admin</span>
+                    <span>Quản lý người quản lý</span>
                     <span class="pull-right-container">
                         <!--<small class="label pull-right bg-green">new</small>-->
                     </span>
                 </a>
             </li>
 
-            <li class="">
+            <!-- <li class="">
                 <a href="{{ url('/admin/maketing') }}">
-                    <!--<i class="fa fa-th"></i>--> 
                     <span>Marketing</span>
                     <span class="pull-right-container">
-                        <!--<small class="label pull-right bg-green">new</small>-->
                     </span>
                 </a>
-            </li>
+            </li> -->
 
-            <li class="">
+            <!-- <li class="">
                 <a href="{{ url('/admin/location') }}">
-                    <!--<i class="fa fa-pie-chart"></i>-->
                     <span>Địa điểm</span>
                     <span class="pull-right-container">
-                        <!--<i class="fa fa-angle-left pull-right"></i>-->
                     </span>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </section>
     <!-- /.sidebar -->

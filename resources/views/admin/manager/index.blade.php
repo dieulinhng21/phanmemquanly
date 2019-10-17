@@ -56,7 +56,7 @@
                     <!-- <h3 class="box-title">Hover Contract Table</h3> -->
                 </div>
                 <div class="btn">
-                    <button type="button" onclick="location.href='{{ url('admin/manager/create') }}'" class="btn btn-block btn-primary">Thêm thành viên</button>
+                    <button type="button" onclick="location.href='{{ url('admin/manager/create') }}'" class="btn btn-block btn-primary">Thêm người quản lý</button>
                 </div>
 
                 <!-- /.box-header -->
