@@ -90,12 +90,13 @@
                                 <td>{{$item->ghichu}}</td>
                                 <td><a href="customer/{{$item->idkhachhang}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
-                                <!-- <form action="{{ route('customer.destroy', $item->idkhachhang)}}" method="post">
+                                <form action="{{ route('customer.destroy', $item->idkhachhang)}}" method="post">
                                 {{ csrf_field() }}
-                                {{ method_field('DELETE') }} -->
-                                    <!-- <button class="btn btn-danger" type="submit"> Xóa </button> -->
-                                    <a href="{{ route('customer.destroy', $item->idkhachhang)}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa khách hàng?');">Delete</a>
-                                <!-- </form> -->
+                                {{ method_field('DELETE') }}
+                                <a onclick="return confirm('Bạn có chắc muốn xóa khách hàng?');">
+                                    <button class="btn btn-danger" type="submit" > Xóa </button>
+                                </a>
+                                </form>
                                 </td>
                             </tr>
                             @endforeach

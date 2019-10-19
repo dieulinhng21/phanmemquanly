@@ -4,6 +4,11 @@ form {
     border-radius: 5px;
     padding: 30px 5%;
 }
+input,select,textarea{
+    border:none;
+    border-radius:5px;
+    text-align:center;
+}
 label {
     margin-left: 30px;
     margin-right: 10px;
@@ -68,7 +73,7 @@ button {
         
             <label>Chi tiết</label>
             Diện tích:
-            <input class="detail" name="square" type="number" value="{{$flat->dientich}}">
+            <input class="detail" name="square" type="number" value="{{$flat->dientich}}"> m vuông
             - Số phòng khách:
             <input class="detail" name="livingroom" type="number" value="{{$flat->sophongkhach}}">
             - Số phòng ngủ:

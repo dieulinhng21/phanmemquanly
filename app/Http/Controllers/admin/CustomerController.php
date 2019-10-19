@@ -51,7 +51,10 @@ use Illuminate\Http\Request;
                 'name' => 'required|max:50',
                 'flat' => 'required',
                 'identity_card' => 'required|numeric|digits_between:9,10|unique:khachhang,chungminhthu',
-                'dob' => 'required|date_format:Y-m-d',
+                // 'dob' => 'required|date_format:Y-m-d',
+                'day' => 'required|numeric|min:1|max:31',
+                'month' => 'required|numeric|min:1|max:12',
+                'year' => 'required|numeric',
                 'email' => 'required|email|unique:khachhang,email',
                 'phone_number' => 'required|numeric|digits_between:9,10|unique:khachhang,sodienthoai',
                 'inhabitant_number' => 'required',
@@ -69,8 +72,19 @@ use Illuminate\Http\Request;
                 'identity_card.unique' => 'Số chứng minh thư đã tồn tại',
                 'identity_card.digits_between' => 'Số chứng minh thư không hợp lệ',//số chứng minh thư p dài từ 9-10 ký tự
                 //
-                'dob.required' => 'Ngày tháng năm sinh còn trống',
-                'dob.date_format' => 'Ngày tháng năm sinh không hợp lệ',
+                'day.required' => 'Ngày sinh còn trống',
+                'day.numeric' => 'Ngày sinh phải là số',
+                'day.min' => 'Ngày sinh không hợp lệ',
+                'day.max' => 'Ngày sinh không hợp lệ',
+
+                'month.required' => 'Tháng sinh còn trống',
+                'month.numeric' => 'Tháng sinh phải là số',
+                'month.min' => 'Tháng sinh không hợp lệ',
+                'month.max' => 'Tháng sinh không hợp lệ',
+
+                'year.required' => 'Năm sinh còn trống',
+                'year.numeric' => 'Năm sinh phải là số',
+
                 //
                 'email.required' => 'Email còn trống',
                 'email.email' => 'Địa chỉ email không hợp lệ',
@@ -79,6 +93,7 @@ use Illuminate\Http\Request;
                 'phone_number.required' => 'Số điện thoại còn trống',
                 'phone_number.numeric' => 'Số điện thoại không hợp lệ',
                 'phone_number.digits_between' => 'Số điện thoại không hợp lệ',
+                'phone_number.unique' => 'Số điện thoại đã tồn tại',
                 //
                 'inhabitant_number.required' => 'Hộ khẩu còn trống',
                 //
@@ -88,11 +103,23 @@ use Illuminate\Http\Request;
                 // 'after:today' => 'This date can not be made',
                 // 'date_format:Y-m-d' => 'Ngày tháng theo định dạng năm-tháng-ngày',
             ]);
+                $day = $request->get('day');
+                $month = $request->get('month');
+                $year = $request->get('year');
+                $dob;
+                $validate_date = checkdate($month, $day, $year);
+                if($validate_date){
+                    $dob = $year . "-" . $month . "-" . $day;
+                }else{
+                    $error = "Ngày tháng năm sinh không hợp lệ!";
+                    $dob = null;
+                    session()->flash('date_error','Ngày tháng năm sinh không hợp lệ');
+                }
                 $customer = Customer::create();
                 
                 $customer->hoten= $request->get('name');
                 $customer->idcanho= $request->get('flat');
-                $customer->ngaysinh= $request->get('dob');
+                $customer->ngaysinh= $dob;
                 $customer->chungminhthu = $request->get('identity_card');
                 $customer->email = $request->get('email');
                 $customer->sodienthoai = $request->get('phone_number');

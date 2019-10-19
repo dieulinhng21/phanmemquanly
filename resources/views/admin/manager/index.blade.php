@@ -85,7 +85,9 @@
                                 <form action="{{ route('manager.destroy', $item->idquanly)}}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                    <button class="btn btn-danger" type="submit">Xóa</button>
+                                <a onclick="return confirm('Bạn có chắc muốn xóa người quản lý?');">
+                                    <button class="btn btn-danger" type="submit" > Xóa </button>
+                                </a>
                                 </form>
                                 </td>
                             </tr>

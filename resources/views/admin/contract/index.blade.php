@@ -34,7 +34,7 @@
                                 <th>Dự án</th>
                                 <th>Căn hộ</th>
                                 <th>Khách hàng</th>
-                                <th>Số hợp đồng</th>
+                                <th>Sàn</th>
                                 <th>Giá trị</th>
                                 <th>Ngày ký</th>
                                 <th>Tiến độ đóng tiền</th>
@@ -48,7 +48,7 @@
                                 <td>{{$item->tenduan}}</td>
                                 <td>{{$item->tencanho}}</td>
                                 <td>{{$item->hoten}}</td>
-                                <td>{{$item->sohopdong}}</td>
+                                <td>{{$item->san}}</td>
                                 <td>{{$item->giatri}}</td>
                                 <td>{{$item->ngayky}}</td>
                                 <td>{{$item->tiendo}}</td>
@@ -59,7 +59,9 @@
                                 <form action="{{ route('contract.destroy', $item->idhopdong)}}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                    <button class="btn btn-danger" type="submit">Xóa</button>
+                                <a onclick="return confirm('Bạn có chắc muốn xóa hợp đồng?');">
+                                    <button class="btn btn-danger" type="submit" > Xóa </button>
+                                </a>
                                 </form>
                                 </td>
                             </tr>

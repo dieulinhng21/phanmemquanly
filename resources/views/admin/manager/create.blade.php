@@ -8,6 +8,14 @@ form {
     border-radius: 5px;
     padding: 30px 5%;
 }
+input,select,textarea{
+    border:none;
+    border-radius:5px;
+    text-align:center;
+}
+input.custom_address{
+    width: 350px;
+}
 button {
     margin-left: 50%;ư
 }
@@ -56,7 +64,7 @@ button {
         <input type="email" name="email">
 
         <label>Địa chỉ</label>
-        <input type="text" name="address"><br><br><br>
+        <input class="date" type="text" name="address"><br><br><br>
         
         <button type="submit" class="btn btn-primary">Lưu</button>
         </form>

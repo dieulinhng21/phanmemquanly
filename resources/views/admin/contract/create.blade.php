@@ -8,6 +8,14 @@ form {
     border-radius: 5px;
     padding: 30px 5%;
 }
+input,select,textarea{
+    border:none;
+    border-radius:5px;
+    text-align:center;
+}
+input.date{
+    width: 60px;
+}
 button {
     margin-left: 50%;
 }
@@ -67,7 +75,9 @@ button {
             <input type="number" name="contract_worth">
 
             <label>Ngày ký</label>
-            <input type="text" name="contract_date"><br><br><br>
+            <input class="date" type="number" name="day" placeholder="ngày..."> /
+            <input class="date" type="number" name="month" placeholder="tháng..."> /
+            <input class="date" type="number" name="year" placeholder="năm..."><br><br><br>
 
             <label>Tiến độ hợp đồng</label>
             <select name="contract_kind">

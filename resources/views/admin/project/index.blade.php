@@ -90,7 +90,9 @@
                                 <form action="{{ route('project.destroy', $item->idduan)}}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                    <button class="btn btn-danger" type="submit">Xóa</button>
+                                <a onclick="return confirm('Bạn có chắc muốn xóa dự án?');">
+                                    <button class="btn btn-danger" type="submit" > Xóa </button>
+                                </a>
                                 </form>
                                 </td>
                             </tr>

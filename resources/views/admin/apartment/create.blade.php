@@ -4,12 +4,20 @@ form {
     border-radius: 5px;
     padding: 30px 5%;
 }
+input,select,textarea{
+    border:none;
+    border-radius:5px;
+    text-align:center;
+}
 label {
     margin-left: 30px;
     margin-right: 10px;
 }
 input.detail{
     width: 50px;
+}
+input.custom{
+    width: 300px;
 }
 button {
     margin-left: 50%;
@@ -53,7 +61,7 @@ button {
             </select><br><br>
 
             <label>Tên chung cư</label>
-            <input type="text" name="apartment_name">
+            <input class="custom" type="text" name="apartment_name"><br><br>
 
             <label>Tầng thương mại</label>
             Từ tầng <input class="detail" type="number" name="trade_begin"> đến <input class="detail" type="number" name="trade_end">

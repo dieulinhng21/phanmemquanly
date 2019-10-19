@@ -8,6 +8,14 @@ form {
     border-radius: 5px;
     padding: 30px 5%;
 }
+input,select,textarea{
+    border:none;
+    border-radius:5px;
+    text-align:center;
+}
+input.custom{
+    width: 80px;
+}
 </style>
 @extends('partialView.master')
 
@@ -49,10 +57,10 @@ form {
         <input name="apartment_name" type="text" value="{{$apartment->tentoa}}"><br><br>
         
         <label>Tầng dân cư</label>
-        <input name="people_floor" type="text" value="{{$apartment->tangthuongmai}}">
+        <input class="custom" name="people_floor" type="text" value="{{$apartment->tangthuongmai}}">
 
         <label>Tầng thương mại</label>
-        <input name="trade_floor" type="text" value="{{$apartment->tangdancu}}">
+        <input class="custom" name="trade_floor" type="text" value="{{$apartment->tangdancu}}">
 
         <label>Tình trạng</label>
             @if($apartment->tinhtrang == 1)

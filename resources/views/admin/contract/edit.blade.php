@@ -8,6 +8,15 @@ form {
     border-radius: 5px;
     padding: 30px 5%;
 }
+input,select,textarea{
+    border:none;
+    border-radius:5px;
+    text-align:center;
+}
+input.date{
+    width: 60px;
+    border-radius:5px;
+}
 button {
     margin-left: 50%;
 }
@@ -33,41 +42,41 @@ button {
         <form role="form" method="POST" action="{{ route('contract.update', $contract->idhopdong) }}">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        @foreach ($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                         @endforeach
-                    </div>
-                @endif
-                    <label>Mã hợp đồng</label>
-                    <input name="contract_code" type="text" value="{{$contract->mahopdong}}">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                        @endforeach
+                </div>
+            @endif
+            <label>Mã hợp đồng</label>
+            <input name="contract_code" type="text" value="{{$contract->mahopdong}}">
 
-                    <label>Khách hàng</label>
-                    <input name="customer_id" type="text" value="{{$contract->ID_khachhang}}"><br><br>
+            <label>Khách hàng</label>
+            <input name="customer_id" type="text" value="{{$customer->hoten}}"><br><br>
 
-                    <label for="project_name">Dự án:</label>
-                    <select name="project_name" id="project_name">
-                        <option value="1">AZ Lâm Viên</option>
-                        <option value="2">AZ Five Stars</option>
-                        <option value="3">AZ SKY Tower</option>
-                        <option value="4">AZ Vân Canh Tower</option>
-                        <option value="5">AZ Starry Night</option>
-                    </select>
+            <label for="project_name">Dự án:</label>
+            <select name="project_name" id="project_name">
+                <option value="1">AZ Lâm Viên</option>
+                <option value="2">AZ Five Stars</option>
+                <option value="3">AZ SKY Tower</option>
+                <option value="4">AZ Vân Canh Tower</option>
+                <option value="5">AZ Starry Night</option>
+            </select>
 
-                    <label>Căn hộ</label>
-                    <input name="flat_name" type="text" value="{{$contract->mahopdong}}">
+            <label>Sàn</label>
+            <input name="flat_name" type="text" value="{{$contract->san}}"><br><br>
 
-                    <label>Giá trị</label>
-                    <input name="contract_worth" type="text" min="0" max="2000000000" value="{{$contract->giatri}}"><br><br>
-                            
-                    <label>Ngày ký</label>
-                    <input name="contract_date" type="text" value="{{$contract->ngayky}}"><br><br>
-                            
-                    <label>Ghi chú</label>
-                    <input name="note" type="text" value="{{$contract->ghichu}}"><br><br>
+            <label>Căn hộ</label>
+            <input name="flat_name" type="text" value="{{$flat->tencanho}}">
 
-                    <button type="submit" class="btn btn-primary">Lưu</button>
+            <label>Giá trị</label>
+            <input name="contract_worth" type="text" min="0" max="2000000000" value="{{$contract->giatri}}"><br><br>
+                    
+            <label>Ngày ký</label>
+            <input name="contract_date" value="{{$contract->ngayky}}"><br><br>
+            
+            <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>
             

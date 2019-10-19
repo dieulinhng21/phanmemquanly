@@ -4,6 +4,11 @@ form {
     border-radius: 5px;
     padding: 30px 5%;
 }
+input,select,textarea{
+    border:none;
+    border-radius:5px;
+    text-align:center;
+}
 label {
     margin-left: 30px;
     margin-right: 10px;
@@ -67,7 +72,7 @@ button {
             <label>Chi tiết: </label><br>
             <div style="text-align:left; padding-left:40px;">
                 Diện tích: <input class="detail" type="number" name="square"> m vuông <br><br>
-                Phòng bao gồm:
+                Phòng bao gồm :
                 <input class="detail" type="number" name="livingroom"> phòng khách - 
                 <input class="detail" type="number" name="bedroom"> phòng ngủ - 
                 <input class="detail" type="number" name="kitchen"> phòng bếp<br><br>

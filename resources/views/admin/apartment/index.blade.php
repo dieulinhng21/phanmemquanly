@@ -93,7 +93,9 @@
                                 <form action="{{ route('apartment.destroy', $item->idtoachungcu)}}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button class="btn btn-danger" type="submit">Xóa</button>
+                                <a onclick="return confirm('Bạn có chắc muốn xóa chung cư?');">
+                                    <button class="btn btn-danger" type="submit" > Xóa </button>
+                                </a>
                                 </form>
                                 </td>
                                     

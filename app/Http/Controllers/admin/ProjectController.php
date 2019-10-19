@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Project;
 use App\Http\Requests;
@@ -38,22 +39,24 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'project_name' => 'required',
+            'project_name' => 'required|unique:duan,tenduan',
             'company' => 'required',
             'location' => 'required',
             'price' => 'required|numeric| min:0',
-            'apartment_number' => 'required|numeric',
-            'status' => 'required'
+            'apartment_number' => 'required|numeric| min:0'
+            // 'status' => 'required'
         ],
         [
             'project_name.required' => 'Tên dự án còn trống',
+            'project_name.unique' => 'Tên dự án đã tồn tại',
             'company.required' => 'Công ty trực thuộc còn trống',
             'location.required' => 'Vị trí còn trống',
             'price.required' => 'Giá trị còn trống',
             'price.numeric' => 'Giá trị phải là số',
             'apartment_number.required' => 'Số căn hộ còn trống',
             'apartment_number.numeric' => 'Số căn hộ phải là số',
-            'status.required' => 'Tình trạng còn trống'
+            'apartment_number.min' => 'Số căn hộ phải lớn hơn 0',
+            // 'status.required' => 'Tình trạng còn trống'
             // 'date_format:Y-m-d' => 'Ngày tháng theo định dạng năm-tháng-ngày',
         ]);
             $project = project::create();  

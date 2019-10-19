@@ -8,6 +8,11 @@ form {
     border-radius: 5px;
     padding: 30px 5%;
 }
+input,select,textarea{
+    border:none;
+    border-radius:5px;
+    text-align:center;
+}
 button {
     margin-left: 50%;
 }
@@ -33,45 +38,45 @@ textarea{
 <!-- Main content -->
 <section class="content">
         <div class="container">
-                    <form role="form" method="POST" action="{{ route('customer.update', $customer->idkhachhang) }}">
-                        {{ csrf_field() }}
-                        {{ method_field('PATCH') }}
+            <form role="form" method="POST" action="{{ route('customer.update', $customer->idkhachhang) }}">
+                {{ csrf_field() }}
+                {{ method_field('PATCH') }}
 
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                    <p>{{ $error }}</p>
-                                    @endforeach
-                                </div>
-                            @endif
-                            <label for="name">Họ và tên</label>
-                            <input name="name" type="text" id="name" value="{{$customer->hoten}}">
-                        
-                            <label for="identity_card">Chứng minh thư</label>
-                            <input name="identity_card" type="number" id="identity_card" value="{{$customer->chungminhthu}}">
-                       
-                            <label for="dob">Năm sinh</label>
-                            <input name="dob" type="text" id="dob" value="{{$customer->ngaysinh}}"><br><br>
-                        
-                            <label for="email">Email</label>
-                            <input name="email" type="email" id="email" value="{{$customer->email}}">
-                     
-                            <label for="phone_number">SĐT</label>
-                            <input name="phone_number" type="number" id="phone_number" value="{{$customer->sodienthoai}}"><br><br>
-                        
-                            <label for="inhabitant_number">Hộ khẩu</label>
-                            <input name="inhabitant_number" type="text" id="inhabitant_number" value="{{$customer->hokhau}}">
-                        
-                            <label>Địa chỉ</label>
-                            <input name="address" type="text" value="{{$customer->diachi}}"><br><br>
-                        
-                            <label for="note">Ghi chú</label><br>
-                            <textarea name="note" type="text" name="note" rows="4" cols="50">{{$customer->ghichu}}</textarea><br><br>
-                       
-                            <button type="submit" class="btn btn-primary">Lưu</button>
-                       
-                    </form>
-                </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                    <label for="name">Họ và tên</label>
+                    <input name="name" type="text" id="name" value="{{$customer->hoten}}">
+                
+                    <label for="identity_card">Chứng minh thư</label>
+                    <input name="identity_card" type="number" id="identity_card" value="{{$customer->chungminhthu}}">
+                
+                    <label for="dob">Năm sinh</label>
+                    <input name="dob" type="text" id="dob" value="{{$customer->ngaysinh}}"><br><br>
+                
+                    <label for="email">Email</label>
+                    <input name="email" type="email" id="email" value="{{$customer->email}}">
+                
+                    <label for="phone_number">SĐT</label>
+                    <input name="phone_number" type="number" id="phone_number" value="{{$customer->sodienthoai}}"><br><br>
+                
+                    <label for="inhabitant_number">Hộ khẩu</label>
+                    <input name="inhabitant_number" type="text" id="inhabitant_number" value="{{$customer->hokhau}}">
+                
+                    <label>Địa chỉ</label>
+                    <input name="address" type="text" value="{{$customer->diachi}}"><br><br>
+                
+                    <label for="note">Ghi chú</label><br>
+                    <textarea name="note" type="text" name="note" rows="4" cols="50">{{$customer->ghichu}}</textarea><br><br>
+                
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                
+            </form>
+        </div>
 </section>
 <!-- /.content -->
 @endsection('content')

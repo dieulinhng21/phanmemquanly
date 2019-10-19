@@ -4,6 +4,11 @@ form {
     border-radius: 5px;
     padding: 30px 5%;
 }
+input,select,textarea{
+    border:none;
+    border-radius:5px;
+    text-align:center;
+}
 label {
     margin-left: 30px;
     margin-right: 10px;

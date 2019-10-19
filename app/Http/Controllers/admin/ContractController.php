@@ -51,22 +51,52 @@ class ContractController extends Controller
         $request->validate([
             'project_name' => 'required',
             'flat_name' => 'required|unique:hopdong,ten_canho',
-            'contract_number' => 'required|exists:hopdong,sohopdong',
+            'contract_number' => 'required|unique:hopdong,sohopdong',
             'contract_worth' => 'required|numeric',
-            'contract_date' => 'required|date',
+            'day' => 'required|numeric|min:1|max:31',
+            'month' => 'required|numeric|min:1|max:12',
+            'year' => 'required|numeric',
         ],
         [
-            'project_name.required' => 'Tên dự án không được trống',
-            'flat_name.required' => 'Tên căn hộ không được trống',
+            'project_name.required' => 'Tên dự án còn trống',
+            //
+            'flat_name.required' => 'Tên căn hộ còn trống',
             'flat_name.unique' => 'Căn hộ đã có chủ',
+            //
+            'contract_number.required' => 'Số hợp đồng còn trống',
             'contract_number.unique' => 'Số hợp đồng này đã tồn tại',
-            'contract_number.required' => 'Số hợp đồng không được trống',
-            'contract_worth.required' => 'Giá trị hợp đồng không được trống',
+            //
+            'contract_worth.required' => 'Giá trị hợp đồng còn trống',
             'contract_worth.numeric' => 'Giá trị hợp đồng phải là số',
-            'contract_date.required' => 'Ngày ký không được trống',
-            'exists' => 'ID khách hàng chưa tồn tại',
-            'date' => 'Ngày ký sai format'
+            //
+            'day.required' => 'Ngày sinh còn trống',
+            'day.numeric' => 'Ngày sinh phải là số',
+            'day.min' => 'Ngày sinh không hợp lệ',
+            'day.max' => 'Ngày sinh không hợp lệ',
+
+            'month.required' => 'Tháng sinh còn trống',
+            'month.numeric' => 'Tháng sinh phải là số',
+            'month.min' => 'Tháng sinh không hợp lệ',
+            'month.max' => 'Tháng sinh không hợp lệ',
+
+            'year.required' => 'Năm sinh còn trống',
+            'year.numeric' => 'Năm sinh phải là số',
         ]);
+            $day = $request->get('day');
+            $month = $request->get('month');
+            $year = $request->get('year');
+            $dob;
+            //kiểm tra ngày tháng năm
+            //nếu hợp lệ thì gộp thành dạng Y-m-d và cho vào db
+            //else in lỗi thông báo
+            $validate_date = checkdate($month, $day, $year);
+            if($validate_date){
+                $dob = $year . "-" . $month . "-" . $day;
+            }else{
+                $error = "Ngày tháng năm sinh không hợp lệ!";
+                $dob = null;
+                session()->flash('date_error','Ngày tháng năm sinh không hợp lệ');
+            }
             //lấy tên căn hộ mà ng dùng nhập vào
             $flat_name = $request->get('flat_name');
             //tìm tên căn hộ đấy trong bảng canho
@@ -81,7 +111,7 @@ class ContractController extends Controller
                     $contract->tencanho= $request->get('flat_name');
                     $contract->ID_khachhang= $request->get('customer_id');
                     $contract->giatri = $request->get('contract_worth');
-                    $contract->ngayky = $request->get('contract_date');
+                    $contract->ngayky = $request->$dob;
                     $contract->ghichu = $request->get('note');
 
                     $contract->save();
@@ -107,8 +137,7 @@ class ContractController extends Controller
      */
     public function show($id)
     {
-        $contract = Contract::find($id);
-        return view('admin.contract.show')->with('contract',$contract);
+        //
     }
 
     /**
@@ -120,7 +149,15 @@ class ContractController extends Controller
     public function edit($id)
     {
         $contract = Contract::find($id);
-        return view('admin.contract.edit',compact('contract'));
+        //tìm khách hàng và căn hộ của hợp đồng
+        $idkhachhang = $contract->idkhachhang;
+        $idcanho = $contract->idcanho;
+        //tìm tên khách hàng theo id trong hợp đồng
+        $customer = DB::table('khachhang')->where('idkhachhang', $idkhachhang)->first();
+        //tìm căn hộ theo id trong hợp đồng
+        $flat = DB::table('canho')->where('idcanho',$idcanho)->first();
+
+        return view('admin.contract.edit',compact("contract","customer","flat"));
     }
 
     /**
@@ -132,29 +169,39 @@ class ContractController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // |unique:hopdong,mahopdong |unique:hopdong,ten_canho
         $request->validate([
-            'contract_code' => 'required|unique:hopdong,mahopdong',
+            'contract_code' => 'required',
             'project_name' => 'required',
-            'flat_name' => 'required|unique:hopdong,ten_canho',
+            'flat_name' => 'required',
             'customer_id' => 'required|exists:hopdong,ID_khachhang',
             'contract_worth' => 'required| min:0',
-            'contract_date' => 'required|date',
+            'contract_date' => 'required|date|before_or_equal:date',
             'note' => 'required'
         ],
         [
             'contract_code.required' => 'Mã hợp đồng không được trống',
-            'project_name.required' => 'Tên dự án không được trống',
-            'flat_name.required' => 'Tên căn hộ không được trống',
-            'customer_id.required' => 'ID khách hàng không được trống',
-            'contract_worth.required' => 'Giá trị hợp đồng không được trống',
-            'contract_date.required' => 'Ngày ký không được trống',
-            'note.required' => 'Ghi chú không được trống',
             'contract_code.unique' => 'Mã hợp đồng đã tồn tại',
+            //
+            'project_name.required' => 'Tên dự án không được trống',
+            //
+            'flat_name.required' => 'Tên căn hộ không được trống',
             'flat_name.unique' => 'Căn hộ không còn trống',
+            //
+            'customer_id.required' => 'ID khách hàng không được trống',
+            //
+            'contract_worth.required' => 'Giá trị hợp đồng không được trống',
+            'contract_worth.min' => 'Giá trị hợp đồng không được là số âm',
+            //
+            'contract_date.required' => 'Ngày ký không được trống',
+            'contract_date.date' => 'Ngày ký sai format',
+            'contract_date.before_or_equal' => 'Ngày ký không vượt quá thời gian hiện tại',
+            //
+            'note.required' => 'Ghi chú không được trống',
             'exists' => 'ID khách hàng chưa tồn tại',
-            'date' => 'Ngày ký sai format',
+            
             // 'date_format:Y-m-d' => 'Ngày tháng theo định dạng năm-tháng-ngày',
-            'min' => ':attribute must be bigger than 0'
+            
         ]);
             $contract = Contract::find($id);
             
