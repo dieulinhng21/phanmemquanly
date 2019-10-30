@@ -16,6 +16,17 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
+    <div>
+    <!-- Alerts -->
+    @if(session()->has('create_notif'))
+        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
+    @elseif(session()->has('update_notif'))
+        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
+    @elseif(session()->has('delete_notif'))
+    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
+    @endif
+    <!-- End alerts -->
+</div>
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">

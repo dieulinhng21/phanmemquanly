@@ -19,9 +19,6 @@ input.custom{
 input.custom_address{
     width: 350px;
 }
-input.date{
-    width: 60px;
-}
 button {
 margin-left: 50%;
 }
@@ -65,19 +62,20 @@ margin-left: 50%;
         </select>
 
         <label>Chứng minh thư</label>
-        <input type="text" name="identity_card"><br><br>
+        <input type="number" name="identity_card"><br><br>
 
-        <label name="dob">Ngày sinh</label>
-        <input class="date" type="number" name="day" placeholder="ngày..."> /
+        <label>Ngày sinh</label> 
+        <input type="date" name="dob"><i>(tháng/ngày/năm)</i> <br><br>
+        <!-- /
         <input class="date" type="number" name="month" placeholder="tháng..."> /
-        <input class="date" type="number" name="year" placeholder="năm..."><br><br>
+        <input class="date" type="number" name="year" placeholder="năm..."> -->
         
 
         <label>Email</label>
         <input class="custom" type="email" name="email">
 
         <label>SĐT</label>
-        <input type="text" name="phone_number"><br><br>
+        <input type="number" name="phone_number"><br><br>
 
         <label>Hộ khẩu</label>
         <input class="custom_address" type="text" name="inhabitant_number"><br><br>
@@ -89,6 +87,7 @@ margin-left: 50%;
         <textarea rows="4" cols="50" name="note" id="note"></textarea><br><br>
 
         <button type="submit" class="btn btn-primary">Lưu</button>
+        <button type="reset" class="btn btn-primary">Làm mới trang</button>
     </form>
 </div>
 </section>

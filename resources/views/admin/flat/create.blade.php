@@ -78,6 +78,7 @@ button {
                 <input class="detail" type="number" name="kitchen"> phòng bếp<br><br>
             </div>
             <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="reset" class="btn btn-primary">Làm mới trang</button>
         </form>
     </div>
 </section>

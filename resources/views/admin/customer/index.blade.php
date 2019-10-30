@@ -40,11 +40,11 @@
 <div>
     <!-- Alerts -->
     @if(session()->has('create_notif'))
-        <div class="notification">{{ session()->get('create_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
     @elseif(session()->has('update_notif'))
-        <div class="notification">{{ session()->get('update_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
     @elseif(session()->has('delete_notif'))
-    <div class="delete_notification">{{ session()->get('delete_notif') }}</div>
+    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
     @endif
     <!-- End alerts -->
 </div>
@@ -88,6 +88,7 @@
                                 <td>{{$item->hokhau}}</td>
                                 <td>{{$item->diachi}}</td>
                                 <td>{{$item->ghichu}}</td>
+                                <td><a href="customer/{{$item->idkhachhang}}/show" class="btn btn-info">Xem chi tiết</a></td>
                                 <td><a href="customer/{{$item->idkhachhang}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
                                 <form action="{{ route('customer.destroy', $item->idkhachhang)}}" method="post">

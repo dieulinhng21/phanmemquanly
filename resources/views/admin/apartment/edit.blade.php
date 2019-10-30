@@ -56,12 +56,13 @@ input.custom{
         <label>Tên tòa chung cư</label>
         <input name="apartment_name" type="text" value="{{$apartment->tentoa}}"><br><br>
         
+        <label>Tầng thương mại</label>
+        <input class="custom" name="trade_floor" type="text" value="{{$apartment->tangdancu}}">
+        
         <label>Tầng dân cư</label>
         <input class="custom" name="people_floor" type="text" value="{{$apartment->tangthuongmai}}">
 
-        <label>Tầng thương mại</label>
-        <input class="custom" name="trade_floor" type="text" value="{{$apartment->tangdancu}}">
-
+        
         <label>Tình trạng</label>
             @if($apartment->tinhtrang == 1)
             <select name="status">

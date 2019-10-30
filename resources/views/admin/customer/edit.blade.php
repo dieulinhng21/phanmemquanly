@@ -19,6 +19,12 @@ button {
 textarea{
     margin-left:30px;
 }
+input.custom{
+    width: 300px;
+}
+input.custom_address{
+    width: 350px;
+}
 </style>
 @extends('partialView.master')
 
@@ -26,11 +32,11 @@ textarea{
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Sửa hợp đồng
+        Sửa thông tin khách hàng
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="{{ url ('admin/contract') }}">Bảng hợp đồng</a></li>
+        <li><a href="{{ url ('admin/customer') }}">Bảng khách hàng</a></li>
         <li class="active">Sửa thông tin khách</li>
     </ol>
 </section>
@@ -55,20 +61,20 @@ textarea{
                     <label for="identity_card">Chứng minh thư</label>
                     <input name="identity_card" type="number" id="identity_card" value="{{$customer->chungminhthu}}">
                 
-                    <label for="dob">Năm sinh</label>
+                    <label for="dob">Ngày sinh</label>
                     <input name="dob" type="text" id="dob" value="{{$customer->ngaysinh}}"><br><br>
                 
                     <label for="email">Email</label>
-                    <input name="email" type="email" id="email" value="{{$customer->email}}">
+                    <input name="email" type="email" class="custom" id="email" value="{{$customer->email}}">
                 
                     <label for="phone_number">SĐT</label>
                     <input name="phone_number" type="number" id="phone_number" value="{{$customer->sodienthoai}}"><br><br>
                 
                     <label for="inhabitant_number">Hộ khẩu</label>
-                    <input name="inhabitant_number" type="text" id="inhabitant_number" value="{{$customer->hokhau}}">
+                    <input name="inhabitant_number" type="text" class="custom_address" id="inhabitant_number" value="{{$customer->hokhau}}"><br><br>
                 
                     <label>Địa chỉ</label>
-                    <input name="address" type="text" value="{{$customer->diachi}}"><br><br>
+                    <input name="address" type="text" class="custom_address" value="{{$customer->diachi}}"><br><br>
                 
                     <label for="note">Ghi chú</label><br>
                     <textarea name="note" type="text" name="note" rows="4" cols="50">{{$customer->ghichu}}</textarea><br><br>

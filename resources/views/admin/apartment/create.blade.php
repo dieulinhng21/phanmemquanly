@@ -53,11 +53,13 @@ button {
                             @endif
             <label>Tên dự án</label>
             <select name="project_name">
-                <option value="1">AZ Lâm Viên</option>
-                <option value="2">AZ Five Stars</option>
+            @foreach($projects as $project)
+                <option value="{{$project->idduan}}">{{$project->tenduan}}</option>
+                <!-- <option value="2">AZ Five Stars</option>
                 <option value="3">AZ SKY Tower</option>
                 <option value="4">AZ Vân Canh Tower</option>
-                <option value="5">AZ Starry Night</option>
+                <option value="5">AZ Starry Night</option> -->
+            @endforeach
             </select><br><br>
 
             <label>Tên chung cư</label>
@@ -70,6 +72,7 @@ button {
             Từ tầng <input class="detail" type="number" name="people_begin"> đến <input class="detail" type="number" name="people_end"><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="reset" class="btn btn-primary">Làm mới trang</button>
         </form>
     </div>
 </section>

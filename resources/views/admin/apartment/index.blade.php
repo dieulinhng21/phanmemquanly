@@ -1,25 +1,4 @@
-<style>
-    div.notification{
-        color:#006622;
-        font-style: oblique;
-        border:1px solid #006622;
-        background-color:#99ffbb;
-        padding:15px 15px;
-        margin-bottom:20px;
-        border-radius:5px;
-        width:50%
-    }
-    div.delete_notification{
-        color:#cc0000;
-        font-style: oblique;
-        border:1px solid #cc0000;
-        background-color:#ff6666;
-        padding:15px 15px;
-        margin-bottom:20px;
-        border-radius:5px;
-        width:50%
-    }
-</style>
+
 @extends('partialView.master')
 @section('content')
 <!-- Content Header (Page header) -->
@@ -38,15 +17,17 @@
 <!-- Main content -->
 <section class="content">
 <div>
+<div>
     <!-- Alerts -->
     @if(session()->has('create_notif'))
-        <div class="notification">{{ session()->get('create_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
     @elseif(session()->has('update_notif'))
-        <div class="notification">{{ session()->get('update_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
     @elseif(session()->has('delete_notif'))
-    <div class="delete_notification">{{ session()->get('delete_notif') }}</div>
+    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
     @endif
     <!-- End alerts -->
+</div>
 </div>
 
     <div class="row">
@@ -79,11 +60,11 @@
                                 <td>{{$item->tentoa}}</td>
                                 <td>{{$item->tangthuongmai}}</td>
                                 <td>{{$item->tangdancu}}</td>
-                                @if($item->tinhtrang == 1)
+                                @if($item->tinhtrang == 0)
                                     <td>
                                         Còn trống
                                     </td>
-                                @elseif($item->tinhtrang == 0)
+                                @elseif($item->tinhtrang == 1)
                                     <td>
                                         Đã đầy
                                     </td>

@@ -18,6 +18,9 @@ Route::group(['namespace' => 'admin'], function() {
 Route::resource('admin/project','ProjectController');
 Route::resource('admin/contract', 'ContractController');
 Route::resource('admin/apartment','ApartmentController');
+//
+//Route::get('/admin/apartment/detail/{id}','ApartmentController@detail');
+//
 Route::resource('admin/flat','FlatController');
 Route::resource('admin/location','LocationController');
 Route::resource('admin/manager','ManagerController');
