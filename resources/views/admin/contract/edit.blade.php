@@ -93,7 +93,7 @@ input{
 	<div class="content">
 	- Ông (bà):<input type="text" name="name" value="{{ $customer->hoten }}"><br><br>
 	- Số CMND (hộ chiếu):<input type="number" name="identity_card" value="{{ $customer->chungminhthu }}">
-	  Ngày cấp<input type="date" name="identity_day" style="width:200px" value="{{ $customer->ngaycap }}">
+	  Ngày cấp<input type="date" name="identity_date" style="width:200px" value="{{ $customer->ngaycap }}">
 	  &nbsp;&nbsp;
 	  Tại<input type="text" name="noicap" value="{{ $customer->noicap }}"><br><br>
 	- Hộ khẩu thường trú:<input type="text" name="inhabitant_number" style="width: 350px" value="{{ $customer->hokhau }}"><br><br>
@@ -104,13 +104,25 @@ input{
 		<h3>GIÁ BÁN VÀ PHƯƠNG THỨC THANH TOÁN</h3>
 		<p>
 		Giá bán nhà ở đối với căn hộ nhà ở chung cư được tính theo công thức lấy đơn giá 01 m2 sử dụng nhà ở (x) với tổng diện tích sử dụng nhà ở mua bán,<br><br>
-		 cụ thể là:<input type="number" name="square" value=" {{ $flat->dientich }} ">m2 sử dụng (x)<input type="number">đồng/1m2 sử dụng = <input type="number" name="price" value=" {{$flat->giatri}} ">đồng. 
+		 cụ thể là:<input type="number" name="square" value="{{ $flat->dientich }}">m2 sử dụng (x)<input type="number">đồng/1m2 sử dụng = <input type="number" name="price" value="{{$flat->giatri}}">đồng. 
 		 (Bằng chữ:<input type="text" style="width: 350px">).<br><br>
 		 Giá bán này đã bao gồm thuế giá trị gia tăng VAT (nếu bên bán thuộc diện phải nộp thuế VAT).<br><br>
 		 Phương thức thanh toán: Các khoản thanh toán theo Hợp Đồng này chỉ được thực hiện qua tài khoản của Bên Bán mở tại Ngân hàng TMCP Đầu tư và Phát triển Việt Nam – Chi nhánh Tây Hà Nội (BIDV Tây Hà Nội)<br><br>
 		 a. Thanh toán một lần vào 
-		 ngày<input type="date"style="width:200px;"> 
-		 (hoặc trong thời hạn <input type="number" style="width:50px;">ngày, kể từ sau ngày kí kết hợp đồng này).<br><br>
+		 ngày
+		 @if(is_null($contract->ngaythanhtoan))
+		 	<input type="date" name="pay_date" style="width:200px;"> 
+		 @else
+		 	<input type="date" name="pay_date" style="width:200px;" value="{{$contract->ngaythanhtoan}}">
+		 @endif
+
+		 (hoặc trong thời hạn 
+		 @if(is_null($contract->han))
+		 	<input type="number" name="extra_date" style="width:50px;">
+		 @else
+		 	<input type="number" name="extra_date" style="width:50px;" value="{{$contract->han}}">
+		 @endif
+		 ngày, kể từ sau ngày kí kết hợp đồng này).<br><br>
 		 b. Trường hợp mua nhà ở theo phương thức trả dần thì thực hiện thanh toán vào các đợt: trả theo tiến độ là
 		 	<select name="contract_kind">
                 <option value="1">1 lần nộp</option>

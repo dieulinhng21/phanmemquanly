@@ -57,10 +57,16 @@ input.custom{
         <input name="apartment_name" type="text" value="{{$apartment->tentoa}}"><br><br>
         
         <label>Tầng thương mại</label>
-        <input class="custom" name="trade_floor" type="text" value="{{$apartment->tangdancu}}">
+        Từ: 
+        <input class="custom" name="begin_trade_floor" type="number" value="{{$apartment->batdauthuongmai}}">
+        đến:
+        <input class="custom" name="end_trade_floor" type="number" value="{{$apartment->ketthucthuongmai}}">
         
         <label>Tầng dân cư</label>
-        <input class="custom" name="people_floor" type="text" value="{{$apartment->tangthuongmai}}">
+        Từ:
+        <input class="custom" name="begin_people_floor" type="number" value="{{$apartment->batdaudancu}}">
+        đến:
+        <input class="custom" name="end_people_floor" type="number" value="{{$apartment->ketthucdancu}}"><br><br>
 
         
         <label>Tình trạng</label>

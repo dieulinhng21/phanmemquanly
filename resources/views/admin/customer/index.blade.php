@@ -88,7 +88,7 @@
                                 <td>{{$item->hokhau}}</td>
                                 <td>{{$item->diachi}}</td>
                                 <td>{{$item->ghichu}}</td>
-                                <td><a href="customer/{{$item->idkhachhang}}/show" class="btn btn-info">Xem chi tiết</a></td>
+                                <td><a href="customer/{{$item->idkhachhang}}" class="btn btn-info">Xem chi tiết</a></td>
                                 <td><a href="customer/{{$item->idkhachhang}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
                                 <form action="{{ route('customer.destroy', $item->idkhachhang)}}" method="post">

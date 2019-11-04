@@ -145,7 +145,14 @@ use Illuminate\Http\Request;
          */
         public function show($id)
         {
-            //
+            //$customer = Customer::find($id);
+            $customers = DB::table('khachhang')
+                        ->join('canho','khachhang.idcanho','=','canho.idcanho')
+                        ->select('khachhang.*','canho.tencanho','canho.idcanho')
+                        ->where ('idkhachhang','=',$id)
+                        ->get();
+
+            return view('admin.customer.show', compact('customers'));
         }
 
         /**
@@ -168,9 +175,6 @@ use Illuminate\Http\Request;
          * @return \Illuminate\Http\Response
          */
         public function update(Request $request, $id)
-        // |unique:khachhang,sodienthoai
-        // |unique:khachhang,chungminhthu
-        // |unique:khachhang,email
         {
             $request->validate([
                 'name' => 'required|max:50',

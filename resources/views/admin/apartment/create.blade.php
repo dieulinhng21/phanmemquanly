@@ -66,10 +66,12 @@ button {
             <input class="custom" type="text" name="apartment_name"><br><br>
 
             <label>Tầng thương mại</label>
-            Từ tầng <input class="detail" type="number" name="trade_begin"> đến <input class="detail" type="number" name="trade_end">
+            Từ tầng <input class="detail" type="number" name="begin_trade_floor"> 
+            đến <input class="detail" type="number" name="end_trade_floor">
 
             <label>Tầng dân cư</label>
-            Từ tầng <input class="detail" type="number" name="people_begin"> đến <input class="detail" type="number" name="people_end"><br><br>
+            Từ tầng <input class="detail" type="number" name="begin_people_floor">
+            đến <input class="detail" type="number" name="end_people_floor"><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
             <button type="reset" class="btn btn-primary">Làm mới trang</button>

@@ -58,8 +58,8 @@
                             <tr>
                                 <td>{{$item->tenduan}}</td>
                                 <td>{{$item->tentoa}}</td>
-                                <td>{{$item->tangthuongmai}}</td>
-                                <td>{{$item->tangdancu}}</td>
+                                <td>{{$item->batdauthuongmai}} - {{$item->ketthucthuongmai}}</td>
+                                <td>{{$item->batdaudancu}} - {{$item->ketthucdancu}}</td>
                                 @if($item->tinhtrang == 0)
                                     <td>
                                         Còn trống

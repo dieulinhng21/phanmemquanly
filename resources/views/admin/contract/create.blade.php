@@ -40,7 +40,9 @@ input{
 </section>
 
 <!-- Main content -->
-{!! Session::has('msg') ? Session::get("msg") : '' !!}
+@if(session()->has('invalid_notif'))
+    <div class="alert alert-warning">{{ session()->get('invalid_notif') }}</div>
+@endif
 <section class="content">
     <div class="container">
         <form method="POST" action="{{ route('contract.store') }}">
@@ -78,7 +80,7 @@ input{
 		@endforeach
     </select><br><br>
 	<strong>SÀN GIAO DỊCH:</strong><input type="text" name="san">
-
+	
 	<h3>BÊN BÁN NHÀ Ở(sau đây gọi tắt là Bên bán):</h3>
 	<div class="content">
 	- Mã số doanh nghiệp: 0102846070 do Sở Kế hoạch đầu tư thành phố Hà Nội cấp.lần đầu ngày 31/7/2008. Đăng ký thay đổi lần 16 vào ngày 06/06/2016.<br><br>
@@ -94,11 +96,11 @@ input{
 	<div class="content">
 	- Ông (bà):<input type="text" name="name"><br><br>
 	- Số CMND (hộ chiếu):<input type="number" name="identity_card">
-	  Ngày cấp<input type="date" name="identity_date">
+	  Ngày cấp: <input type="date" name="identity_date">
 		  <!-- /<input type="number" name="identity_month" style="width:45px; text-align:center">
 		  /<input type="number" name="identity_year" style="width:45px; text-align:center">   -->
 	  &nbsp;&nbsp;&nbsp;&nbsp;
-	  Tại<input type="text" name="noicap"><br><br>
+	  Tại: <input type="text" name="noicap"><br><br>
 	- Hộ khẩu thường trú:<input type="text" name="inhabitant_number" style="width: 350px"><br><br>
 	- Địa chỉ liên hệ:<input type="text" name="address"style="width: 350px"><br><br>
 	- Điện thoại:	<input type="number" name="phone_number"><br><br>
@@ -107,12 +109,12 @@ input{
 		<h3>GIÁ BÁN VÀ PHƯƠNG THỨC THANH TOÁN</h3>
 		<p>
 		Giá bán nhà ở đối với căn hộ nhà ở chung cư được tính theo công thức lấy đơn giá 01 m2 sử dụng nhà ở (x) với tổng diện tích sử dụng nhà ở mua bán,<br><br>
-		 cụ thể là:<input type="number" name="square">m2 sử dụng (x)<input type="number">đồng/1m2 sử dụng = <input type="number" name="price">đồng. 
+		 cụ thể là:<input type="number" name="square">m2 sử dụng (x)<input type="number">đồng/1m2 sử dụng <br><br> = <input type="number" name="price">đồng. 
 		 (Bằng chữ:<input type="text" style="width: 350px">).<br><br>
 		 Giá bán này đã bao gồm thuế giá trị gia tăng VAT (nếu bên bán thuộc diện phải nộp thuế VAT).<br><br>
 		 Phương thức thanh toán: Các khoản thanh toán theo Hợp Đồng này chỉ được thực hiện qua tài khoản của Bên Bán mở tại Ngân hàng TMCP Đầu tư và Phát triển Việt Nam – Chi nhánh Tây Hà Nội (BIDV Tây Hà Nội)<br><br>
 		 a. Thanh toán một lần vào 
-		 ngày<input type="date" name="pay_date" style="width:200px;">
+		 ngày: <input type="date" name="pay_date" style="width:200px;">
 		 (hoặc trong thời hạn <input type="number"  name="extra_date" style="width:50px;">ngày, kể từ sau ngày kí kết hợp đồng này).<br><br>
 		 b. Trường hợp mua nhà ở theo phương thức trả dần thì thực hiện thanh toán vào các đợt: trả theo tiến độ là
 		 	<select name="contract_kind">

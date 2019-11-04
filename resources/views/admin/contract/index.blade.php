@@ -48,6 +48,8 @@
                                 <th>Sàn</th>
                                 <th>Giá trị</th>
                                 <th>Ngày ký</th>
+                                <th>Ngày thanh toán</th>
+                                <th>Hạn đóng</th>
                                 <th>Tiến độ đóng tiền</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
@@ -62,6 +64,8 @@
                                 <td>{{$item->san}}</td>
                                 <td>{{$item->giatri}}</td>
                                 <td>{{$item->ngayky}}</td>
+                                <td>{{$item->ngaythanhtoan}}</td>
+                                <td>{{$item->han}}</td>
                                 <td>{{$item->tiendo}}</td>
                                 <td>
                                 <a href="contract/{{$item->idhopdong}}/edit" class="btn btn-block btn-primary">Sửa</a>
