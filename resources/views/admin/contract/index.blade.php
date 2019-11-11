@@ -41,7 +41,7 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Mã hợp đồng</th>
+                                <th>Số hợp đồng</th>
                                 <th>Dự án</th>
                                 <th>Căn hộ</th>
                                 <th>Khách hàng</th>
@@ -83,7 +83,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- chèn paginate nếu cần -->
+                    {{ $contract_array->links() }}
                 </div>
                 <!-- /.box-body -->
             </div>

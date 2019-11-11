@@ -40,12 +40,12 @@ input.custom{
         {{ method_field('PATCH') }}
 
         @if ($errors->any())
-            <div class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-                @endforeach
-            </div>
-            @endif
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+            @endforeach
+        </div>
+        @endif
         <label>Dự án</label>
         <select name="project_name">
         @foreach($projects as $project)

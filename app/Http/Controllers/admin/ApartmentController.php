@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
-// use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\apartment;
 use App\Http\Requests;
 
-use Illuminate\Http\Request;
-//BaseController
 class ApartmentController extends Controller
 {
     /**
@@ -23,7 +21,7 @@ class ApartmentController extends Controller
         $apartments = DB::table('toachungcu')
                         ->join('duan','toachungcu.idduan','=','duan.idduan')
                         ->select('toachungcu.*','duan.idduan','duan.tenduan')
-                        ->get();
+                        ->paginate(2);
         return view('admin.apartment.index',['apartment_array'=>$apartments]);
     }
 

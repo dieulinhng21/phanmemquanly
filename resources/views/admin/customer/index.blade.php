@@ -103,7 +103,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- link paginate -->
+                    {{ $customer_array->links() }}
                 </div>
                 <!-- /.box-body -->
             </div>

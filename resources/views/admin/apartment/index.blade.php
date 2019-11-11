@@ -84,7 +84,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- link paginate -->
+                    {{ $apartment_array->links() }}
                 </div>
                 <!-- /.box-body -->
             </div>

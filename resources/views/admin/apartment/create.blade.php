@@ -45,12 +45,12 @@ button {
         <form method="POST" action="{{ route('apartment.store') }}">
         {{ csrf_field() }}
         @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+            @endforeach
+        </div>
+        @endif
             <label>Tên dự án</label>
             <select name="project_name">
             @foreach($projects as $project)

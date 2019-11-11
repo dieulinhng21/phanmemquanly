@@ -85,7 +85,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- link paginate -->
+                    {{ $flat_array->links() }}
                 </div>
                 <!-- /.box-body -->
             </div>
