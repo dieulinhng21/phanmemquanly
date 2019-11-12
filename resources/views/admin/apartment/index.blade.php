@@ -1,36 +1,15 @@
-<style>
-    div.notification{
-        color:#006622;
-        font-style: oblique;
-        border:1px solid #006622;
-        background-color:#99ffbb;
-        padding:15px 15px;
-        margin-bottom:20px;
-        border-radius:5px;
-        width:50%
-    }
-    div.delete_notification{
-        color:#cc0000;
-        font-style: oblique;
-        border:1px solid #cc0000;
-        background-color:#ff6666;
-        padding:15px 15px;
-        margin-bottom:20px;
-        border-radius:5px;
-        width:50%
-    }
-</style>
+
 @extends('partialView.master')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Bảng tòa chung cư
+        Quản lý chung cư
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng tòa chung cư</a></li>
+        <li><a href="#">Quản lý chung cư</a></li>
         <!-- <li class="active">Bảng hợp đồng</li> -->
     </ol>
 </section>
@@ -38,15 +17,17 @@
 <!-- Main content -->
 <section class="content">
 <div>
+<div>
     <!-- Alerts -->
     @if(session()->has('create_notif'))
-        <div class="notification">{{ session()->get('create_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
     @elseif(session()->has('update_notif'))
-        <div class="notification">{{ session()->get('update_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
     @elseif(session()->has('delete_notif'))
-    <div class="delete_notification">{{ session()->get('delete_notif') }}</div>
+    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
     @endif
     <!-- End alerts -->
+</div>
 </div>
 
     <div class="row">
@@ -61,7 +42,8 @@
 
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example2" class="table table-bordered table-hover">
+                <p>Bảng chung cư</p>                
+                    <table id="example2" class="table table-bordered table-hover">                    
                         <thead>
                             <tr>
                                 <th>Tên dự án</th>
@@ -77,13 +59,13 @@
                             <tr>
                                 <td>{{$item->tenduan}}</td>
                                 <td>{{$item->tentoa}}</td>
-                                <td>{{$item->tangthuongmai}}</td>
-                                <td>{{$item->tangdancu}}</td>
-                                @if($item->tinhtrang == 1)
+                                <td>{{$item->batdauthuongmai}} - {{$item->ketthucthuongmai}}</td>
+                                <td>{{$item->batdaudancu}} - {{$item->ketthucdancu}}</td>
+                                @if($item->tinhtrang == 0)
                                     <td>
                                         Còn trống
                                     </td>
-                                @elseif($item->tinhtrang == 0)
+                                @elseif($item->tinhtrang == 1)
                                     <td>
                                         Đã đầy
                                     </td>
@@ -103,7 +85,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- link paginate -->
+                    {{ $apartment_array->links() }}
                 </div>
                 <!-- /.box-body -->
             </div>

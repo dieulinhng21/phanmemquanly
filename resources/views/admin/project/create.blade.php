@@ -21,18 +21,20 @@ input,select,textarea{
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Thêm dự án
+    Quản lý dự án
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="{{ url ('admin/project') }}">Bảng dự án</a></li>
-        <li class="active">Thêm dự án</li>
+        <li><a href="{{ url ('admin/project') }}">Quản lý dự án</a></li>
+        <li class="active">Thêm dự án mới</li>
     </ol>
 </section>
 
 <!-- Main content -->
+
 <section class="content">
     <div class="container">
+    <p> Thêm dự án mới</p>
         <form method="POST" action="{{ route('project.store') }}">
         {{ csrf_field() }}
         @if ($errors->any())
@@ -65,6 +67,7 @@ input,select,textarea{
             </select><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="reset" class="btn btn-primary">Làm mới trang</button>
         </form>
     </div>
 </section>

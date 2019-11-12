@@ -13,11 +13,14 @@ input,select,textarea{
     border-radius:5px;
     text-align:center;
 }
+button {
+    margin-left: 50%;
+}
+input.custom{
+    width: 300px;
+}
 input.custom_address{
     width: 350px;
-}
-button {
-    margin-left: 50%;ư
 }
 </style>
 @extends('partialView.master')
@@ -26,18 +29,19 @@ button {
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Thêm người quản lý
+        Quản lý người dùng
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="{{ url ('admin/manager') }}">Bảng người quản lý</a></li>
-        <li class="active">Thêm người quản lý</li>
+        <li><a href="{{ url ('admin/manager') }}">Quản lý người dùng</a></li>
+        <li class="active">Thêm người dùng</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="container">
+    <p>Thêm người dùng</p>
         <form method="POST" action="{{ route('manager.store') }}">
         {{ csrf_field() }}
         @if ($errors->any())
@@ -57,18 +61,22 @@ button {
             <option value="contributor">Contributor</option>
         </select><br><br>
 
-        
+
+        <label>Ngày sinh</label>
+        <input type="date" name="dob">
+
 
         <label>SĐT</label>
-        <input type="text" name="phone_number">
+        <input type="number" name="phone_number"><br><br>
 
         <label>Email</label>
-        <input type="email" name="email">
+        <input type="email" name="email" class="custom"><br><br>
 
         <label>Địa chỉ</label>
-        <input class="date" type="text" name="address"><br><br><br>
+        <input class="custom_address" type="text" name="address"><br><br>
         
         <button type="submit" class="btn btn-primary">Lưu</button>
+        <button type="reset" class="btn btn-primary">Làm mới trang</button>
         </form>
     </div>
 </section>

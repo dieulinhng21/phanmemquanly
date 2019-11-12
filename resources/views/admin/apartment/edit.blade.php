@@ -23,29 +23,30 @@ input.custom{
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Sửa tòa chung cư
+        Quản lý chung cư
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="{{ url ('admin/apartment') }}">Bảng tòa chung cư</a></li>
-        <li class="active">Sửa tòa chung cư</li>
+        <li><a href="{{ url ('admin/apartment') }}">Quản lý chung cư</a></li>
+        <li class="active">Sửa thông tin chung cư</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="container">
+    <p>Sửa thông tin chung cư</p>
     <form role="form" method="POST" action="{{ route('apartment.update', $apartment->idtoachungcu) }}">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
 
         @if ($errors->any())
-            <div class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-                @endforeach
-            </div>
-            @endif
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+            @endforeach
+        </div>
+        @endif
         <label>Dự án</label>
         <select name="project_name">
         @foreach($projects as $project)
@@ -56,12 +57,19 @@ input.custom{
         <label>Tên tòa chung cư</label>
         <input name="apartment_name" type="text" value="{{$apartment->tentoa}}"><br><br>
         
-        <label>Tầng dân cư</label>
-        <input class="custom" name="people_floor" type="text" value="{{$apartment->tangthuongmai}}">
-
         <label>Tầng thương mại</label>
-        <input class="custom" name="trade_floor" type="text" value="{{$apartment->tangdancu}}">
+        Từ: 
+        <input class="custom" name="begin_trade_floor" type="number" value="{{$apartment->batdauthuongmai}}">
+        đến:
+        <input class="custom" name="end_trade_floor" type="number" value="{{$apartment->ketthucthuongmai}}">
+        
+        <label>Tầng dân cư</label>
+        Từ:
+        <input class="custom" name="begin_people_floor" type="number" value="{{$apartment->batdaudancu}}">
+        đến:
+        <input class="custom" name="end_people_floor" type="number" value="{{$apartment->ketthucdancu}}"><br><br>
 
+        
         <label>Tình trạng</label>
             @if($apartment->tinhtrang == 1)
             <select name="status">

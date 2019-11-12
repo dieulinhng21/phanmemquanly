@@ -25,13 +25,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Bảng khách hàng
+        Quản lý khách hàng
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng khách hàng</a></li>
-        <!-- <li class="active">Bảng hợp đồng</li> -->
+        <li><a href="#">Quản lý khách hàng</a></li>
+        <!-- <li class="active">Quản lý hợp đồng</li> -->
     </ol>
 </section>
 
@@ -40,11 +40,11 @@
 <div>
     <!-- Alerts -->
     @if(session()->has('create_notif'))
-        <div class="notification">{{ session()->get('create_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
     @elseif(session()->has('update_notif'))
-        <div class="notification">{{ session()->get('update_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
     @elseif(session()->has('delete_notif'))
-    <div class="delete_notification">{{ session()->get('delete_notif') }}</div>
+    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
     @endif
     <!-- End alerts -->
 </div>
@@ -61,6 +61,7 @@
 
                 <!-- /.box-header -->
                 <div class="box-body">
+                <p> Bảng thông tin khách hàng</P>
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -88,6 +89,7 @@
                                 <td>{{$item->hokhau}}</td>
                                 <td>{{$item->diachi}}</td>
                                 <td>{{$item->ghichu}}</td>
+                                <td><a href="customer/{{$item->idkhachhang}}" class="btn btn-info">Xem chi tiết</a></td>
                                 <td><a href="customer/{{$item->idkhachhang}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
                                 <form action="{{ route('customer.destroy', $item->idkhachhang)}}" method="post">
@@ -102,7 +104,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- link paginate -->
+                    {{ $customer_array->links() }}
                 </div>
                 <!-- /.box-body -->
             </div>

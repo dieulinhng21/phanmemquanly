@@ -26,18 +26,19 @@ button {
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Sửa căn hộ
+            Quản lý căn hộ
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-            <li><a href="{{ url ('admin/flat') }}">Bảng căn hộ</a></li>
-            <li class="active">Sửa căn hộ</li>
+            <li><a href="{{ url ('admin/flat') }}">Quản lý căn hộ</a></li>
+            <li class="active">Sửa thông tin căn hộ</li>
         </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
         <div class="container">
+        <p>Sửa thông tin căn hộ</p>
             <form method="POST" action="{{ route('flat.update', $flat->idcanho) }}">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}

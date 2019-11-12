@@ -30,46 +30,52 @@ button {
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Thêm tòa chung cư
+        Quản lý chung cư
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="{{ url ('admin/apartment') }}">Bảng tòa chung cư</a></li>
-        <li class="active">Thêm tòa chung cư</li>
+        <li><a href="{{ url ('admin/apartment') }}">Quản lý chung cư</a></li>
+        <li class="active">Thêm tòa chung cư mới</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="container">
+    <p>Thêm tòa chung cư mới</p>
         <form method="POST" action="{{ route('apartment.store') }}">
         {{ csrf_field() }}
         @if ($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                                @endforeach
-                            </div>
-                            @endif
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+            @endforeach
+        </div>
+        @endif
             <label>Tên dự án</label>
             <select name="project_name">
-                <option value="1">AZ Lâm Viên</option>
-                <option value="2">AZ Five Stars</option>
+            @foreach($projects as $project)
+                <option value="{{$project->idduan}}">{{$project->tenduan}}</option>
+                <!-- <option value="2">AZ Five Stars</option>
                 <option value="3">AZ SKY Tower</option>
                 <option value="4">AZ Vân Canh Tower</option>
-                <option value="5">AZ Starry Night</option>
+                <option value="5">AZ Starry Night</option> -->
+            @endforeach
             </select><br><br>
 
             <label>Tên chung cư</label>
             <input class="custom" type="text" name="apartment_name"><br><br>
 
             <label>Tầng thương mại</label>
-            Từ tầng <input class="detail" type="number" name="trade_begin"> đến <input class="detail" type="number" name="trade_end">
+            Từ tầng <input class="detail" type="number" name="begin_trade_floor"> 
+            đến <input class="detail" type="number" name="end_trade_floor">
 
             <label>Tầng dân cư</label>
-            Từ tầng <input class="detail" type="number" name="people_begin"> đến <input class="detail" type="number" name="people_end"><br><br>
+            Từ tầng <input class="detail" type="number" name="begin_people_floor">
+            đến <input class="detail" type="number" name="end_people_floor"><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="reset" class="btn btn-primary">Làm mới trang</button>
         </form>
     </div>
 </section>

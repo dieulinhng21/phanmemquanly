@@ -41,15 +41,18 @@ class ManagerController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'role' => 'required|max:255',
-            'phone_number' => 'required|digits_between:9,10',
+            'dob' => 'required',
+            'phone_number' => 'required|digits_between:9,10|unique:nguoiquanly,sodienthoai',
             'email' => 'required|email|unique:nguoiquanly,email',
             'address' => 'required'
         ],
         [
             'name.required' => 'Họ tên còn trống',
             'role.required' => 'Vai trò còn trống',
+            'dob.required' => 'Ngày sinh còn trống',
             'phone_number.required' => 'Số điện thoại còn trống',
             'phone_number.digits_between' => 'Số điện thoại không hợp lệ',
+            'phone_number.unique' => 'Số điện thoại đã tồn tại',
             'email.required' => 'Email còn trống',
             'email.unique' => 'Email đã tồn tại',
             'address.required' => 'Địa chỉ còn trống',
@@ -103,15 +106,16 @@ class ManagerController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'role' => 'required|max:255',
-            'phone_number' => 'required|digits_between:9,10',//sđt dài từ 9-10 số
-            'email' => 'email|required|unique:nguoiquanly,email',
+            'phone_number' => 'required|numeric|digits_between:9,10',//sđt dài từ 9-10 số
+            'email' => 'required|email|unique:nguoiquanly,email',
             'address' => 'required'
         ],
         [
             'name.required' => 'Họ tên còn trống',
             'role.required' => 'Vai trò còn trống',
             'phone_number.required' => 'Số điện thoại còn trống',
-            'phone_number.digits_between' => 'Số điện thoại không hợp lệ',
+            'phone_number.numeric' => 'Số điện thoại chứa ký tự không hợp lệ',
+            'phone_number.digits_between' => 'Độ dài số điện thoại không hợp lệ',
             'email.required' => 'Email còn trống',
             'email.unique' => 'Email đã tồn tại',
             'address.required' => 'Địa chỉ còn trống',

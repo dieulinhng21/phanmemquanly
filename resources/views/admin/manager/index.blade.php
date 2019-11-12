@@ -1,37 +1,16 @@
-<style>
-    div.notification{
-        color:#006622;
-        font-style: oblique;
-        border:1px solid #006622;
-        background-color:#99ffbb;
-        padding:15px 15px;
-        margin-bottom:20px;
-        border-radius:5px;
-        width:50%
-    }
-    div.delete_notification{
-        color:#cc0000;
-        font-style: oblique;
-        border:1px solid #cc0000;
-        background-color:#ff6666;
-        padding:15px 15px;
-        margin-bottom:20px;
-        border-radius:5px;
-        width:50%
-    }
-</style>
+
 @extends('partialView.master')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Bảng người quản lý
+        Quản lý người dùng
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng người quản lý</a></li>
-        <!-- <li class="active">Bảng hợp đồng</li> -->
+        <li><a href="#">Quản lý người người dùng</a></li>
+        <!-- <li class="active">Quản lý hợp đồng</li> -->
     </ol>
 </section>
 
@@ -40,11 +19,11 @@
 <div>
     <!-- Alerts -->
     @if(session()->has('create_notif'))
-        <div class="notification">{{ session()->get('create_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
     @elseif(session()->has('update_notif'))
-        <div class="notification">{{ session()->get('update_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
     @elseif(session()->has('delete_notif'))
-    <div class="delete_notification">{{ session()->get('delete_notif') }}</div>
+    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
     @endif
     <!-- End alerts -->
 </div>
@@ -56,12 +35,13 @@
                     <!-- <h3 class="box-title">Hover Contract Table</h3> -->
                 </div>
                 <div class="btn">
-                    <button type="button" onclick="location.href='{{ url('admin/manager/create') }}'" class="btn btn-block btn-primary">Thêm người quản lý</button>
+                    <button type="button" onclick="location.href='{{ url('admin/manager/create') }}'" class="btn btn-block btn-primary">Thêm người dùng</button>
                     
                 </div>
 
                 <!-- /.box-header -->
                 <div class="box-body">
+                <p>Bảng quản lý người dùng</p>
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -86,7 +66,7 @@
                                 <form action="{{ route('manager.destroy', $item->idquanly)}}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <a onclick="return confirm('Bạn có chắc muốn xóa người quản lý?');">
+                                <a onclick="return confirm('Bạn có chắc muốn xóa người dùng?');">
                                     <button class="btn btn-danger" type="submit" > Xóa </button>
                                 </a>
                                 </form>

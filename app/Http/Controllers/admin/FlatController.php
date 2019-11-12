@@ -23,7 +23,7 @@ class FlatController extends Controller
                         ->join('duan','canho.idduan','=','duan.idduan')
                         ->select('canho.*','toachungcu.tentoa','duan.tenduan')
                         ->distinct()
-                        ->get();
+                        ->paginate(2);
 
         return view('admin.flat.index',['flat_array'=>$flats]);
     }

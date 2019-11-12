@@ -42,17 +42,22 @@ class ProjectController extends Controller
             'project_name' => 'required|unique:duan,tenduan',
             'company' => 'required',
             'location' => 'required',
-            'price' => 'required|numeric| min:0',
+            'price' => 'required|numeric|min:0',
             'apartment_number' => 'required|numeric| min:0'
             // 'status' => 'required'
         ],
         [
             'project_name.required' => 'Tên dự án còn trống',
             'project_name.unique' => 'Tên dự án đã tồn tại',
+            //
             'company.required' => 'Công ty trực thuộc còn trống',
+            //
             'location.required' => 'Vị trí còn trống',
+            //
             'price.required' => 'Giá trị còn trống',
             'price.numeric' => 'Giá trị phải là số',
+            'price.min' => 'Giá trị phải là số dương',
+            //
             'apartment_number.required' => 'Số căn hộ còn trống',
             'apartment_number.numeric' => 'Số căn hộ phải là số',
             'apartment_number.min' => 'Số căn hộ phải lớn hơn 0',
@@ -92,9 +97,9 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        $project_list = DB::table('duan')->get();
+        //$project_list = DB::table('duan')->get();,'project_list'
         $project = project::find($id);
-        return view("admin.project.edit", compact('project','project_list'));
+        return view("admin.project.edit", compact('project'));
     }
 
     /**
@@ -110,20 +115,26 @@ class ProjectController extends Controller
             'project_name' => 'required',
             'company' => 'required',
             'location' => 'required',
-            'project_worth' => 'required|numeric| min:0',
-            'apartment_number' => 'required|numeric',
+            'project_worth' => 'required|numeric|min:0',
+            'apartment_number' => 'required|numeric|min:0',
             'status' => 'required'
         ],
         [
             'project_name.required' => 'Tên dự án còn trống',
+            //
             'company.required' => 'Công ty trực thuộc còn trống',
+            //
             'location.required' => 'Vị trí còn trống',
-            'price.required' => 'Giá trị còn trống',
-            'price.numeric' => 'Giá trị phải là số',
-            'apartment_number.required' => 'Số căn hộ còn trống',
-            'apartment_number.numeric' => 'Số căn hộ phải là số',
+            //
+            'price.required' => 'Giá trị dự án còn trống',
+            'price.numeric' => 'Giá trị dự án phải là số',
+            'price.min' => 'Giá trị dự án phải lớn hơn 0',
+            //
+            'apartment_number.required' => 'Số tòa nhà còn trống',
+            'apartment_number.numeric' => 'Số tòa nhà phải là số',
+            'apartment_number.min' => 'Số tòa nhà phải lớn hơn 0',
+            //
             'status.required' => 'Tình trạng còn trống'
-            // 'date_format:Y-m-d' => 'Ngày tháng theo định dạng năm-tháng-ngày',
         ]);          
             $project = Project::find($id);
 

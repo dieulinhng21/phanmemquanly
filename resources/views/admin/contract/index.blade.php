@@ -3,19 +3,30 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Bảng hợp đồng
+        Quản lý hợp đồng
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng hợp đồng</a></li>
-        <!-- <li class="active">Bảng hợp đồng</li> -->
+        <li><a href="#">Quản lý hợp đồng</a></li>
+        <!-- <li class="active">Quản lý hợp đồng</li> -->
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="row">
+    <div>
+    <!-- Alerts -->
+    @if(session()->has('create_notif'))
+        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
+    @elseif(session()->has('update_notif'))
+        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
+    @elseif(session()->has('delete_notif'))
+    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
+    @endif
+    <!-- End alerts -->
+</div>
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
@@ -27,16 +38,19 @@
 
                 <!-- /.box-header -->
                 <div class="box-body">
+                <p>Bảng thông tin hợp đồng</P>
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Mã hợp đồng</th>
+                                <th>Số hợp đồng</th>
                                 <th>Dự án</th>
                                 <th>Căn hộ</th>
                                 <th>Khách hàng</th>
                                 <th>Sàn</th>
                                 <th>Giá trị</th>
                                 <th>Ngày ký</th>
+                                <th>Ngày thanh toán</th>
+                                <th>Hạn đóng</th>
                                 <th>Tiến độ đóng tiền</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
@@ -51,6 +65,8 @@
                                 <td>{{$item->san}}</td>
                                 <td>{{$item->giatri}}</td>
                                 <td>{{$item->ngayky}}</td>
+                                <td>{{$item->ngaythanhtoan}}</td>
+                                <td>{{$item->han}}</td>
                                 <td>{{$item->tiendo}}</td>
                                 <td>
                                 <a href="contract/{{$item->idhopdong}}/edit" class="btn btn-block btn-primary">Sửa</a>
@@ -68,7 +84,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- chèn paginate nếu cần -->
+                    {{ $contract_array->links() }}
                 </div>
                 <!-- /.box-body -->
             </div>

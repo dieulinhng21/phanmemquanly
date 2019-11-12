@@ -3,19 +3,19 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Chi tiết khách hàng
+        Quản lý khách hàng
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng khách hàng</a></li>
-        <!-- <li class="active">Bảng hợp đồng</li> -->
+        <li><a href="#">Quản lý khách hàng</a></li>
+        <li class="active">Thông tin chi tiết</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-
+<p>Thông tin chi tiết</p>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">

@@ -1,36 +1,15 @@
-<style>
-    div.notification{
-        color:#006622;
-        font-style: oblique;
-        border:1px solid #006622;
-        background-color:#99ffbb;
-        padding:15px 15px;
-        margin-bottom:20px;
-        border-radius:5px;
-        width:50%
-    }
-    div.delete_notification{
-        color:#cc0000;
-        font-style: oblique;
-        border:1px solid #cc0000;
-        background-color:#ff6666;
-        padding:15px 15px;
-        margin-bottom:20px;
-        border-radius:5px;
-        width:50%
-    }
-</style>
+
 @extends('partialView.master')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Bảng căn hộ
+        Quản lý căn hộ
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Bảng căn hộ</a></li>
+        <li><a href="#">Quản lý căn hộ</a></li>
         <!-- <li class="active">Bảng hợp đồng</li> -->
     </ol>
 </section>
@@ -40,11 +19,11 @@
 <div>
     <!-- Alerts -->
     @if(session()->has('create_notif'))
-        <div class="notification">{{ session()->get('create_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
     @elseif(session()->has('update_notif'))
-        <div class="notification">{{ session()->get('update_notif') }}</div>
+        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
     @elseif(session()->has('delete_notif'))
-    <div class="delete_notification">{{ session()->get('delete_notif') }}</div>
+    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
     @endif
     <!-- End alerts -->
 </div>
@@ -60,6 +39,7 @@
 
                 <!-- /.box-header -->
                 <div class="box-body">
+                <p>Bảng căn hộ</p>
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -106,7 +86,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <!-- link paginate -->
+                    {{ $flat_array->links() }}
                 </div>
                 <!-- /.box-body -->
             </div>

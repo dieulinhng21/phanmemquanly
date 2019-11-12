@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\apartment;
 use App\Http\Requests;
-
-use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
 {
@@ -22,7 +21,7 @@ class ApartmentController extends Controller
         $apartments = DB::table('toachungcu')
                         ->join('duan','toachungcu.idduan','=','duan.idduan')
                         ->select('toachungcu.*','duan.idduan','duan.tenduan')
-                        ->get();
+                        ->paginate(2);
         return view('admin.apartment.index',['apartment_array'=>$apartments]);
     }
 
@@ -33,7 +32,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view("admin.apartment.create");
+        $projects = DB::table('duan')->distinct()->get();
+        return view("admin.apartment.create",['projects'=>$projects]);
     }
 
     /**
@@ -47,27 +47,40 @@ class ApartmentController extends Controller
         $request->validate([
             'project_name' => 'required',
             'apartment_name' => 'required|max:255',
-            'trade_begin' => 'required|numeric',
-            'trade_end' => 'required|numeric',
-            'people_begin' => 'required|numeric',
-            'people_end' => 'required|numeric',
+            'begin_trade_floor' => 'required|integer|min:1',
+            'end_trade_floor' => 'required|integer|min:0',
+            'begin_people_floor' => 'required|integer|min:0',
+            'end_people_floor' => 'required|integer|min:0',
         ],
         [
             'project_name' => 'Tên dự án còn trống',
+            //
             'apartment_name.required' => 'Tên tòa chung cư còn trống',
             'apartment_name.max' => 'Tên  vượt quá số ký tự cho phép',
-            'trade_begin.required' => 'Tầng bắt đầu thương mại còn trống',
-            'trade_end.required' => 'Tầng kết thúc thương mại còn trống',
-            'people_begin.required' => 'Tầng bắt đầu dân cư còn trống',
-            'people_end.required' => 'Tầng kết thúc dân cư còn trống'
+            //
+            'begin_trade_floor.required' => 'Tầng bắt đầu thương mại còn trống',
+            'begin_trade_floor.integer' => 'Tầng bắt đầu thương mại phải là số nguyên',
+            'begin_trade_floor.min'=> 'Tầng bắt đầu thương mại phải bắt đầu từ 1',
+            //
+            'end_trade_floor.required' => 'Tầng kết thúc thương mại còn trống',
+            'end_trade_floor.integer' => 'Tầng kết thúc thương mại phải là số nguyên',
+            'end_trade_floor.min' => 'Tầng kết thúc thương mại phải là số dương',
+            //
+            'begin_people_floor.required' => 'Tầng bắt đầu dân cư còn trống',
+            'begin_people_floor.integer' => 'Tầng bắt đầu dân cư phải là số nguyên',
+            'begin_people_floor.min' => 'Tầng bắt đầu dân cư phải là số dương',
+            //
+            'end_people_floor.required' => 'Tầng kết thúc dân cư còn trống',
+            'end_people_floor.integer' => 'Tầng kết thúc dân cư phải là số nguyên',
+            'end_people_floor.min' => 'Tầng kết thúc dân cư phải là số dương'
         ]);
             $apartment = Apartment::create();
-            $trade = $request->get('trade_begin')." - ".$request->get('trade_end');
-            $people = $request->get('people_begin')." - ".$request->get('people_end');
             $apartment->idduan = $request->get('project_name');
             $apartment->tentoa = $request->get('apartment_name');
-            $apartment->tangthuongmai = $trade;
-            $apartment->tangdancu = $people;
+            $apartment->batdauthuongmai = $request->get('begin_trade_floor');
+            $apartment->ketthucthuongmai = $request->get('end_trade_floor');
+            $apartment->batdaudancu = $request->get('begin_people_floor');
+            $apartment->ketthucdancu = $request->get('end_people_floor');
 
             $apartment->save();
             session()->flash('create_notif','Tạo tòa chung cư thành công!');
@@ -93,9 +106,9 @@ class ApartmentController extends Controller
      */
     public function edit($id)
     {
-        $apartment = apartment::find($id);
+        $apartment = Apartment::find($id);
         $projects =DB::table('duan')->get();
-        return view("admin.apartment.edit", compact('apartment'),['projects'=>$projects]);
+        return view("admin.apartment.edit", compact('apartment','projects'));
     }
 
     /**
@@ -109,22 +122,40 @@ class ApartmentController extends Controller
     {
         $request->validate([
             'apartment_name' => 'required|max:255',
-            'people_floor' => 'required',
-            'trade_floor' => 'required',
-            'status' => 'required'
+            'begin_people_floor' => 'required|integer|min:0',
+            'end_people_floor' => 'required|integer|min:0',
+            'begin_trade_floor' => 'required|integer|min:0',
+            'end_trade_floor' => 'required|integer|min:0',
+            //'status' => 'required'
         ],
         [
             'apartment_name.required' => 'Tên tòa chung cư còn trống',
             'apartment_name.max' => 'Tên tòa chung cư vượt quá số ký tự chp phép',
-            'trade_floor.required' => 'Tầng thương mại còn trống',
-            'people_floor.required' => 'Tầng chung cư còn trống'
+            //
+            'begin_trade_floor.required' => 'Tầng bắt đầu thương mại còn trống',
+            'begin_trade_floor.integer' => 'Tầng bắt đầu thương mại phải là dạng số',
+            'begin_trade_floor.min' => 'Tầng bắt đầu thương mại phải là số dương',
+            //
+            'end_trade_floor.required' => 'Tầng kết thúc thương mại còn trống',
+            'end_trade_floor.integer' => 'Tầng kết thúc thương mại phải là dạng số',
+            'end_trade_floor.min' => 'Tầng kết thúc thương mại phải là số dương',
+            //
+            'begin_people_floor.required' => 'Tầng bắt đầu dân cư còn trống',
+            'begin_people_floor.integer' => 'Tầng bắt đầu dân cư phải là dạng số',
+            'begin_people_floor.min' => 'Tầng bắt đầu dân cư phải là số dương',
+            //
+            'end_people_floor.required' => 'Tầng kết tầng dân cư còn trống',
+            'end_people_floor.integer' => 'Tầng kết tầng dân cư phải là dạng số',
+            'end_people_floor.min' => 'Tầng kết tầng dân cư phải là số dương',
         ]);
             $apartment = Apartment::find($id);
             
             $apartment->idduan= $request->get('project_name');
             $apartment->tentoa= $request->get('apartment_name');
-            $apartment->tangthuongmai= $request->get('trade_floor');
-            $apartment->tangdancu= $request->get('people_floor');
+            $apartment->batdauthuongmai= $request->get('begin_trade_floor');
+            $apartment->ketthucthuongmai= $request->get('end_trade_floor');
+            $apartment->batdaudancu= $request->get('begin_people_floor');
+            $apartment->ketthucdancu= $request->get('end_people_floor');
             $apartment->tinhtrang = $request->get('status');       
 
             $apartment->save();

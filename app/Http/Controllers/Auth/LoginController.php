@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/project';
 
     /**
      * Create a new controller instance.
@@ -36,4 +36,8 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    // public function logout(Request $request) {
+    //     Auth::logout();
+    //     return redirect('/login');
+    // }
 }
