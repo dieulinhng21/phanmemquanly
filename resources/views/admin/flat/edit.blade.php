@@ -66,7 +66,7 @@ button {
             @foreach($apartments as $apartment)
                     <option value="{{$apartment->idtoachungcu}}">{{$apartment->tentoa}}</option>
             @endforeach
-            </select>
+            </select><br><br>
         
             <label>Giá trị</label>
             <input name="price" type="number" value="{{$flat->giatri}}"><br><br>

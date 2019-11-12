@@ -46,7 +46,7 @@
                         <thead>
                             <tr>
                                 <th>Tên dự án</th>
-                                <th>Tên tòa chung cư</th>
+                                <th>Tòa chung cư</th>
                                 <th>Tầng thương mại</th>
                                 <th>Tầng dân cư</th>
                                 <th>Tình trạng</th>

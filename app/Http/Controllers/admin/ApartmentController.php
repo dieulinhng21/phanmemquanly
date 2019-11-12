@@ -21,7 +21,7 @@ class ApartmentController extends Controller
         $apartments = DB::table('toachungcu')
                         ->join('duan','toachungcu.idduan','=','duan.idduan')
                         ->select('toachungcu.*','duan.idduan','duan.tenduan')
-                        ->paginate(2);
+                        ->paginate(5);
         return view('admin.apartment.index',['apartment_array'=>$apartments]);
     }
 
@@ -81,6 +81,7 @@ class ApartmentController extends Controller
             $apartment->ketthucthuongmai = $request->get('end_trade_floor');
             $apartment->batdaudancu = $request->get('begin_people_floor');
             $apartment->ketthucdancu = $request->get('end_people_floor');
+            $apartment->tinhtrang = $request->get('status');
 
             $apartment->save();
             session()->flash('create_notif','Tạo tòa chung cư thành công!');
