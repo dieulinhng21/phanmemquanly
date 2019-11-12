@@ -54,6 +54,9 @@ margin-left: 50%;
         <label>Họ tên</label>
         <input type="text" name="name">
 
+        <label>CMND</label>
+        <input type="number" name="identity_card"><br><br>
+
         <label>Căn hộ</label>
         <select name="flat">
         <!-- hiện ra các căn hộ còn trống -->
@@ -61,9 +64,6 @@ margin-left: 50%;
             <option value="{{$flat->idcanho}}">{{$flat->tencanho}}</option>
         @endforeach
         </select>
-
-        <label>Chứng minh thư</label>
-        <input type="number" name="identity_card"><br><br>
 
         <label>Ngày sinh</label> 
         <input type="date" name="dob"><i>(tháng/ngày/năm)</i> <br><br>

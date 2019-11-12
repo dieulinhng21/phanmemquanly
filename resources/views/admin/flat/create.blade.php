@@ -76,8 +76,15 @@ button {
                 Phòng bao gồm :
                 <input class="detail" type="number" name="livingroom"> phòng khách - 
                 <input class="detail" type="number" name="bedroom"> phòng ngủ - 
-                <input class="detail" type="number" name="kitchen"> phòng bếp<br><br>
-            </div>
+                <input class="detail" type="number" name="kitchen"> phòng bếp
+            </div><br><br>
+
+            <label for="status">Tình trạng:</label>
+            <select name="status" id="status">
+                <option value="0">Còn trống</option>
+                <option value="1">Đã có người mua</option>
+            </select><br><br>
+            
             <button type="submit" class="btn btn-primary">Lưu</button>
             <button type="reset" class="btn btn-primary">Làm mới trang</button>
         </form>

@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '../../../../resources/views/admin/project/index.blade.php';
+    protected $redirectTo = '/admin/project';
 
     /**
      * Create a new controller instance.

@@ -63,7 +63,7 @@ button {
             @endforeach
             </select><br><br>
 
-            <label>Tên chung cư</label>
+            <label>Tòa chung cư</label>
             <input class="custom" type="text" name="apartment_name"><br><br>
 
             <label>Tầng thương mại</label>
@@ -72,7 +72,13 @@ button {
 
             <label>Tầng dân cư</label>
             Từ tầng <input class="detail" type="number" name="begin_people_floor">
-            đến <input class="detail" type="number" name="end_people_floor"><br><br>
+            đến <input class="detail" type="number" name="end_people_floor">
+
+            <label for="status">Tình trạng</label>
+            <select name="status" id="status">
+                <option value="1">Đã đầy</option>
+                <option value="0">Còn trống</option>
+            </select><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
             <button type="reset" class="btn btn-primary">Làm mới trang</button>

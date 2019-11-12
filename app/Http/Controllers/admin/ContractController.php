@@ -22,7 +22,7 @@ class ContractController extends Controller
                         ->join('canho','hopdong.idcanho','=','canho.idcanho')
                         ->join('khachhang','hopdong.idkhachhang','=','khachhang.idkhachhang')
                         ->select('hopdong.*','duan.tenduan','canho.tencanho','khachhang.idkhachhang','khachhang.hoten')
-                        ->paginate(2);
+                        ->paginate(5);
         return view('admin.contract.index',['contract_array'=>$contracts]);
     }
 

@@ -59,11 +59,11 @@ input.custom_address{
                     <label for="name">Họ và tên</label>
                     <input name="name" type="text" id="name" value="{{$customer->hoten}}">
                 
-                    <label for="identity_card">Chứng minh thư</label>
+                    <label for="identity_card">CMND</label>
                     <input name="identity_card" type="number" id="identity_card" value="{{$customer->chungminhthu}}">
                 
                     <label for="dob">Ngày sinh</label>
-                    <input name="dob" type="text" id="dob" value="{{$customer->ngaysinh}}"><br><br>
+                    <input name="dob" type="text" id="dob" value="{{$customer->ngaysinh}}"><i>(tháng/ngày/năm)</i><br><br>
                 
                     <label for="email">Email</label>
                     <input name="email" type="email" class="custom" id="email" value="{{$customer->email}}">

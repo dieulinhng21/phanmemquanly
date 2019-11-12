@@ -16,7 +16,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $location = location::paginate(2);
+        $location = location::paginate(5);
         return view("admin.location.index", array('model' => $location));
     }
 

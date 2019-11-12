@@ -23,7 +23,7 @@ use Illuminate\Http\Request;
                         ->join('canho','khachhang.idcanho','=','canho.idcanho')
                         ->select('khachhang.*','canho.tencanho','canho.idcanho')
                         ->distinct()
-                        ->paginate(3);
+                        ->paginate(5);
             return view('admin.customer.index',['customer_array'=>$customers]);
         }
 

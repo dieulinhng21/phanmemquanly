@@ -22,7 +22,7 @@ class AuthController extends Controller {
         session()->put('user', $user);
 
         // redirect to home
-        return redirect('/');
+        return redirect('/home');
     }
 
     public function logout() {

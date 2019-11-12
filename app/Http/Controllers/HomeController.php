@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use App\Role;
+use App\Permission;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $role = Role::find(1);
+        $permission = Permission::find(1);
+        $role->givePermissionTo($permission);
         return view('home');
     }
 }
