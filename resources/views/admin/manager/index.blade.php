@@ -57,6 +57,7 @@
                 </div>
                 <div class="btn">
                     <button type="button" onclick="location.href='{{ url('admin/manager/create') }}'" class="btn btn-block btn-primary">Thêm người quản lý</button>
+                    
                 </div>
 
                 <!-- /.box-header -->
