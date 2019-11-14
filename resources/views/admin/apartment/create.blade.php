@@ -35,14 +35,14 @@ button {
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
         <li><a href="{{ url ('admin/apartment') }}">Quản lý chung cư</a></li>
-        <li class="active">Thêm tòa chung cư mới</li>
+        <li class="active">Thêm tòa chung cư</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="container">
-    <p>Thêm tòa chung cư mới</p>
+    <p>Thêm tòa chung cư</p>
         <form method="POST" action="{{ route('apartment.store') }}">
         {{ csrf_field() }}
         @if ($errors->any())
@@ -53,7 +53,7 @@ button {
         </div>
         @endif
             <label>Tên dự án</label>
-            <select name="project_name">
+            <select name="project_name"  autofocus>
             @foreach($projects as $project)
                 <option value="{{$project->idduan}}">{{$project->tenduan}}</option>
                 <!-- <option value="2">AZ Five Stars</option>
@@ -64,18 +64,23 @@ button {
             </select><br><br>
 
             <label>Tòa chung cư</label>
-            <input class="custom" type="text" name="apartment_name"><br><br>
+            <input class="custom" type="text" name="apartment_name" value="{{ old('apartment_name') }}" 
+            required><br><br>
 
             <label>Tầng thương mại</label>
-            Từ tầng <input class="detail" type="number" name="begin_trade_floor"> 
-            đến <input class="detail" type="number" name="end_trade_floor">
+            Từ tầng <input class="detail" type="number" name="begin_trade_floor" 
+            value="{{ old('begin_trade_floor') }}" required> 
+            đến <input class="detail" type="number" name="end_trade_floor"
+            value="{{ old('end_trade_floor') }}" required>
 
             <label>Tầng dân cư</label>
-            Từ tầng <input class="detail" type="number" name="begin_people_floor">
-            đến <input class="detail" type="number" name="end_people_floor">
+            Từ tầng <input class="detail" type="number" name="begin_people_floor"
+            value="{{ old('begin_people_floor') }}" required>
+            đến <input class="detail" type="number" name="end_people_floor"
+            value="{{ old('end_people_floor') }}" required>
 
             <label for="status">Tình trạng</label>
-            <select name="status" id="status">
+            <select name="status" id="status" value="{{ old('status') }}" required>
                 <option value="1">Đã đầy</option>
                 <option value="0">Còn trống</option>
             </select><br><br>

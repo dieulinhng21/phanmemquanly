@@ -48,36 +48,36 @@ input.custom{
         </div>
         @endif
         <label>Dự án</label>
-        <select name="project_name">
+        <select name="project_name" required>
         @foreach($projects as $project)
             <option value="{{$project->idduan}}">{{ $project->tenduan}}</option>
         @endforeach
         </select>
         
         <label>Tên tòa chung cư</label>
-        <input name="apartment_name" type="text" value="{{$apartment->tentoa}}"><br><br>
+        <input name="apartment_name" type="text" value="{{$apartment->tentoa}}" required><br><br>
         
         <label>Tầng thương mại</label>
         Từ: 
-        <input class="custom" name="begin_trade_floor" type="number" value="{{$apartment->batdauthuongmai}}">
+        <input class="custom" name="begin_trade_floor" type="number" value="{{$apartment->batdauthuongmai}}" required>
         đến:
-        <input class="custom" name="end_trade_floor" type="number" value="{{$apartment->ketthucthuongmai}}">
+        <input class="custom" name="end_trade_floor" type="number" value="{{$apartment->ketthucthuongmai}}" required>
         
         <label>Tầng dân cư</label>
         Từ:
-        <input class="custom" name="begin_people_floor" type="number" value="{{$apartment->batdaudancu}}">
+        <input class="custom" name="begin_people_floor" type="number" value="{{$apartment->batdaudancu}}" required>
         đến:
-        <input class="custom" name="end_people_floor" type="number" value="{{$apartment->ketthucdancu}}"><br><br>
+        <input class="custom" name="end_people_floor" type="number" value="{{$apartment->ketthucdancu}}" required><br><br>
 
         
         <label>Tình trạng</label>
             @if($apartment->tinhtrang == 1)
-            <select name="status">
+            <select name="status" required>
                 <option value="1" selected>Đã đầy</option>
                 <option value="0">Còn trống</option>
             </select><br><br>
             @elseif($apartment->tinhtrang == 0)
-                <select name="status">
+                <select name="status" required>
                     <option value="1">Đã đầy</option>
                     <option value="0" selected>Còn trống</option>
                 </select><br><br>

@@ -31,14 +31,14 @@ button {
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
         <li><a href="{{ url ('admin/flat') }}">Quản lý căn hộ</a></li>
-        <li class="active">Thêm thông tin căn hộ </li>
+        <li class="active">Thêm căn hộ </li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="container">
-    <p>Thêm thông tin căn hộ</p>
+    <p>Thêm căn hộ</p>
         <form method="POST" action="{{ route('flat.store') }}">
         {{ csrf_field() }}
         
@@ -50,7 +50,7 @@ button {
             </div>
         @endif
             <label for="project">Tên dự án</label>
-            <select name="project">
+            <select name="project" autofocus>
             @foreach($available_project_list as $project)
                     <option value="{{$project->idduan}}">{{$project->tenduan}}</option>
             @endforeach
@@ -58,25 +58,26 @@ button {
             
             <label for="apartment">Tòa chung cư</label>
             <!-- take array from create function in FlatController -->
-            <select name="apartment">
+            <select name="apartment" value="{{ old('apartment') }}" required>
                 @foreach($available_apartment_list as $apartment)
                     <option value="{{$apartment->idtoachungcu}}">{{$apartment->tentoa}}</option>
                 @endforeach
             </select>
 
             <label>Tên căn hộ</label>
-            <input type="text" name="flat"><br><br>
+            <input type="text" name="flat" value="{{ old('flat') }}" required><br><br>
 
             <label>Giá trị</label>
-            <input type="number" name="price"><br><br>
+            <input type="number" name="price" value="{{ old('price') }}" required><br><br>
 
             <label>Chi tiết: </label><br>
             <div style="text-align:left; padding-left:40px;">
-                Diện tích: <input class="detail" type="number" name="square"> m vuông <br><br>
+                Diện tích: <input class="detail" type="number" name="square" value="{{ old('square') }}" required> 
+                m vuông <br><br>
                 Phòng bao gồm :
-                <input class="detail" type="number" name="livingroom"> phòng khách - 
-                <input class="detail" type="number" name="bedroom"> phòng ngủ - 
-                <input class="detail" type="number" name="kitchen"> phòng bếp
+                <input class="detail" type="number" name="livingroom" value="{{ old('livingroom') }}" required> phòng khách - 
+                <input class="detail" type="number" name="bedroom" value="{{ old('bedroom') }}" required> phòng ngủ - 
+                <input class="detail" type="number" name="kitchen" value="{{ old('kitchen') }}" required> phòng bếp
             </div><br><br>
 
             <label for="status">Tình trạng:</label>

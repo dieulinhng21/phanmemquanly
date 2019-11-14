@@ -16,25 +16,11 @@
 
 <!-- Main content -->
 <section class="content">
-<div>
-    <!-- Alerts -->
-    @if(session()->has('create_notif'))
-        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
-    @elseif(session()->has('update_notif'))
-        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
-    @elseif(session()->has('delete_notif'))
-    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
-    @endif
-    <!-- End alerts -->
-</div>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <!-- <h3 class="box-title">Hover Contract Table</h3> -->
-                </div>
-                <div class="btn">
-                    <button type="button" onclick="location.href='{{ url('admin/flat/create') }}'" class="btn btn-block btn-primary">Thêm căn hộ</button>
                 </div>
 
                 <!-- /.box-header -->
@@ -72,16 +58,6 @@
                                 @elseif($item->tinhtrang == 0)
                                     <td>Còn trống</td>
                                 @endif
-                                <td><a href="flat/{{$item->idcanho}}/edit" class="btn btn-primary">Sửa</a></td>
-                                <td>
-                                <form action="{{ route('flat.destroy', $item->idcanho)}}" method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <a onclick="return confirm('Bạn có chắc muốn xóa căn hộ?');">
-                                    <button class="btn btn-danger" type="submit" > Xóa </button>
-                                </a>
-                                </form>
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>

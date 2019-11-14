@@ -75,7 +75,7 @@
             <li class="">
                 <a href="{{ url('/admin/manager') }}"> 
                     <i class="fa fa-address-card"></i>
-                    <span>Quản lý người quản lý</span>
+                    <span>Quản lý người dùng</span>
                     <span class="pull-right-container">
                         <!--<small class="label pull-right bg-green">new</small>-->
                     </span>

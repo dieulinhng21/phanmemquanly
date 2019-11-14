@@ -52,10 +52,10 @@ margin-left: 50%;
         </div>
     @endif
         <label>Họ tên</label>
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{ old('name') }}" autofocus required>
 
         <label>CMND</label>
-        <input type="number" name="identity_card"><br><br>
+        <input type="number" name="identity_card" value="{{ old('identity_card') }}" required><br><br>
 
         <label>Căn hộ</label>
         <select name="flat">
@@ -66,26 +66,26 @@ margin-left: 50%;
         </select>
 
         <label>Ngày sinh</label> 
-        <input type="date" name="dob"><i>(tháng/ngày/năm)</i> <br><br>
+        <input type="date" name="dob" value="{{ old('dob') }}" required><i>(tháng/ngày/năm)</i> <br><br>
         <!-- /
         <input class="date" type="number" name="month" placeholder="tháng..."> /
         <input class="date" type="number" name="year" placeholder="năm..."> -->
         
 
         <label>Email</label>
-        <input class="custom" type="email" name="email">
+        <input class="custom" type="email" name="email" value="{{ old('email') }}" required>
 
         <label>SĐT</label>
-        <input type="number" name="phone_number"><br><br>
+        <input type="number" name="phone_number" value="{{ old('phone_number') }}" required><br><br>
 
         <label>Hộ khẩu</label>
-        <input class="custom_address" type="text" name="inhabitant_number"><br><br>
+        <input class="custom_address" type="text" name="inhabitant_number" value="{{ old('inhabitant_number') }}" required><br><br>
 
         <label>Địa chỉ</label>
-        <input class="custom_address" type="text" name="address"><br><br>
+        <input class="custom_address" type="text" name="address" value="{{ old('address') }}" required><br><br>
 
         <label for="note">Ghi chú :</label><br>
-        <textarea rows="4" cols="50" name="note" id="note"></textarea><br><br>
+        <textarea rows="4" cols="50" name="note" id="note" value="{{ old('note') }}" ></textarea><br><br>
 
         <button type="submit" class="btn btn-primary">Lưu</button>
         <button type="reset" class="btn btn-primary">Làm mới trang</button>

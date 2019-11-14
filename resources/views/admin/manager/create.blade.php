@@ -52,7 +52,7 @@ input.custom_address{
             </div>
         @endif
         <label>Họ tên</label>
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{ old('name') }}" required autofocus>
 
         <label>Vai trò</label>
         <select name="role">
@@ -63,17 +63,17 @@ input.custom_address{
 
 
         <label>Ngày sinh</label>
-        <input type="date" name="dob">
+        <input type="date" name="dob" value="{{ old('name') }}" required>
 
 
         <label>SĐT</label>
-        <input type="number" name="phone_number"><br><br>
+        <input type="number" name="phone_number" value="{{ old('phone_number') }}" required><br><br>
 
         <label>Email</label>
-        <input type="email" name="email" class="custom"><br><br>
+        <input type="email" name="email" class="custom" value="{{ old('email') }}" required><br><br>
 
         <label>Địa chỉ</label>
-        <input class="custom_address" type="text" name="address"><br><br>
+        <input class="custom_address" type="text" name="address" value="{{ old('custom_address') }}"required><br><br>
         
         <button type="submit" class="btn btn-primary">Lưu</button>
         <button type="reset" class="btn btn-primary">Làm mới trang</button>

@@ -1,81 +1,67 @@
-
 @extends('partialView.master')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Quản lý người dùng
+        Quản lý hợp đồng
         <!-- <small>advanced tables</small> -->
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
-        <li><a href="#">Quản lý người người dùng</a></li>
+        <li><a href="#">Quản lý hợp đồng</a></li>
         <!-- <li class="active">Quản lý hợp đồng</li> -->
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-<div>
-    <!-- Alerts -->
-    @if(session()->has('create_notif'))
-        <div class="alert alert-success">{{ session()->get('create_notif') }}</div>
-    @elseif(session()->has('update_notif'))
-        <div class="alert alert-success">{{ session()->get('update_notif') }}</div>
-    @elseif(session()->has('delete_notif'))
-    <div class="alert alert-success">{{ session()->get('delete_notif') }}</div>
-    @endif
-    <!-- End alerts -->
-</div>
-
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <!-- <h3 class="box-title">Hover Contract Table</h3> -->
                 </div>
-                <div class="btn">
-                    <button type="button" onclick="location.href='{{ url('admin/manager/create') }}'" class="btn btn-block btn-primary">Thêm người dùng</button>
-                    
-                </div>
 
                 <!-- /.box-header -->
                 <div class="box-body">
-                <p>Bảng thông tin người dùng</p>
+                <p>Bảng thông tin hợp đồng</P>
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Họ và tên</th>
-                                <th>Vai trò</th>
-                                <th>SĐT</th>
-                                <th>Email</th>
-                                <th>Địa chỉ</th>
+                                <th>Số hợp đồng</th>
+                                <th>Dự án</th>
+                                <th>Căn hộ</th>
+                                <th>Khách hàng</th>
+                                <th>Sàn</th>
+                                <th>Giá trị</th>
+                                <th>Ngày ký</th>
+                                <th>Ngày thanh toán</th>
+                                <th>Hạn đóng</th>
+                                <th>Tiến độ đóng tiền</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($model as $item )
+                            @foreach ($contract_array as $item )
                             <tr>
+                                <td>{{$item->san}}</td>
+                                <td>{{$item->tenduan}}</td>
+                                <td>{{$item->tencanho}}</td>
                                 <td>{{$item->hoten}}</td>
-                                <td>{{$item->vaitro}}</td>
-                                <td>{{$item->sodienthoai}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->diachi}}</td>
-                                <td><a href="manager/{{$item->idquanly}}/edit" class="btn btn-primary">Sửa</a></td>
+                                <td>{{$item->san}}</td>
+                                <td>{{$item->giatri}}</td>
+                                <td>{{$item->ngayky}}</td>
+                                <td>{{$item->ngaythanhtoan}}</td>
+                                <td>{{$item->han}}</td>
+                                <td>{{$item->tiendo}}</td>
                                 <td>
-                                <form action="{{ route('manager.destroy', $item->idquanly)}}" method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <a onclick="return confirm('Bạn có chắc muốn xóa người dùng?');">
-                                    <button class="btn btn-danger" type="submit" > Xóa </button>
-                                </a>
-                                </form>
+                                <a href="contract/{{$item->idhopdong}}/edit" class="btn btn-block btn-primary">Sửa</a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $model->links() }}
+                    {{ $contract_array->links() }}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -89,6 +75,7 @@
 @endsection('content')
 @section('page_script')
 <!-- DataTables -->
+
 <script src="{{asset('layouts/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('layouts/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- page script -->

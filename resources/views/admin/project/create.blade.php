@@ -26,7 +26,7 @@ input,select,textarea{
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> AdminAZ</a></li>
         <li><a href="{{ url ('admin/project') }}">Quản lý dự án</a></li>
-        <li class="active">Thêm dự án mới</li>
+        <li class="active">Thêm dự án</li>
     </ol>
 </section>
 
@@ -34,7 +34,7 @@ input,select,textarea{
 
 <section class="content">
     <div class="container">
-    <p> Thêm dự án mới</p>
+    <p> Thêm dự án</p>
         <form method="POST" action="{{ route('project.store') }}">
         {{ csrf_field() }}
         @if ($errors->any())
@@ -45,23 +45,24 @@ input,select,textarea{
             </div>
         @endif
 
-            <label>Tên dự án </label>
-            <input type="text" name="project_name">
+            <label for="project_name">Tên dự án </label>
+            <input type="text" id="project_name" name="project_name" value="{{ old('project_name') }}" 
+            required autofocus>
 
             <label>Công ty trực thuộc</label>
-            <input type="text" name="company">       
+            <input type="text" name="company" value="{{ old('company') }}" required>       
 
             <label>Vị trí </label>&nbsp;&nbsp;
-            <input type="text" name="location"><br><br>
+            <input type="text" name="location" value="{{ old('location') }}" required><br><br>
 
             <label>Trị giá</label>
-            <input type="number" name="price">  
+            <input type="number" name="price" value="{{ old('price') }}" required>  
 
             <label>Số tòa nhà</label>
-            <input type="number" name="apartment_number"><br><br>
+            <input type="number" name="apartment_number" value="{{ old('apartment_number') }}" required><br><br>
 
             <label for="status">Tình trạng</label>
-            <select name="status" id="status">
+            <select name="status" id="status" required>
                 <option value="1">Đã hoàn thành</option>
                 <option value="0">Chưa hoàn thành</option>
             </select><br><br>

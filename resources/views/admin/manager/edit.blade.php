@@ -53,7 +53,7 @@ button {
                             </div>
                             @endif
                 <label>Họ và tên</label>
-                <input name="name" type="text" value="{{$manager->hoten}}">
+                <input name="name" type="text" value="{{$manager->hoten}}" required>
                      
                 <label>Vai trò</label>
                 <select name="role" selected="{{$manager->vaitro}}">
@@ -64,13 +64,13 @@ button {
 
                       
                 <label>SĐT</label>
-                <input name="phone_number" type="number" value="{{$manager->sodienthoai}}"><br><br>
+                <input name="phone_number" type="number" value="{{$manager->sodienthoai}}" required><br><br>
                        
                 <label>Email</label>
-                <input name="email" type="email" class="custom" value="{{$manager->email}}"><br><br>
+                <input name="email" type="email" class="custom" value="{{$manager->email}}" required><br><br>
                        
                 <label>Địa chỉ</label>
-                <input name="address" type="text" class="custom_address" value="{{$manager->diachi}}"><br><br>
+                <input name="address" type="text" class="custom_address" value="{{$manager->diachi}}" required><br><br>
                 
                 <button type="submit" class="btn btn-primary">Lưu</button>
                    

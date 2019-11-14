@@ -26,8 +26,21 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/project';
-
+    
+   
+//    protected $redirectTo = '/admin/project';
+    protected function redirectTo()
+    {
+        $user = Auth::user();
+        if($user->role == 1){
+            return '/admin/project';
+        }else if($user->role == 0)
+            return '/viewer/project';
+    }
+    protected function guard()
+    {
+        return Auth::guard('user');
+    }
     /**
      * Create a new controller instance.
      *

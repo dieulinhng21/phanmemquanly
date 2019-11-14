@@ -67,7 +67,7 @@
                             <tr>
                                 <th>Họ tên</th>
                                 <th>CMND</th>
-                                <th>căn hộ</th>
+                                <th>Căn hộ</th>
                                 <th>Ngày sinh</th>
                                 <th>Email</th>
                                 <th>SĐT</th>

@@ -74,13 +74,13 @@ button {
         
             <label>Chi tiết</label>
             Diện tích:
-            <input class="detail" name="square" type="number" value="{{$flat->dientich}}"> m vuông
+            <input class="detail" name="square" type="number" value="{{$flat->dientich}}" required> m vuông
             - Số phòng khách:
-            <input class="detail" name="livingroom" type="number" value="{{$flat->sophongkhach}}">
+            <input class="detail" name="livingroom" type="number" value="{{$flat->sophongkhach}}" required>
             - Số phòng ngủ:
-            <input class="detail" name="bedroom" type="number" value="{{$flat->sophongngu}}">
+            <input class="detail" name="bedroom" type="number" value="{{$flat->sophongngu}}" required>
             - Số phòng bếp:
-            <input class="detail" name="kitchen" type="number" value="{{$flat->sophongbep}}"><br><br>
+            <input class="detail" name="kitchen" type="number" value="{{$flat->sophongbep}}" required><br><br>
             
             <label>Tình trạng:</label>
             @if($flat->tinhtrang == 1)

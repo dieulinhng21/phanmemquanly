@@ -57,25 +57,25 @@ input.custom_address{
                         </div>
                     @endif
                     <label for="name">Họ và tên</label>
-                    <input name="name" type="text" id="name" value="{{$customer->hoten}}">
+                    <input name="name" type="text" id="name" value="{{$customer->hoten}}" required>
                 
                     <label for="identity_card">CMND</label>
-                    <input name="identity_card" type="number" id="identity_card" value="{{$customer->chungminhthu}}">
+                    <input name="identity_card" type="number" id="identity_card" value="{{$customer->chungminhthu}}" required>
                 
                     <label for="dob">Ngày sinh</label>
-                    <input name="dob" type="text" id="dob" value="{{$customer->ngaysinh}}"><i>(tháng/ngày/năm)</i><br><br>
+                    <input name="dob" type="text" id="dob" value="{{$customer->ngaysinh}}" required><i>(tháng/ngày/năm)</i><br><br>
                 
                     <label for="email">Email</label>
-                    <input name="email" type="email" class="custom" id="email" value="{{$customer->email}}">
+                    <input name="email" type="email" class="custom" id="email" value="{{$customer->email}}" required>
                 
                     <label for="phone_number">SĐT</label>
-                    <input name="phone_number" type="number" id="phone_number" value="{{$customer->sodienthoai}}"><br><br>
+                    <input name="phone_number" type="number" id="phone_number" value="{{$customer->sodienthoai}}" required><br><br>
                 
                     <label for="inhabitant_number">Hộ khẩu</label>
-                    <input name="inhabitant_number" type="text" class="custom_address" id="inhabitant_number" value="{{$customer->hokhau}}"><br><br>
+                    <input name="inhabitant_number" type="text" class="custom_address" id="inhabitant_number" value="{{$customer->hokhau}}" required><br><br>
                 
                     <label>Địa chỉ</label>
-                    <input name="address" type="text" class="custom_address" value="{{$customer->diachi}}"><br><br>
+                    <input name="address" type="text" class="custom_address" value="{{$customer->diachi}}" required><br><br>
                 
                     <label for="note">Ghi chú</label><br>
                     <textarea name="note" type="text" name="note" rows="4" cols="50">{{$customer->ghichu}}</textarea><br><br>

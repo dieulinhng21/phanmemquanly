@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Role;
-use App\Permission;
 
 class HomeController extends Controller
 {
@@ -24,11 +22,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    
     public function index()
     {
-        $role = Role::find(1);
-        $permission = Permission::find(1);
-        $role->givePermissionTo($permission);
-        return view('home');
+        return view('/home');
     }
 }
