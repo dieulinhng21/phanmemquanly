@@ -53,6 +53,7 @@ margin-left: 50%;
     @endif
         <label>Họ tên</label>
         <input type="text" name="name" value="{{ old('name') }}" autofocus required>
+        <i>(Họ tên viết không dấu)</i><br><br>
 
         <label>CMND</label>
         <input type="number" name="identity_card" value="{{ old('identity_card') }}" required><br><br>

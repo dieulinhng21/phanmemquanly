@@ -46,47 +46,29 @@ use Illuminate\Http\Request;
          * @return \Illuminate\Http\Response
          */
         public function store(Request $request)
-        //|regex:/^[A-Za-z\s-_]+$/ : validate hoten k có số nhưng sẽ k có dấu
         {
             $validator = $request->validate([
-                'name' => 'required|max:50',
+                'name' => 'required|regex:/^([a-zA-Z\s\-]*)$/|max:50',
                 'flat' => 'required',
-                'identity_card' => 'required|numeric|digits_between:9,10|unique:khachhang,chungminhthu',
+                'identity_card' => 'required|integer|digits_between:9,10|unique:khachhang,chungminhthu',
                 'dob' => 'required',
-                // 'dob' => 'required|date_format:Y-m-d',
-                // 'day' => 'required|numeric|min:1|max:31',
-                // 'month' => 'required|numeric|min:1|max:12',
-                // 'year' => 'required|numeric',
                 'email' => 'required|email|unique:khachhang,email',
-                'phone_number' => 'required|numeric|digits_between:9,10|unique:khachhang,sodienthoai',
+                'phone_number' => 'required|integer|digits_between:9,10|unique:khachhang,sodienthoai',
                 'inhabitant_number' => 'required',
                 'address' => 'required|max:50'
                 //ghi chú có thể để trống 
             ],
             [
                 'name.required' => 'Tên khách hàng còn trống',
-                //'name.regex' => 'Tên khách hàng chứa ký tự không hợp lệ',
+                'name.regex' => 'Tên khách hàng chứa ký tự không hợp lệ',
                 'name.max' => 'Tên khách hàng vượt quá số ký tự cho phép',
                 //
                 'flat.required' => 'Căn hộ còn trống',
                 //
                 'identity_card.required' => 'Chứng minh thư còn trống',
-                'identity_card.numeric' => 'Chứng minh thư không hợp lệ',
+                'identity_card.integer' => 'Chứng minh thư không hợp lệ',
                 'identity_card.unique' => 'Số chứng minh thư đã tồn tại',
                 'identity_card.digits_between' => 'Số chứng minh thư không hợp lệ',//số chứng minh thư p dài từ 9-10 ký tự
-                //
-                // 'day.required' => 'Ngày sinh còn trống',
-                // 'day.numeric' => 'Ngày sinh phải là số',
-                // 'day.min' => 'Ngày sinh không hợp lệ',
-                // 'day.max' => 'Ngày sinh không hợp lệ',
-
-                // 'month.required' => 'Tháng sinh còn trống',
-                // 'month.numeric' => 'Tháng sinh phải là số',
-                // 'month.min' => 'Tháng sinh không hợp lệ',
-                // 'month.max' => 'Tháng sinh không hợp lệ',
-
-                // 'year.required' => 'Năm sinh còn trống',
-                // 'year.numeric' => 'Năm sinh phải là số',
                 'dob.required' => 'Ngày tháng năm sinh còn trống',
                 //
                 'email.required' => 'Email còn trống',
@@ -94,7 +76,7 @@ use Illuminate\Http\Request;
                 'email.unique' => 'Địa chỉ email đã tồn tại',
                 //
                 'phone_number.required' => 'Số điện thoại còn trống',
-                'phone_number.numeric' => 'Số điện thoại không hợp lệ',
+                'phone_number.integer' => 'Số điện thoại không hợp lệ',
                 'phone_number.digits_between' => 'Số điện thoại không hợp lệ',
                 'phone_number.unique' => 'Số điện thoại đã tồn tại',
                 //
@@ -102,23 +84,7 @@ use Illuminate\Http\Request;
                 //
                 'address.required' => 'Địa chỉ còn trống',
                 'address.max' => 'Địa chỉ không hợp lệ',
-                //
-                // 'after:today' => 'This date can not be made',
-                // 'date_format:Y-m-d' => 'Ngày tháng theo định dạng năm-tháng-ngày',
-            ]);
-                // $day = $request->get('day');
-                // $month = $request->get('month');
-                // $year = $request->get('year');
-                // $dob;
-                // $validate_date = checkdate($month, $day, $year);
-                // if($validate_date){
-                //     $dob = $year . "-" . $month . "-" . $day;
-                // }else{
-                //     $error = "Ngày tháng năm sinh không hợp lệ!";
-                //     $dob = null;
-                //     array_push($validate, $error);
-                //     // session()->flash('date_error','Ngày tháng năm sinh không hợp lệ');
-                // }
+                
                 $customer = Customer::create();
                 
                 $customer->hoten= $request->get('name');
@@ -177,8 +143,8 @@ use Illuminate\Http\Request;
         public function update(Request $request, $id)
         {
             $request->validate([
-                'name' => 'required|max:50',
-                'dob' => 'required|date_format:Y-m-d',
+                'name' => 'required|regex:/^([a-zA-Z\s\-]*)$/|max:50',
+                'dob' => 'required|before_or_equal:today',
                 'identity_card' => 'required|numeric|digits_between:9,10',
                 'email' => 'required|email',
                 'phone_number' => 'required|numeric|digits_between:9,10',
@@ -188,10 +154,11 @@ use Illuminate\Http\Request;
             ],
             [
                 'name.required' => 'Tên khách hàng còn trống',
+                'name.regex' => 'Tên khách hàng chứa ký tự không hợp lệ',
                 'name.max' => 'Tên khách hàng vượt quá số ký tự cho phép',
                 //
                 'dob.required' => 'Năm sinh còn trống',
-                'dob.date_format' => 'Ngày tháng năm sinh không hợp lệ',
+                'dob.before_or_equal' => 'Ngày tháng năm sinh không hợp lệ',
                 //
                 'identity_card.required' => 'Số chứng minh còn trống',
                 'identity_card.required' => 'Số chứng minh chứa ký tự không hợp lệ',

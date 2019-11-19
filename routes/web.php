@@ -13,6 +13,15 @@
 
 Route::get('/', function () {
     return view('welcome');
+    Route::get('viewer/project','project');
+    Route::get('viewer/contract', 'contract');
+    Route::get('viewer/apartment','apartment');
+    
+    Route::get('viewer/flat','flat');
+    // Route::resource('viewer/location','LocationController');
+    Route::get('viewer/manager','manager');
+    // Route::resource('viewer/marketting','MarkettingController');
+    Route::get('viewer/customer','customer');
 });
 Route::group(['namespace' => 'admin'], function() {
     Route::resource('admin/project','ProjectController');
@@ -25,16 +34,16 @@ Route::group(['namespace' => 'admin'], function() {
     // Route::resource('admin/marketting','MarkettingController');
     Route::resource('admin/customer','CustomerController');
 });
-Route::group(['namespace' => 'viewer'], function() {
-    Route::resource('viewer/project','ProjectController');
-    Route::resource('viewer/contract', 'ContractController');
-    Route::resource('viewer/apartment','ApartmentController');
+// Route::group(['namespace' => 'viewer'], function() {
+//     Route::get('viewer/project','ProjectController@in');
+//     Route::get('viewer/contract', 'ContractController');
+//     Route::get('viewer/apartment','ApartmentController');
     
-    Route::resource('viewer/flat','FlatController');
-    // Route::resource('viewer/location','LocationController');
-    Route::resource('viewer/manager','ManagerController');
-    // Route::resource('viewer/marketting','MarkettingController');
-    Route::resource('viewer/customer','CustomerController');
-});
+//     Route::get('viewer/flat','FlatController');
+//     // Route::resource('viewer/location','LocationController');
+//     Route::get('viewer/manager','ManagerController');
+//     // Route::resource('viewer/marketting','MarkettingController');
+//     Route::get('viewer/customer','CustomerController');
+// });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

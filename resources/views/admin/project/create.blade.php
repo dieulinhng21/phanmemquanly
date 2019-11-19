@@ -48,9 +48,11 @@ input,select,textarea{
             <label for="project_name">Tên dự án </label>
             <input type="text" id="project_name" name="project_name" value="{{ old('project_name') }}" 
             required autofocus>
+            <i>(Tên dự án viết không dấu)</i><br><br>
 
             <label>Công ty trực thuộc</label>
-            <input type="text" name="company" value="{{ old('company') }}" required>       
+            <input type="text" name="company" value="{{ old('company') }}" required>    
+            <i>(Tên công ty viết không dấu)</i><br><br>   
 
             <label>Vị trí </label>&nbsp;&nbsp;
             <input type="text" name="location" value="{{ old('location') }}" required><br><br>

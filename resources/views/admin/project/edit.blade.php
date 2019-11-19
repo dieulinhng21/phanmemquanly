@@ -51,16 +51,11 @@ button {
             @endif
                 <label>Tên dự án</label>
                 <input name="project_name" value="{{$project->tenduan}}" required>
-                <!-- <select name="project_name">
-                    <option value="AZ Lâm Viên">AZ Lâm Viên</option>
-                    <option value="AZ Five Stars">AZ Five Stars</option>
-                    <option value="AZ SKY Tower">AZ SKY Tower</option>
-                    <option value="AZ Vân Canh Tower">AZ Vân Canh Tower</option>
-                    <option value="AZ Starry Night">AZ Starry Night</option>
-                </select> -->
+                <i>(Tên dự án viết không dấu)</i><br><br>
             
                 <label>Công ty trực thuộc</label>
-                <input name="company" type="text" value="{{$project->congtytructhuoc}}" required><br><br>
+                <input name="company" type="text" value="{{$project->congtytructhuoc}}" required>
+                <i>(Tên công ty viết không dấu)</i><br><br>
             
                 <label>Vị trí</label>
                 <input name="location" type="text" style="width:250px" value="{{$project->vitri}}" required><br><br>

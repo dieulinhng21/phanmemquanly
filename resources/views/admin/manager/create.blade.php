@@ -56,9 +56,8 @@ input.custom_address{
 
         <label>Vai trò</label>
         <select name="role">
-            <option value="editor">Editor</option>
-            <option value="manager">Manager</option>
-            <option value="contributor">Contributor</option>
+            <option value="admin">Admin</option>
+            <option value="viewer">Viewer</option>
         </select><br><br>
 
 

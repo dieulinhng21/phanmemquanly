@@ -56,10 +56,9 @@ button {
                 <input name="name" type="text" value="{{$manager->hoten}}" required>
                      
                 <label>Vai trò</label>
-                <select name="role" selected="{{$manager->vaitro}}">
-                    <option value="editor">Editor</option>
-                    <option value="manager">Manager</option>
-                    <option value="contributor">Contributor</option>
+                <select name="role">
+                    <option value="admin">Admin</option>
+                    <option value="viewer">Viewer</option>
                 </select><br><br>
 
                       

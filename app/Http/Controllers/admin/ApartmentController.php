@@ -46,7 +46,7 @@ class ApartmentController extends Controller
     {
         $request->validate([
             'project_name' => 'required',
-            'apartment_name' => 'required|max:255',
+            'apartment_name' => 'required|regex:/^([a-zA-Z0-9\s\-]*)$/|max:50',
             'begin_trade_floor' => 'required|integer|min:1',
             'end_trade_floor' => 'required|integer|min:0',
             'begin_people_floor' => 'required|integer|min:0',
@@ -56,6 +56,7 @@ class ApartmentController extends Controller
             'project_name' => 'Tên dự án còn trống',
             //
             'apartment_name.required' => 'Tên tòa chung cư còn trống',
+            'apartment_name.regex' => 'Tên tòa chung cư chứa ký tự không hợp lệ',
             'apartment_name.max' => 'Tên  vượt quá số ký tự cho phép',
             //
             'begin_trade_floor.required' => 'Tầng bắt đầu thương mại còn trống',
@@ -122,7 +123,7 @@ class ApartmentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'apartment_name' => 'required|max:255',
+            'apartment_name' => 'required|regex:/^([a-zA-Z0-9\s\-]*)$/|max:50',
             'begin_people_floor' => 'required|integer|min:0',
             'end_people_floor' => 'required|integer|min:0',
             'begin_trade_floor' => 'required|integer|min:0',
@@ -131,6 +132,7 @@ class ApartmentController extends Controller
         ],
         [
             'apartment_name.required' => 'Tên tòa chung cư còn trống',
+            'apartment_name.regex' => 'Tên tòa chung cư chứa ký tự không hợp lệ',
             'apartment_name.max' => 'Tên tòa chung cư vượt quá số ký tự chp phép',
             //
             'begin_trade_floor.required' => 'Tầng bắt đầu thương mại còn trống',

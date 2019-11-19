@@ -39,24 +39,33 @@ class ManagerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:255',
-            'role' => 'required|max:255',
-            'dob' => 'required',
-            'phone_number' => 'required|digits_between:9,10|unique:nguoiquanly,sodienthoai',
+            'name' => 'required|regex:/^([a-zA-Z\s\-]*)$/|max:50',
+            'dob' => 'required|before_or_equal:today',
+            'phone_number' => 'required|numeric|digits_between:9,10|unique:nguoiquanly,sodienthoai',
             'email' => 'required|email|unique:nguoiquanly,email',
             'address' => 'required'
         ],
         [
             'name.required' => 'Họ tên còn trống',
+            'name.regex' => 'Họ tên chứa ký tự không hợp lệ',
+            'name.max' => 'Họ tên vượt quá số ký tự cho phép',
+            //
             'role.required' => 'Vai trò còn trống',
+            //
             'dob.required' => 'Ngày sinh còn trống',
+            'dob.before_or_equal' => 'Ngày sinh không hợp lệ',
+            //
             'phone_number.required' => 'Số điện thoại còn trống',
+            'phone_number.numeric' => 'Số điện thoại phải là số',
             'phone_number.digits_between' => 'Số điện thoại không hợp lệ',
             'phone_number.unique' => 'Số điện thoại đã tồn tại',
+            //
             'email.required' => 'Email còn trống',
+            'email' => 'Email không hợp lệ',
             'email.unique' => 'Email đã tồn tại',
+            //
             'address.required' => 'Địa chỉ còn trống',
-            'email' => 'Email không hợp lệ'
+            
         ]);
             $manager = Manager::create();
             $manager->hoten= $request->get('name');
@@ -104,22 +113,29 @@ class ManagerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|max:255',
-            'role' => 'required|max:255',
+            'name' => 'required|regex:/^([a-zA-Z\s\-]*)$/|max:50',
+            'dob' => 'required|before_or_equal:today',
             'phone_number' => 'required|numeric|digits_between:9,10',//sđt dài từ 9-10 số
             'email' => 'required|email|unique:nguoiquanly,email',
             'address' => 'required'
         ],
         [
             'name.required' => 'Họ tên còn trống',
-            'role.required' => 'Vai trò còn trống',
+            'name.regex' => 'Họ tên chứa ký tự không hợp lệ',
+            'name.max' => 'Họ tên vượt quá số ký tự cho phép',
+            //
+            'dob.required' => 'Ngày sinh còn trống',
+            'dob.before_or_equal' => 'Ngày sinh không hợp lệ',
+            //
             'phone_number.required' => 'Số điện thoại còn trống',
             'phone_number.numeric' => 'Số điện thoại chứa ký tự không hợp lệ',
             'phone_number.digits_between' => 'Độ dài số điện thoại không hợp lệ',
+            //
             'email.required' => 'Email còn trống',
             'email.unique' => 'Email đã tồn tại',
+            'email' => 'Email không hợp lệ',
+            //
             'address.required' => 'Địa chỉ còn trống',
-            'email' => 'Email không hợp lệ'
         ]);
             $manager = Manager::find($id);
 

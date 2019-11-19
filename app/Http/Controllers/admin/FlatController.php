@@ -58,30 +58,42 @@ class FlatController extends Controller
         $request->validate([
             'project'=>'required',
             'apartment'=>'required',
-            'flat'=>'required',
-            'price'=>'required|gt:0',
-            'square'=>'required|gt:0',
-            'livingroom'=>'required|gt:0',
-            'bedroom'=>'required|gt:0',
-            'kitchen'=>'required|gt:0'
+            'flat'=>'required|regex:/^([a-zA-Z0-9\s\-]*)$/',
+            'price'=>'required|numeric|min:0',
+            'square'=>'required|numeric|min:0',
+            'livingroom'=>'required|integer|min:0',
+            'bedroom'=>'required|integer|min:0',
+            'kitchen'=>'required|integer|min:0'
 
         ],
         [
             'project.required' => 'Tên dự án còn trống',
+            //
             'apartment.required' => 'Tên tòa chung cư còn trống',
+            //
             'flat.required' => ' Căn hộ còn trống',
+            'flat.regex' => ' Căn hộ chứa ký tự không hợp lệ',
             'flat.unique' => ' Căn hộ đã tồn tại',
+            //
             'price.required' => 'Trị giá còn trống',
+            'price.numeric' => 'Trị giá phải là số',
+            'price.min' => 'Trị giá phải lớn hơn 0',
+            //
             'square.required' => 'Diện tích còn trống',
+            'square.numeric' => 'Diện tích phải là dạng số',
+            'square.min' => 'Diện tích phải lớn hơn 0',
+            //
             'livingroom.required' => 'Số phòng khách còn trống',
+            'livingroom.integer' => 'Số phòng khách phải là số nguyên',
+            'livingroom.min' => 'Số phòng khách phải lớn hơn 0',
+            //
             'bedroom.required' => 'Số phòng ngủ còn trống',
+            'bedroom.integer' => 'Số phòng ngủ phải là số nguyên',
+            'bedroom.min' => 'Số phòng ngủ phải lớn hơn 0',
+            //
             'kitchen.required' => 'Số phòng bếp còn trống',
-
-            'price.gt' => 'Trị giá phải lớn hơn hoặc bằng 0',
-            'square.gt' => 'DIện tích phải lớn hơn hoặc bằng 0',
-            'livingroom.gt' => 'Số phòng khách phải lớn hơn hoặc bằng 0',
-            'bedroom.gt' => 'Số phòng ngủ phải lớn hơn hoặc bằng 0',
-            'kitchen.gt' => 'Số phòng bếp lớn hơn hoặc bằng 0'
+            'kitchen.integer' => 'Số phòng bếp phải là số nguyên',
+            'kitchen.min' => 'Số phòng bếp phải lớn hơn 0',
         ]);
             $flat = Flat::create();
             
@@ -144,29 +156,42 @@ class FlatController extends Controller
         $request->validate([
             'project'=>'required',
             'apartment'=>'required',
-            'flat'=>'required',
-            'price'=>'required|gt:0',
-            'square'=>'required|gt:0',
-            'livingroom'=>'required|gt:0',
-            'bedroom'=>'required|gt:0',
-            'kitchen'=>'required|gt:0'
+            'flat'=>'required|regex:/^([a-zA-Z0-9\s\-]*)$/',
+            'price'=>'required|numeric|min:0',
+            'square'=>'required|numeric|min:0',
+            'livingroom'=>'required|integer|min:0',
+            'bedroom'=>'required|integer|min:0',
+            'kitchen'=>'required|integer|min:0'
 
         ],
         [
             'project.required' => 'Tên dự án còn trống',
+            //
             'apartment.required' => 'Tên tòa chung cư còn trống',
+            //
             'flat.required' => ' Căn hộ còn trống',
+            'flat.regex' => ' Căn hộ chứa ký tự không hợp lệ',
+            'flat.unique' => ' Căn hộ đã tồn tại',
+            //
             'price.required' => 'Trị giá còn trống',
+            'price.numeric' => 'Trị giá phải là số',
+            'price.min' => 'Trị giá phải lớn hơn 0',
+            //
             'square.required' => 'Diện tích còn trống',
+            'square.numeric' => 'Diện tích phải là dạng số',
+            'square.min' => 'Diện tích phải lớn hơn 0',
+            //
             'livingroom.required' => 'Số phòng khách còn trống',
+            'livingroom.integer' => 'Số phòng khách phải là số nguyên',
+            'livingroom.min' => 'Số phòng khách phải lớn hơn 0',
+            //
             'bedroom.required' => 'Số phòng ngủ còn trống',
+            'bedroom.integer' => 'Số phòng ngủ phải là số nguyên',
+            'bedroom.min' => 'Số phòng ngủ phải lớn hơn 0',
+            //
             'kitchen.required' => 'Số phòng bếp còn trống',
-
-            'price.gt' => 'Trị giá phải lớn hơn hoặc bằng 0',
-            'square.gt' => 'DIện tích phải lớn hơn hoặc bằng 0',
-            'livingroom.gt' => 'Số phòng khách phải lớn hơn hoặc bằng 0',
-            'bedroom.gt' => 'Số phòng ngủ phải lớn hơn hoặc bằng 0',
-            'kitchen.gt' => 'Số phòng bếp lớn hơn hoặc bằng 0'
+            'kitchen.integer' => 'Số phòng bếp phải là số nguyên',
+            'kitchen.min' => 'Số phòng bếp phải lớn hơn 0',
         ]);
             $flat = Flat::find($id);
             

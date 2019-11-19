@@ -39,8 +39,8 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'project_name' => 'required|unique:duan,tenduan',
-            'company' => 'required',
+            'project_name' => 'required|regex:/^([a-zA-Z\s\-]*)$/|unique:duan,tenduan',
+            'company' => 'required|regex:/^([a-zA-Z\s\-]*)$/',
             'location' => 'required',
             'price' => 'required|numeric|min:0',
             'apartment_number' => 'required|numeric| min:0'
@@ -48,9 +48,11 @@ class ProjectController extends Controller
         ],
         [
             'project_name.required' => 'Tên dự án còn trống',
+            'project_name.regex' => 'Tên dự án chứa ký tự không hợp lệ',
             'project_name.unique' => 'Tên dự án đã tồn tại',
             //
             'company.required' => 'Công ty trực thuộc còn trống',
+            'company.regex' => 'Tên công ty trực thuộc chứa ký tự không hợp lệ',
             //
             'location.required' => 'Vị trí còn trống',
             //
@@ -112,15 +114,16 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'project_name' => 'required',
+            'project_name' => 'required|regex:/^([a-zA-Z\s\-]*)$/',
             'company' => 'required',
             'location' => 'required',
             'project_worth' => 'required|numeric|min:0',
-            'apartment_number' => 'required|numeric|min:0',
+            'apartment_number' => 'required|integer|min:0',
             'status' => 'required'
         ],
         [
             'project_name.required' => 'Tên dự án còn trống',
+            'project_name.regex' => 'Tên dự án chứa ký tự không hợp lệ',
             //
             'company.required' => 'Công ty trực thuộc còn trống',
             //
@@ -131,7 +134,7 @@ class ProjectController extends Controller
             'price.min' => 'Giá trị dự án phải lớn hơn 0',
             //
             'apartment_number.required' => 'Số tòa nhà còn trống',
-            'apartment_number.numeric' => 'Số tòa nhà phải là số',
+            'apartment_number.integer' => 'Số tòa nhà phải là số',
             'apartment_number.min' => 'Số tòa nhà phải lớn hơn 0',
             //
             'status.required' => 'Tình trạng còn trống'

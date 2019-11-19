@@ -58,16 +58,16 @@ class ContractController extends Controller
                 }),
             ],
             'san' => 'required',
-            'contract_code' => 'required',
+            'contract_code' => 'required|regex:/^([a-zA-Z0-9\s\-]*)$/',
             'contract_worth' => 'required|numeric',
             'contract_date' => 'required|before_or_equal:today',
             'pay_date' => 'after_or_equal:today',
-            'extra_date' => 'numeric| min:0',
+            'extra_date' => 'integer| min:0',
             //validate customer infor before insert to db
             'name' => 'required|max:50',
             'noicap' => 'required|max:50',
             'identity_card' => 'required|numeric|digits_between:9,10|unique:khachhang,chungminhthu',
-            'identity_date' => 'required',
+            'identity_date' => 'required|before_or_equal:today',
             'phone_number' => 'required|numeric|digits_between:9,10|unique:khachhang,sodienthoai',
             'inhabitant_number' => 'required',
             'address' => 'required'
@@ -82,6 +82,7 @@ class ContractController extends Controller
             'san.required' => 'Sàn giao dịch còn trống',
             //
             'contract_code.required' => 'Số hợp đồng còn trống',
+            'contract_code.regex' => 'Số hợp đồng chứa ký tự không hợp lệ',
             //
             'contract_worth.required' => 'Giá trị hợp đồng còn trống',
             'contract_worth.numeric' => 'Giá trị hợp đồng phải là số',
@@ -91,7 +92,7 @@ class ContractController extends Controller
             //
             'pay_date.after_or_equal' => 'Ngày thanh toán hợp đồng không được ở trong quá khứ ',
             //
-            'extra_date.numeric' => 'Ngày gia hạn phải là số',
+            'extra_date.integer' => 'Ngày gia hạn phải là số',
             'extra_date.min' => 'Ngày gia hạn phải là số dương',
             //
             'name.required' => 'Tên khách hàng còn trống',
@@ -105,15 +106,16 @@ class ContractController extends Controller
             'identity_card.unique' => 'Số chứng minh thư đã tồn tại',
             //
             'identity_date.required' => 'Ngày cấp chứng minh còn trống',
+            'identity_date.before_or_equal' => 'Ngày cấp chứng minh không hợp lệ',
             //
             'phone_number.required' => 'Số điện thoại còn trống',
             'phone_number.numeric' => 'Số điện thoại không chứa ký tự là chữ cái',
             'phone_number.digits_between' => 'Độ dài số điện thoại không hợp lệ',
             'phone_number.unique' => 'Số điện thoại đã tồn tại',
             //
-            'inhabitant_number.required' => 'Hộ khẩu không được trống',
+            'inhabitant_number.required' => 'Hộ khẩu còn trống',
             //
-            'address.required' => 'Địa chỉ không được trống'
+            'address.required' => 'Địa chỉ còn trống'
         ]); 
             //tạo customer trước
             $flat_name = $request->get('tencanho');
@@ -207,14 +209,14 @@ class ContractController extends Controller
         // |unique:hopdong,mahopdong |unique:hopdong,ten_canho |before_or_equal:date
         $request->validate([
             'san' => 'required',
-            'contract_code' => 'required',
-            'contract_date' => 'required',
-            'extra_date' => 'numeric | min:0',
+            'contract_code' => 'required|regex:/^([a-zA-Z0-9\s\-]*)$/',
+            'contract_date' => 'required|before_or_equal:today',
+            'extra_date' => 'integer|min:0',
             //validate customer infor before insert to db
             'name' => 'required|max:50',
             'noicap' => 'required|max:50',
             'identity_card' => 'required|numeric|digits_between:9,10',
-            'identity_date' => 'required',
+            'identity_date' => 'required|before_or_equal:today',
             'phone_number' => 'required|numeric|digits_between:9,10',
             'inhabitant_number' => 'required',
             'address' => 'required'
@@ -228,10 +230,12 @@ class ContractController extends Controller
             'san.required' => 'Sàn giao dịch còn trống',
             //
             'contract_code.required' => 'Số hợp đồng còn trống',
+            'contract_code.regex' => 'Số hợp đồng chứa ký tự không hợp lệ',
             //
             'contract_date.required' => 'Ngày tạo hợp đồng còn trống',
+            'contract_date.before_or_equal' => 'Ngày tạo hợp đồng không vượt quá hiện tại',
             //
-            'extra_date.numeric' => 'Ngày gia hạn phải là số',
+            'extra_date.integer' => 'Ngày gia hạn phải là số',
             'extra_date.min' => 'Ngày gia hạn phải là số dương',
 
             //customer information start
@@ -245,6 +249,7 @@ class ContractController extends Controller
             'identity_card.digits_between' => 'Độ dài số chứng minh thư không hợp lệ',
             //
             'identity_date.required' => 'Ngày cấp chứng minh còn trống',
+            'identity_date.before_or_equal' => 'Ngày cấp chứng minh không hợp lệ',
             //
             'phone_number.required' => 'Số điện thoại còn trống',
             'phone_number.numeric' => 'Số điện thoại không chứa ký tự là chữ cái',
