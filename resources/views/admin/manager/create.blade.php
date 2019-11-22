@@ -53,6 +53,7 @@ input.custom_address{
         @endif
         <label>Họ tên</label>
         <input type="text" name="name" value="{{ old('name') }}" required autofocus>
+        <i>(Họ tên viết không dấu)</i>
 
         <label>Vai trò</label>
         <select name="role">
@@ -62,7 +63,7 @@ input.custom_address{
 
 
         <label>Ngày sinh</label>
-        <input type="date" name="dob" value="{{ old('name') }}" required>
+        <input type="date" name="dob" value="{{ old('dob') }}" required>
 
 
         <label>SĐT</label>
@@ -72,7 +73,7 @@ input.custom_address{
         <input type="email" name="email" class="custom" value="{{ old('email') }}" required><br><br>
 
         <label>Địa chỉ</label>
-        <input class="custom_address" type="text" name="address" value="{{ old('custom_address') }}"required><br><br>
+        <input class="custom_address" type="text" name="address" value="{{ old('address') }}"required><br><br>
         
         <button type="submit" class="btn btn-primary">Lưu</button>
         <button type="reset" class="btn btn-primary">Làm mới trang</button>

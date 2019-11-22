@@ -51,7 +51,7 @@ use Illuminate\Http\Request;
                 'name' => 'required|regex:/^([a-zA-Z\s\-]*)$/|max:50',
                 'flat' => 'required',
                 'identity_card' => 'required|integer|digits_between:9,10|unique:khachhang,chungminhthu',
-                'dob' => 'required',
+                'dob' => 'required|before_or_equal:today',
                 'email' => 'required|email|unique:khachhang,email',
                 'phone_number' => 'required|integer|digits_between:9,10|unique:khachhang,sodienthoai',
                 'inhabitant_number' => 'required',
@@ -69,7 +69,8 @@ use Illuminate\Http\Request;
                 'identity_card.integer' => 'Chứng minh thư không hợp lệ',
                 'identity_card.unique' => 'Số chứng minh thư đã tồn tại',
                 'identity_card.digits_between' => 'Số chứng minh thư không hợp lệ',//số chứng minh thư p dài từ 9-10 ký tự
-                'dob.required' => 'Ngày tháng năm sinh còn trống',
+                'dob.required' => 'Ngày sinh còn trống',
+                'dob.before_or_equal' => 'Ngày sinh không hợp lệ',
                 //
                 'email.required' => 'Email còn trống',
                 'email.email' => 'Địa chỉ email không hợp lệ',
