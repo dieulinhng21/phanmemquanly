@@ -84,7 +84,7 @@ use Illuminate\Http\Request;
                 //
                 'address.required' => 'Địa chỉ còn trống',
                 'address.max' => 'Địa chỉ không hợp lệ',
-                
+            ]);
                 $customer = Customer::create();
                 
                 $customer->hoten= $request->get('name');
