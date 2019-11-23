@@ -59,11 +59,11 @@
                                 <td>{{$item->vitri}}</td>
                                 <td>{{$item->trigia}}</td>
                                 <td>{{$item->sotoanha}}</td>
-                                @if($item->tinhtrang == 1)
+                                <!-- @if($item->tinhtrang == 1)
                                     <td>Đã hoàn thành</td>
                                 @elseif($item->tinhtrang == 0)
                                     <td>Chưa hoàn thành</td>
-                                @endif
+                                @endif -->
                                 <td><a href="project/{{$item->idduan}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
                                 <form action="{{ route('project.destroy', $item->idduan)}}" method="post">

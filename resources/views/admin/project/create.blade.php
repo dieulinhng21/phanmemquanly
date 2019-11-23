@@ -63,11 +63,11 @@ input,select,textarea{
             <label>Số tòa nhà</label>
             <input type="number" name="apartment_number" value="{{ old('apartment_number') }}" required><br><br>
 
-            <label for="status">Tình trạng</label>
+            <!-- <label for="status">Tình trạng</label>
             <select name="status" id="status" required>
                 <option value="1">Đã hoàn thành</option>
                 <option value="0">Chưa hoàn thành</option>
-            </select><br><br>
+            </select><br><br> -->
 
             <button type="submit" class="btn btn-primary">Lưu</button>
             <button type="reset" class="btn btn-primary">Làm mới trang</button>

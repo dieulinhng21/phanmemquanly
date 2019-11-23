@@ -50,7 +50,7 @@
                                 <th>Tòa chung cư</th>
                                 <th>Tầng thương mại</th>
                                 <th>Tầng dân cư</th>
-                                <th>Tình trạng</th>
+                                <th>Đơn vị quản lý</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>
@@ -61,15 +61,8 @@
                                 <td>{{$item->tentoa}}</td>
                                 <td>{{$item->batdauthuongmai}} - {{$item->ketthucthuongmai}}</td>
                                 <td>{{$item->batdaudancu}} - {{$item->ketthucdancu}}</td>
-                                @if($item->tinhtrang == 0)
-                                    <td>
-                                        Còn trống
-                                    </td>
-                                @elseif($item->tinhtrang == 1)
-                                    <td>
-                                        Đã đầy
-                                    </td>
-                                @endif
+                                <td>{{$item->donviquanly}}</td>
+                                
                                 <td><a href="apartment/{{$item->idtoachungcu}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
                                 <form action="{{ route('apartment.destroy', $item->idtoachungcu)}}" method="post">

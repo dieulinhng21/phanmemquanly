@@ -77,13 +77,11 @@ button {
             Từ tầng <input class="detail" type="number" name="begin_people_floor"
             value="{{ old('begin_people_floor') }}" required>
             đến <input class="detail" type="number" name="end_people_floor"
-            value="{{ old('end_people_floor') }}" required>
+            value="{{ old('end_people_floor') }}" required><br><br>
 
-            <label for="status">Tình trạng</label>
-            <select name="status" id="status" value="{{ old('status') }}" required>
-                <option value="1">Đã đầy</option>
-                <option value="0">Còn trống</option>
-            </select><br><br>
+            <label for="status">Đơn vị quản lý</label>
+            <input  type="text" name="manage_team" value="{{ old('apartment_name') }}" 
+            required><i>(Tên đơn vị quản lý viết không dấu)</i><br><br>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
             <button type="reset" class="btn btn-primary">Làm mới trang</button>

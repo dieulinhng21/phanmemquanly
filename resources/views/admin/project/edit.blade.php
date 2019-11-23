@@ -66,20 +66,20 @@ button {
                 <label>Trị giá</label>
                 <input name="project_worth" type="number" value="{{$project->trigia}}" required><br><br>
             
-                <label>Tình trạng</label>
+                <!-- <label>Tình trạng</label>
                 @if($project->tinhtrang == 1)
                     <select name="status">
                         <option value="1" selected>Đã hoàn thành</option>
                         <option value="0">Chưa hoàn thành</option>
-                    </select><br><br>
+                    </select><br><br> -->
                 
-                @elseif($project->tinhtrang == 0)
+                <!-- @elseif($project->tinhtrang == 0)
                     <select name="status">
                         <option value="1">Đã hoàn thành</option>
                         <option value="0" selected>Chưa hoàn thành</option>
                     </select><br><br>
                 
-                @endif
+                @endif -->
                 <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>

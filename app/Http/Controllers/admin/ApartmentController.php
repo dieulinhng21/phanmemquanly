@@ -51,6 +51,7 @@ class ApartmentController extends Controller
             'end_trade_floor' => 'required|integer|min:0',
             'begin_people_floor' => 'required|integer|min:0',
             'end_people_floor' => 'required|integer|min:0',
+            'manage_team' => 'required|regex:/^([a-zA-Z0-9\s\-]*)$/|max:50',
         ],
         [
             'project_name' => 'Tên dự án còn trống',
@@ -73,7 +74,11 @@ class ApartmentController extends Controller
             //
             'end_people_floor.required' => 'Tầng kết thúc dân cư còn trống',
             'end_people_floor.integer' => 'Tầng kết thúc dân cư phải là số nguyên',
-            'end_people_floor.min' => 'Tầng kết thúc dân cư phải là số dương'
+            'end_people_floor.min' => 'Tầng kết thúc dân cư phải là số dương',
+            //
+            'manage_team.required' => 'Đơn vị quản lý còn trống',
+            'manage_team.regex' => 'Đơn vị quản lý chứa ký tự không hợp lệ',
+            'manage_team.max' => 'Tên đơn vị quản lý vượt quá số ký tự cho phép',
         ]);
             $apartment = Apartment::create();
             $apartment->idduan = $request->get('project_name');
@@ -82,7 +87,7 @@ class ApartmentController extends Controller
             $apartment->ketthucthuongmai = $request->get('end_trade_floor');
             $apartment->batdaudancu = $request->get('begin_people_floor');
             $apartment->ketthucdancu = $request->get('end_people_floor');
-            $apartment->tinhtrang = $request->get('status');
+            $apartment->donviquanly = $request->get('manage_team');
 
             $apartment->save();
             session()->flash('create_notif','Tạo tòa chung cư thành công!');
@@ -128,7 +133,7 @@ class ApartmentController extends Controller
             'end_people_floor' => 'required|integer|min:0',
             'begin_trade_floor' => 'required|integer|min:0',
             'end_trade_floor' => 'required|integer|min:0',
-            //'status' => 'required'
+            'manage_team' => 'required|regex:/^([a-zA-Z0-9\s\-]*)$/|max:50',
         ],
         [
             'apartment_name.required' => 'Tên tòa chung cư còn trống',
@@ -150,6 +155,10 @@ class ApartmentController extends Controller
             'end_people_floor.required' => 'Tầng kết tầng dân cư còn trống',
             'end_people_floor.integer' => 'Tầng kết tầng dân cư phải là dạng số',
             'end_people_floor.min' => 'Tầng kết tầng dân cư phải là số dương',
+            //
+            'manage_team.required' => 'Đơn vị quản lý còn trống',
+            'manage_team.regex' => 'Đơn vị quản lý chứa ký tự không hợp lệ',
+            'manage_team.max' => 'Tên đơn vị quản lý vượt quá số ký tự cho phép',
         ]);
             $apartment = Apartment::find($id);
             
@@ -159,7 +168,7 @@ class ApartmentController extends Controller
             $apartment->ketthucthuongmai= $request->get('end_trade_floor');
             $apartment->batdaudancu= $request->get('begin_people_floor');
             $apartment->ketthucdancu= $request->get('end_people_floor');
-            $apartment->tinhtrang = $request->get('status');       
+            $apartment->donviquanly = $request->get('manage_team');      
 
             $apartment->save();
             session()->flash('update_notif','Cập nhật tòa chung cư thành công!');

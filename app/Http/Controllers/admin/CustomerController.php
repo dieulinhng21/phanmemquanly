@@ -51,7 +51,7 @@ use Illuminate\Http\Request;
                 'name' => 'required|regex:/^([a-zA-Z\s\-]*)$/|max:50',
                 'flat' => 'required',
                 'identity_card' => 'required|integer|digits_between:9,10|unique:khachhang,chungminhthu',
-                'dob' => 'required|before_or_equal:today',
+                // 'dob' => 'required|before_or_equal:today',
                 'email' => 'required|email|unique:khachhang,email',
                 'phone_number' => 'required|integer|digits_between:9,10|unique:khachhang,sodienthoai',
                 'inhabitant_number' => 'required',
@@ -69,8 +69,8 @@ use Illuminate\Http\Request;
                 'identity_card.integer' => 'Chứng minh thư không hợp lệ',
                 'identity_card.unique' => 'Số chứng minh thư đã tồn tại',
                 'identity_card.digits_between' => 'Số chứng minh thư không hợp lệ',//số chứng minh thư p dài từ 9-10 ký tự
-                'dob.required' => 'Ngày sinh còn trống',
-                'dob.before_or_equal' => 'Ngày sinh không hợp lệ',
+                // 'dob.required' => 'Ngày sinh còn trống',
+                // 'dob.before_or_equal' => 'Ngày sinh không hợp lệ',
                 //
                 'email.required' => 'Email còn trống',
                 'email.email' => 'Địa chỉ email không hợp lệ',
@@ -90,7 +90,7 @@ use Illuminate\Http\Request;
                 
                 $customer->hoten= $request->get('name');
                 $customer->idcanho= $request->get('flat');
-                $customer->ngaysinh= $request->get('dob');
+                // $customer->ngaysinh= $request->get('dob');
                 $customer->chungminhthu = $request->get('identity_card');
                 $customer->email = $request->get('email');
                 $customer->sodienthoai = $request->get('phone_number');
@@ -145,7 +145,7 @@ use Illuminate\Http\Request;
         {
             $request->validate([
                 'name' => 'required|regex:/^([a-zA-Z\s\-]*)$/|max:50',
-                'dob' => 'required|before_or_equal:today',
+                // 'dob' => 'required|before_or_equal:today',
                 'identity_card' => 'required|numeric|digits_between:9,10',
                 'email' => 'required|email',
                 'phone_number' => 'required|numeric|digits_between:9,10',
@@ -158,17 +158,15 @@ use Illuminate\Http\Request;
                 'name.regex' => 'Tên khách hàng chứa ký tự không hợp lệ',
                 'name.max' => 'Tên khách hàng vượt quá số ký tự cho phép',
                 //
-                'dob.required' => 'Năm sinh còn trống',
-                'dob.before_or_equal' => 'Ngày tháng năm sinh không hợp lệ',
+                // 'dob.required' => 'Năm sinh còn trống',
+                // 'dob.before_or_equal' => 'Ngày tháng năm sinh không hợp lệ',
                 //
                 'identity_card.required' => 'Số chứng minh còn trống',
                 'identity_card.required' => 'Số chứng minh chứa ký tự không hợp lệ',
                 'identity_card.digits_between' => 'Độ dài số chứng minh thư không hợp lệ',// chứng minh thư p dài từ 9-10 ký tự
-                // 'identity_card.unique' => 'Số chứng minh thư đã tồn tại',
                 //
                 'email.required' => 'Email còn trống',
                 'email.email' => 'Địa chỉ email không hợp lệ',
-                // 'email.unique' => 'Địa chỉ email đã tồn tại',
                 //
                 'phone_number.required' => 'Số điện thoại còn trống',
                 'phone_number.numeric' => 'Số điện thoại không chứa ký tự là chữ cái',
@@ -184,7 +182,7 @@ use Illuminate\Http\Request;
                 $customer = Customer::find($id);
                 
                 $customer->hoten= $request->get('name');
-                $customer->ngaysinh= $request->get('dob');
+                // $customer->ngaysinh= $request->get('dob');
                 $customer->chungminhthu = $request->get('identity_card');
                 $customer->email = $request->get('email');
                 $customer->sodienthoai = $request->get('phone_number');

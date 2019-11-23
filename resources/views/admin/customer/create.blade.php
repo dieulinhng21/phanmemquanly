@@ -56,7 +56,7 @@ margin-left: 50%;
         <i>(Họ tên viết không dấu)</i><br><br>
 
         <label>CMND</label>
-        <input type="number" name="identity_card" value="{{ old('identity_card') }}" required><br><br>
+        <input type="number" name="identity_card" value="{{ old('identity_card') }}" required>
 
         <label>Căn hộ</label>
         <select name="flat">
@@ -64,10 +64,10 @@ margin-left: 50%;
         @foreach($flats as $flat)
             <option value="{{$flat->idcanho}}">{{$flat->tencanho}}</option>
         @endforeach
-        </select>
+        </select><br><br>
 
-        <label>Ngày sinh</label> 
-        <input type="date" name="dob" value="{{ old('dob') }}" required><i>(tháng/ngày/năm)</i> <br><br>
+        <!-- <label>Ngày sinh</label> 
+        <input type="date" name="dob" value="{{ old('dob') }}" required><i>(tháng/ngày/năm)</i> <br><br> -->
         <!-- /
         <input class="date" type="number" name="month" placeholder="tháng..."> /
         <input class="date" type="number" name="year" placeholder="năm..."> -->

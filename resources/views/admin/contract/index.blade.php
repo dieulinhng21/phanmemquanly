@@ -51,7 +51,7 @@
                                 <th>Ngày ký</th>
                                 <th>Ngày thanh toán</th>
                                 <th>Hạn đóng</th>
-                                <th>Tiến độ đóng tiền</th>
+                                <th>Số lần thanh toán</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
                         </thead>

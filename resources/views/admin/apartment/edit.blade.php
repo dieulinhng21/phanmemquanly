@@ -71,18 +71,10 @@ input.custom{
 
         
         <label>Tình trạng</label>
-            @if($apartment->tinhtrang == 1)
-            <select name="status" required>
-                <option value="1" selected>Đã đầy</option>
-                <option value="0">Còn trống</option>
-            </select><br><br>
-            @elseif($apartment->tinhtrang == 0)
-                <select name="status" required>
-                    <option value="1">Đã đầy</option>
-                    <option value="0" selected>Còn trống</option>
-                </select><br><br>
-            @endif
-            <button type="submit" class="btn btn-primary">Lưu</button>
+        <input name="manage_team" type="text" value="{{$apartment->donviquanly}}" required>
+        <i>(Tên đơn vị quản lý viết không dấu)</i><br><br>
+
+        <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>
 </section>

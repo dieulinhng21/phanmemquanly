@@ -27,32 +27,32 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
+                                <th>Căn hộ</th>
                                 <th>Họ tên</th>
                                 <th>CMND</th>
                                 <th>Ngày cấp</th>
                                 <th>Nơi cấp</th>
-                                <th>căn hộ</th>
-                                <th>Ngày sinh</th>
-                                <th>Email</th>
-                                <th>SĐT</th>
                                 <th>Hộ khẩu</th>
                                 <th>Địa chỉ</th>
+                                <!-- <th>Ngày sinh</th> -->
+                                <th>Email</th>
+                                <th>SĐT</th>
                                 <th>Ghi chú</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($customers as $item )
                             <tr>
+                                <td>{{$item->tencanho}}</td>
                                 <td>{{$item->hoten}}</td>
                                 <td>{{$item->chungminhthu}}</td>
                                 <td>{{$item->ngaycap}}</td>
                                 <td>{{$item->noicap}}</td>
-                                <td>{{$item->tencanho}}</td>
-                                <td>{{$item->ngaysinh}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->sodienthoai}}</td>
                                 <td>{{$item->hokhau}}</td>
                                 <td>{{$item->diachi}}</td>
+                                <!-- <td>{{$item->ngaysinh}}</td> -->
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->sodienthoai}}</td>
                                 <td>{{$item->ghichu}}</td>
                                 </tr>
                             @endforeach

@@ -124,7 +124,7 @@ input{
 		 	<input type="number" name="extra_date" style="width:50px;" value="{{$contract->han}}" required>
 		 @endif
 		 ngày, kể từ sau ngày kí kết hợp đồng này).<br><br>
-		 b. Trường hợp mua nhà ở theo phương thức trả dần thì thực hiện thanh toán vào các đợt: trả theo tiến độ là
+		 b. Trường hợp mua nhà ở theo phương thức trả dần thì thực hiện thanh toán vào các đợt:  số lần thanh toán là
 		 	<select name="contract_kind">
                 <option value="1">1 lần nộp</option>
                 <option value="2">2 lần nộp</option>

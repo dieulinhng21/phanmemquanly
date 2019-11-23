@@ -61,9 +61,11 @@ class FlatController extends Controller
             'flat'=>'required|regex:/^([a-zA-Z0-9\s\-]*)$/',
             'price'=>'required|numeric|min:0',
             'square'=>'required|numeric|min:0',
-            'livingroom'=>'required|integer|min:0',
+            // 'livingroom'=>'required|integer|min:0',
+            // 'kitchen'=>'required|integer|min:0',
             'bedroom'=>'required|integer|min:0',
-            'kitchen'=>'required|integer|min:0'
+            'bathroom'=>'required|integer|min:0',
+
 
         ],
         [
@@ -83,17 +85,21 @@ class FlatController extends Controller
             'square.numeric' => 'Diện tích phải là dạng số',
             'square.min' => 'Diện tích phải lớn hơn 0',
             //
-            'livingroom.required' => 'Số phòng khách còn trống',
-            'livingroom.integer' => 'Số phòng khách phải là số nguyên',
-            'livingroom.min' => 'Số phòng khách phải lớn hơn 0',
+            // 'livingroom.required' => 'Số phòng khách còn trống',
+            // 'livingroom.integer' => 'Số phòng khách phải là số nguyên',
+            // 'livingroom.min' => 'Số phòng khách phải lớn hơn 0',
             //
             'bedroom.required' => 'Số phòng ngủ còn trống',
             'bedroom.integer' => 'Số phòng ngủ phải là số nguyên',
             'bedroom.min' => 'Số phòng ngủ phải lớn hơn 0',
             //
-            'kitchen.required' => 'Số phòng bếp còn trống',
-            'kitchen.integer' => 'Số phòng bếp phải là số nguyên',
-            'kitchen.min' => 'Số phòng bếp phải lớn hơn 0',
+            // 'kitchen.required' => 'Số phòng bếp còn trống',
+            // 'kitchen.integer' => 'Số phòng bếp phải là số nguyên',
+            // 'kitchen.min' => 'Số phòng bếp phải lớn hơn 0',
+            //
+            'bathroom.required' => 'Số phòng vệ sinh còn trống',
+            'bathroom.integer' => 'Số phòng vệ sinh phải là số nguyên',
+            'bathroom.min' => 'Số phòng vệ sinh phải lớn hơn 0',
         ]);
             $flat = Flat::create();
             
@@ -102,9 +108,11 @@ class FlatController extends Controller
             $flat->tencanho= $request->get('flat');
             $flat->giatri= $request->get('price');
             $flat->dientich= $request->get('square');
-            $flat->sophongkhach= $request->get('livingroom');
+            // $flat->sophongkhach= $request->get('livingroom');
+            // $flat->sophongbep= $request->get('kitchen');
             $flat->sophongngu= $request->get('bedroom');
-            $flat->sophongbep= $request->get('kitchen');
+            $flat->sophongbep= $request->get('bathroom');
+            $flat->tinhtrang= $request->get('status');
 
 
             $flat->save();
@@ -159,9 +167,10 @@ class FlatController extends Controller
             'flat'=>'required|regex:/^([a-zA-Z0-9\s\-]*)$/',
             'price'=>'required|numeric|min:0',
             'square'=>'required|numeric|min:0',
-            'livingroom'=>'required|integer|min:0',
+            // 'livingroom'=>'required|integer|min:0',
+            // 'kitchen'=>'required|integer|min:0',
             'bedroom'=>'required|integer|min:0',
-            'kitchen'=>'required|integer|min:0'
+            'bathroom'=>'required|integer|min:0'
 
         ],
         [
@@ -181,17 +190,21 @@ class FlatController extends Controller
             'square.numeric' => 'Diện tích phải là dạng số',
             'square.min' => 'Diện tích phải lớn hơn 0',
             //
-            'livingroom.required' => 'Số phòng khách còn trống',
-            'livingroom.integer' => 'Số phòng khách phải là số nguyên',
-            'livingroom.min' => 'Số phòng khách phải lớn hơn 0',
+            // 'livingroom.required' => 'Số phòng khách còn trống',
+            // 'livingroom.integer' => 'Số phòng khách phải là số nguyên',
+            // 'livingroom.min' => 'Số phòng khách phải lớn hơn 0',
             //
             'bedroom.required' => 'Số phòng ngủ còn trống',
             'bedroom.integer' => 'Số phòng ngủ phải là số nguyên',
             'bedroom.min' => 'Số phòng ngủ phải lớn hơn 0',
             //
-            'kitchen.required' => 'Số phòng bếp còn trống',
-            'kitchen.integer' => 'Số phòng bếp phải là số nguyên',
-            'kitchen.min' => 'Số phòng bếp phải lớn hơn 0',
+            // 'kitchen.required' => 'Số phòng bếp còn trống',
+            // 'kitchen.integer' => 'Số phòng bếp phải là số nguyên',
+            // 'kitchen.min' => 'Số phòng bếp phải lớn hơn 0',
+            //
+            'bathroom.required' => 'Số phòng vệ sinh còn trống',
+            'bathroom.integer' => 'Số phòng vệ sinh phải là số nguyên',
+            'bathroom.min' => 'Số phòng vệ sinh phải lớn hơn 0',
         ]);
             $flat = Flat::find($id);
             
@@ -199,9 +212,10 @@ class FlatController extends Controller
             $flat->idduan= $request->get('project');
             $flat->idtoachungcu= $request->get('apartment');
             $flat->dientich= $request->get('square');
-            $flat->sophongkhach= $request->get('livingroom');
+            // $flat->sophongkhach= $request->get('livingroom');
+            // $flat->sophongbep= $request->get('kitchen');
             $flat->sophongngu= $request->get('bedroom');
-            $flat->sophongbep= $request->get('kitchen');
+            $flat->sophongbep= $request->get('bathroom');
             $flat->tinhtrang= $request->get('status');
 
             $flat->save();

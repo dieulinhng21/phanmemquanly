@@ -74,22 +74,33 @@ button {
         
             <label>Chi tiết</label>
             Diện tích:
-            <input class="detail" name="square" type="number" value="{{$flat->dientich}}" required> m vuông
-            - Số phòng khách:
+            <input class="detail" name="square" type="number" value="{{$flat->dientich}}" required> mét vuông
+            <!-- - Số phòng khách:
             <input class="detail" name="livingroom" type="number" value="{{$flat->sophongkhach}}" required>
-            - Số phòng ngủ:
-            <input class="detail" name="bedroom" type="number" value="{{$flat->sophongngu}}" required>
             - Số phòng bếp:
-            <input class="detail" name="kitchen" type="number" value="{{$flat->sophongbep}}" required><br><br>
+            <input class="detail" name="kitchen" type="number" value="{{$flat->sophongbep}}" required><br><br> -->
+            - 
+            <input class="detail" name="bedroom" type="number" value="{{$flat->sophongngu}}" required> phòng ngủ
+            - 
+            <input class="detail" name="bathroom" type="number" value="{{$flat->sophongvesinh}}" required> phòng vệ sinh
+            - 1 phòng khách - 1 phòng bếp<br><br>
             
             <label>Tình trạng:</label>
             @if($flat->tinhtrang == 1)
             <select name="status">
                 <option value="1" selected>Đã có người mua</option>
+                <option value="1">Đã đặt cọc</option>
                 <option value="0">Còn trống</option>
             </select><br><br> 
             @elseif($flat->tinhtrang == 0)
             <select name="status">
+                <option value="1">Đã có người mua</option>
+                <option value="1">Đã đặt cọc</option>
+                <option value="0" selected>Còn trống</option>
+            </select><br><br>
+            @elseif($flat->tinhtrang == 2)
+            <select name="status">
+                <option value="1">Đã đặt cọc</option>
                 <option value="1">Đã có người mua</option>
                 <option value="0" selected>Còn trống</option>
             </select><br><br>

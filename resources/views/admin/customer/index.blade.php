@@ -65,14 +65,13 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
+                                <th>Căn hộ</th>
                                 <th>Họ tên</th>
                                 <th>CMND</th>
-                                <th>Căn hộ</th>
-                                <th>Ngày sinh</th>
-                                <th>Email</th>
-                                <th>SĐT</th>
                                 <th>Hộ khẩu</th>
                                 <th>Địa chỉ</th>
+                                <th>Email</th>
+                                <th>SĐT</th>
                                 <th>Ghi chú</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
                             </tr>
@@ -80,14 +79,13 @@
                         <tbody>
                             @foreach($customer_array as $item )
                             <tr>
+                                <td>{{$item->tencanho}}</td>
                                 <td>{{$item->hoten}}</td>
                                 <td>{{$item->chungminhthu}}</td>
-                                <td>{{$item->tencanho}}</td>
-                                <td>{{$item->ngaysinh}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->sodienthoai}}</td>
                                 <td>{{$item->hokhau}}</td>
                                 <td>{{$item->diachi}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->sodienthoai}}</td>
                                 <td>{{$item->ghichu}}</td>
                                 <td><a href="customer/{{$item->idkhachhang}}" class="btn btn-info">Xem chi tiết</a></td>
                                 <td><a href="customer/{{$item->idkhachhang}}/edit" class="btn btn-primary">Sửa</a></td>

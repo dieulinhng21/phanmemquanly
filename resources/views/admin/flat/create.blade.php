@@ -73,16 +73,20 @@ button {
             <label>Chi tiết: </label><br>
             <div style="text-align:left; padding-left:40px;">
                 Diện tích: <input class="detail" type="number" name="square" value="{{ old('square') }}" required> 
-                m vuông <br><br>
+                mét vuông <br><br>
                 Phòng bao gồm :
-                <input class="detail" type="number" name="livingroom" value="{{ old('livingroom') }}" required> phòng khách - 
-                <input class="detail" type="number" name="bedroom" value="{{ old('bedroom') }}" required> phòng ngủ - 
-                <input class="detail" type="number" name="kitchen" value="{{ old('kitchen') }}" required> phòng bếp
+                <!-- <input class="detail" type="number" name="livingroom" value="{{ old('livingroom') }}" required> phòng khách - 
+                <input class="detail" type="number" name="bedroom" value="{{ old('kitchen') }}" required> phòng bếp - 
+                 -  -->
+                 1 phòng khách - 1 phòng bếp - 
+                <input class="detail" type="number" name="kitchen" value="{{ old('bedroom') }}" required> phòng ngủ - 
+                <input class="detail" type="number" name="bathroom" value="{{ old('bathroom') }}" required> phòng vệ sinh
             </div><br><br>
 
             <label for="status">Tình trạng:</label>
             <select name="status" id="status">
                 <option value="0">Còn trống</option>
+                <option value="2">Đã đặt cọc</option>
                 <option value="1">Đã có người mua</option>
             </select><br><br>
             

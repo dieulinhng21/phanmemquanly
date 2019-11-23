@@ -48,6 +48,7 @@
                                 <th>Tên chung cư</th>
                                 <!-- <th>Số phòng ngủ</th> -->
                                 <th>Giá trị</th>
+                                <th>Diện tích (mét vuông)</th>
                                 <th>Chi tiết</th>
                                 <th>Tình trạng</th>
                                 <th colspan="2">Hành động</th> <!-- Default pagination disappear after adding colspan = 2-->
@@ -61,16 +62,19 @@
                                 <td>{{$item->tentoa}}</td>
                                 <!-- <td>{{$item->sophongngu}}</td> -->
                                 <td>{{$item->giatri}}</td>
+                                <td>{{$item->dientich}}</td>
                                 <td>
-                                Diện tích: {{$item->dientich}} -
-                                Số phòng khách: {{$item->sophongkhach}} -
-                                Số phòng ngủ: {{$item->sophongngu}} -
-                                Số phòng bếp: {{$item->sophongbep}}
+                                {{$item->sophongngu}} phòng ngủ,
+                                {{$item->sophongbep}} phòng bếp,
+                                {{$item->sophongvesinh}} phòng vệ sinh,
+                                {{$item->sophongkhach}} phòng khách
                                 </td>
                                 @if($item->tinhtrang == 1)
                                     <td>Đã có người mua</td>
                                 @elseif($item->tinhtrang == 0)
                                     <td>Còn trống</td>
+                                @elseif($item->tinhtrang == 2)
+                                    <td>Đã đặt cọc</td>
                                 @endif
                                 <td><a href="flat/{{$item->idcanho}}/edit" class="btn btn-primary">Sửa</a></td>
                                 <td>
