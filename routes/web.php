@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,29 +9,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
-    Route::get('viewer/project','project');
-    Route::get('viewer/contract', 'contract');
-    Route::get('viewer/apartment','apartment');
-    
-    Route::get('viewer/flat','flat');
-    // Route::resource('viewer/location','LocationController');
-    Route::get('viewer/manager','manager');
-    // Route::resource('viewer/marketting','MarkettingController');
-    Route::get('viewer/customer','customer');
 });
-Route::group(['namespace' => 'admin'], function() {
-    Route::resource('admin/project','ProjectController');
-    Route::resource('admin/contract', 'ContractController');
-    Route::resource('admin/apartment','ApartmentController');
-
-    Route::resource('admin/flat','FlatController');
-    Route::resource('admin/location','LocationController');
-    Route::resource('admin/manager','ManagerController');
-    // Route::resource('admin/marketting','MarkettingController');
-    Route::resource('admin/customer','CustomerController');
+Route::group(['namespace' => 'client'], function() {
+    Route::resource('client/project','ProjectController');
+    Route::resource('client/contract', 'ContractController');
+    Route::resource('client/apartment','ApartmentController');
+    Route::resource('client/flat','FlatController');
+    Route::resource('client/location','LocationController');
+    Route::resource('client/manager','ManagerController');
+    // Route::resource('client/marketting','MarkettingController');
+    Route::resource('client/customer','CustomerController');
 });
 // Route::group(['namespace' => 'viewer'], function() {
 //     Route::get('viewer/project','ProjectController@in');

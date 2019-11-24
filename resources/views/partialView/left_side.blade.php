@@ -5,10 +5,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{asset('layouts/dist/img/img_admin.png')}}" class="img-circle" alt="User Image">
+                <img src="{{asset('layouts/dist/img/user1-128x128.jpg')}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Admin</p>
+                <p>client</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -28,7 +28,7 @@
             <li class="header">MAIN NAVIGATION</li>
 
             <li class="">
-                <a href="{{ url('/admin/project') }}">
+                <a href="{{ url('/client/project') }}">
                    <i class="fa fa-files-o"></i>
                     <span>Quản lý dự án</span>
                     <span class="pull-right-container">
@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li class="">
-                <a href="{{ url('/admin/apartment') }}">
+                <a href="{{ url('/client/apartment') }}">
                 <i class="fa fa-building-o"></i>
                     <span>Quản lý chung cư</span>
                     <span class="pull-right-container">
@@ -45,7 +45,7 @@
                 </a>
             </li>
              <li class="">
-                <a href="{{ url('/admin/flat') }}">
+                <a href="{{ url('/client/flat') }}">
                 
                 <i class="fa fa-th"></i>
                     <span>Quản lý căn hộ</span>
@@ -55,7 +55,7 @@
             </li>
             
              <li class="">
-                <a href="{{ url('/admin/contract') }}">
+                <a href="{{ url('/client/contract') }}">
                 <i class="fa fa-newspaper-o"></i>
                     <span>Quản lý hợp đồng</span>
                     <span class="pull-right-container">
@@ -64,16 +64,16 @@
             </li>
             
              <li class="">
-                <a href="{{ url('/admin/customer') }}">
+                <a href="{{ url('/client/customer') }}">
                 <i class="fa fa-user-o"></i>
                     <span>Quản lý khách hàng</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
             </li>
-
+            @can('admin')
             <li class="">
-                <a href="{{ url('/admin/manager') }}"> 
+                <a href="{{ url('/client /manager') }}"> 
                     <i class="fa fa-address-card"></i>
                     <span>Quản lý người dùng</span>
                     <span class="pull-right-container">
@@ -81,6 +81,7 @@
                     </span>
                 </a>
             </li>
+            @endcan
         </ul>
     </section>
     <!-- /.sidebar -->
